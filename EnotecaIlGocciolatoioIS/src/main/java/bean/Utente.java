@@ -22,13 +22,14 @@ public class Utente {
     //private List<MetodoPagamento> metodoPagamentosList;
     public Utente(){}
 
-    public Utente(int id, String email, String username, String pass, String ruolo, String nome, String cognome, String data_nascita,List<Indirizzo> indirizzoList) {
+    public Utente(int id, String email, String username, String pass, String ruolo, String nome, String cognome, Date data_nascita,List<Indirizzo> indirizzoList) {
         this.id = id;
         this.email = email;
         this.username = username;
         this.pass = pass;
         this.ruolo = ruolo;
         this.nome = nome;
+        this.data_nascita= data_nascita;
         this.cognome=cognome;
         this.indirizzoList=indirizzoList;
         //this.metodoPagamentosList=metodoPagamentosList;
