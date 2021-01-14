@@ -1,0 +1,37 @@
+.img-prodotto{
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+}
+
+.link{
+    color: #000000;
+    text-decoration: none;
+}
+
+a.link:hover{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/*stile button ListaUtenti */
+.linkU{
+    color: #000000;
+    text-decoration: none;
+}
+a.linkU:hover{
+    color: #000000;
+    text-decoration: none;
+}
+
+/*stile bottoni amministratore */
+
+.linkA{
+    color: #9D953B;
+    text-decoration: none;
+}
+
+a.linkA:hover{
+    color: #9D953B;
+    text-decoration: none;
+}

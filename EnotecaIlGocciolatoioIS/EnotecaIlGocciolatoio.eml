@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/EnotecaIlGocciolatoio"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="Tomcat 9.0.31" scope="PROVIDED"/>
+	<lib name="tomcat-jdbc.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/web/WEB-INF/lib/tomcat-jdbc.jar!/"/>
+	</lib>
+	<lib name="mysql-connector-java-8.0.15.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/web/WEB-INF/lib/mysql-connector-java-8.0.15.jar!/"/>
+	</lib>
+	<lib name="jstl-1.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/web/WEB-INF/lib/jstl-1.2.jar!/"/>
+	</lib>
+	<levels>
+		<level name="Tomcat 9.0.31" value="application_server_libraries"/>
+		<level name="lib" value="project"/>
+	</levels>
+</component>

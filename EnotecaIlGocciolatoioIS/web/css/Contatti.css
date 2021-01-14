@@ -1,0 +1,36 @@
+
+
+
+
+body{
+    background-image: url("https://www.creminati.it/menu/sfondo-enoteca-1/");
+}
+
+.col-md-3 {
+    border-style: dashed;
+}
+
+#main{
+    border: 1px solid black;
+    background-color:#fffdd0;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+
+}
+
+
+.titolo-pagina-top{
+    font-family: "Sofia";
+    font-size: 22px;
+}
+
+#contact-form-inner{
+    position: relative;
+    left: 60px;
+}
+
+#whatsapp{
+    padding-left: 12%;
+}

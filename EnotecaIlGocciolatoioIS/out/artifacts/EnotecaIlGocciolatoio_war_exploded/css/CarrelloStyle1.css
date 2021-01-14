@@ -1,0 +1,47 @@
+.item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#title{
+    color: #a71d2a;
+}
+
+.btn-pay {
+    border: 0;
+    color: #ffffff;
+    background-color: #9D953B;
+    font-weight: 600;
+}
+
+a.btn-pay:hover{
+    color: #ffffff;
+    background-color: #5C1005;
+}
+
+
+.fa-ticket {
+    color: #0e1fa1;
+}
+
+/* stile nome prodotto*/
+a {
+    text-decoration: none;
+    color: #0B0704;
+}
+a:hover{
+    text-decoration: none;
+    color: #a71d2a;
+}
+
+
+#rimuovi{
+    color: #a71d2a;
+    font-size: small;
+}
+
+#np{
+     font-size: 120%;
+     color: red;
+}
