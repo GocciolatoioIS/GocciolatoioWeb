@@ -32,7 +32,7 @@ public class TestGestoreAccount extends Mockito{
     }
 
     @Test
-    void TC_Utente() throws ServletException, IOException {
+    void TC_AggiungiUtente() throws ServletException, IOException {
 
         //aggiungere ai request i parametri
         request.addParameter("nome","Giovanni");
