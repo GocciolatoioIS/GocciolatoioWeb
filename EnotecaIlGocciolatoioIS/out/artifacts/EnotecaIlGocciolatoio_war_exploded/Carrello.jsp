@@ -123,7 +123,7 @@
                     <p class="text-uppercase mb-0 py-3"><strong>Riepilogo </strong></p>
                 </div>
                 <div class="totals-item d-flex align-items-center justify-content-between mt-3">
-                    <p class="text-uppercase">Totale Parziale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p class="text-uppercase">Totale Parziale</p>
                     <p class="totals-value" id="cart-subtotal">€${carrello.prezzoTotCent}</p>
                 </div>
                 <div class="totals-item d-flex align-items-center justify-content-between">
@@ -133,7 +133,7 @@
                 <div class="totals-item totals-item-total d-flex align-items-center justify-content-between mt-3 pt-3 border-top border-gainsboro">
                     <p class="text-uppercase"><strong>Totale</strong></p>
                     <p class="totals-value font-weight-bold cart-total">€<%=df.format(carrello.getPrezzoTotCent()+7.90)%></p>
-                    <p> </p>
+                    
                 </div>
             </c:if>
             <c:if test="${not empty carrello.prodotti}">
