@@ -18,8 +18,8 @@
 <% Indirizzo oldIndirizzo=(Indirizzo) request.getAttribute("oldIndirizzo");%>
 
 <form action="mod-indirizzo" method="get" onsubmit="return FormValidation();">
-    <input type="hidden"   name="idInd" value="<%=oldIndirizzo.getId()%>">
-    <input type="hidden" name="iDUtente" value="${utente.id}">
+    <input id="idInd" type="hidden"   name="idInd" value="<%=oldIndirizzo.getId()%>">
+    <input id="idUtente" type="hidden" name="iDUtente" value="${utente.id}">
     <input type="hidden" name="action" value="modInd">
     <div class="container">
 
@@ -285,9 +285,6 @@
 
             <label for="CapInput">MODIFICA IL CAP</label>
             <input type="text" class="form-control" id="CapInput" placeholder=" CAP' " name="cap" required value="<%=oldIndirizzo.getCap()%>">
-
-
-
 
         </div>
 

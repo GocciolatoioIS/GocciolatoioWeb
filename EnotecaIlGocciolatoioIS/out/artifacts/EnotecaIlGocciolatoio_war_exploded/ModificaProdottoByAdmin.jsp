@@ -34,7 +34,7 @@
                     <label class="input-group-text" for="inputGroupSelect01">Categoria</label>
                     <input type="hidden" id="id" name="id" value="<%=prod.getId()%>">
                 </div>
-                <select class="custom-select" id="inputGroupSelect01" name="nome_categoria" value="<%=prod.getNome_categoria()%>" required>
+                <select id="categoria" class="custom-select" id="inputGroupSelect01" name="nome_categoria" value="<%=prod.getNome_categoria()%>" required>
                     <option selected>Seleziona una categoria...</option>
                     <option value="Vino">Vino</option>
                     <option value="Spumanti">Spumanti</option>

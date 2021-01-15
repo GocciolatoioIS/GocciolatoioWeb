@@ -281,16 +281,16 @@
             </div>
             <br>
             <label for="CityInput">AGGIUNGI LA CITTA'</label>
-            <input type="text" class="form-control" id="CityInput" placeholder=" Citta' " name="citta" required>
+            <input id="citta" type="text" class="form-control" id="CityInput" placeholder=" Citta' " name="citta" required>
 
             <label for="AddressInput">AGGIUNGI LA VIA</label>
-            <input type="text" class="form-control" id="AddressInput" placeholder=" Via " name="via" required>
+            <input id="Via" type="text" class="form-control" id="AddressInput" placeholder=" Via " name="via" required>
 
             <label for="NCivicoInput">AGGIUNGI IL NUMERO CIVICO</label>
-            <input type="number" class="form-control" id="NCivicoInput" placeholder=" Numero Civico " name="ncivico" required>
+            <input id="numero civico" type="number" class="form-control" id="NCivicoInput" placeholder=" Numero Civico " name="ncivico" required>
 
             <label for="CapInput">AGGIUNGI IL CAP</label>
-            <input type="text" class="form-control" id="CapInput" placeholder=" CAP' " name="cap" required>
+            <input id="cap" type="text" class="form-control" id="CapInput" placeholder=" CAP' " name="cap" required>
 
             <input type="hidden" name="iDUtente" value="${utente.id}">
 

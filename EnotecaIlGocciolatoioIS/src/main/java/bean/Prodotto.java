@@ -111,7 +111,7 @@ public class Prodotto {
         this.regione = regione;
     }
 
-    public double getGradazione() {
+    public int getGradazione() {
         return gradazione;
     }
 

@@ -34,6 +34,7 @@ public class GestoreProdotto {
         int anno=Integer.parseInt(annata);
         String regione = request.getParameter("regione");
         String gradazione=request.getParameter("gradazione");
+        System.out.println(gradazione);
         int grad=Integer.parseInt(gradazione);
         String formato=request.getParameter("formato");
         int forma=Integer.parseInt(formato);
@@ -78,7 +79,7 @@ public class GestoreProdotto {
         } else {
             RequestDispatcher view = request.getRequestDispatcher("AggiungiProdotto.jsp");/*dove inoltro il form*/
             HttpSession currentSession = request.getSession();
-            currentSession.setAttribute("error", "error");
+            currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto");
             view.forward(request,response);
             return;
         }
@@ -100,6 +101,8 @@ public class GestoreProdotto {
         prodottoDAO.doSave(p);//Viene richiamato il metodo doSave per rendere i dati persistenti.
 
         String address = "/index.html";
+        String msg="Prodotto inserito con successo";
+        request.setAttribute("errorTest",msg);
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher(address);
         dispatcher.forward(request, response);

@@ -95,8 +95,6 @@
             <div class="col order-last">
                 <a class="linkA" href="mod-indirizzo?action=redirect&id=<%=ind.getId()%>"> <button><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
                 <a class="linkA" href="mod-indirizzo?action=delete&id=<%=ind.getId()%>"> <button><i class="fa fa-trash" aria-hidden="true"></i></button></a>
-
-
             </div>
     </div>
         <%}}
