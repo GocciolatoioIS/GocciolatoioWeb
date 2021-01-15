@@ -42,12 +42,12 @@
     <div class="form-container sign-up-container">
         <form name="registration" action="register" method="Post" onsubmit="FormValidation()">
             <h1>Registrati</h1>
-            <input type="text" name="nome"placeholder="Nome" required/>
-            <input type="text" name="cognome"placeholder="Cognome" required/>
-            <input type="date" name="data" placeholder="Data di Nascita" required/>
-            <input type="text" name="username"placeholder="Name" />
-            <input type="email" name="email"placeholder="Email" required/>
-            <input type="password" name="pass" placeholder="Password" required/>
+            <input type="text" id="nome" name="nome"placeholder="Nome" required/>
+            <input type="text" id="cognome" name="cognome"placeholder="Cognome" required/>
+            <input type="date"  id="data"name="data" placeholder="Data di Nascita" required/>
+            <input type="text" id="usernameReg" name="username"placeholder="Name" />
+            <input type="email" id="email" name="email"placeholder="Email" required/>
+            <input type="password" id="passwordReg" name="pass" placeholder="Password" required/>
             <button id="BottoneRegistrati">Registrati </button>
         </form>
     </div>
