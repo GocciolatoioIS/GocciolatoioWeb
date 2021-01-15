@@ -80,5 +80,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.objenesis:objenesis:3.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-runner:1.7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-suite-api:1.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: antlr:antlr:2.7.2" level="project" />
   </component>
 </module>
