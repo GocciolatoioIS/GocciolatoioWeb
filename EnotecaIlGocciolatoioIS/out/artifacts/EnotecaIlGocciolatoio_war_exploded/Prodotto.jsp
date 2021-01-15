@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="bean.Prodotto" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%--
   Created by IntelliJ IDEA.
   User: vince
@@ -91,17 +92,21 @@
             <%}%>
 
             <!-- Se lo sconto è presente viene mostrato e viene mostrato anche il prezzo scontato -->
-            <%if(p.getSconto()>0){%>
+            <%if(p.getSconto()>0){
+                DecimalFormat df = new DecimalFormat("#.00");
+                df.setMaximumFractionDigits(2);%>%>
             <div class="caratteristiche"> <span class="h-caratteristiche"> Sconto</span>
                 <span>Sconto <%=p.getSconto()%> %</span>
             </div>
 
                 <p class="p-head-price">Prezzo</p>
-                <p class="p-price"><%=p.getPrezzo()-(p.getPrezzo()/100*p.getSconto())%> €</p>
-            <%} else{ %>
+                <p class="p-price"><%=df.format(p.getPrezzo()-(p.getPrezzo()/100*p.getSconto()))%> €</p>
+            <%} else{
+                DecimalFormat df = new DecimalFormat("#.00");
+                df.setMaximumFractionDigits(2);%>
                 <!-- Altrimenti ne esce il prezzo normale -->
                 <p class="p-head-price">Prezzo</p>
-                <p class="p-price"><%=p.getPrezzo()%> €</p>
+                <p class="p-price"><%=df.format(p.getPrezzo())%> €</p>
             <%}%>
 
             <!-- form quantità e bottone aggiungi al carrello -->

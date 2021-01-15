@@ -15,6 +15,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.text.ParseException;
 
 public class TestGestoreAccount extends Mockito{
 
@@ -32,7 +33,7 @@ public class TestGestoreAccount extends Mockito{
     }
 
     @Test
-    void TC_AggiungiUtente() throws ServletException, IOException {
+    void TC_AggiungiUtente() throws ServletException, IOException, ParseException {
 
         //aggiungere ai request i parametri
         request.addParameter("nome","Giovanni");

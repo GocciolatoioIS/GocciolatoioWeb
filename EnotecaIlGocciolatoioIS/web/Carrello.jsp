@@ -3,6 +3,8 @@
 <%@ page import="bean.Utente" %>
 <%@ page import="java.util.List" %>
 <%@ page import="bean.Indirizzo" %>
+<%@ page import="bean.Carrello" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c"
           uri="http://java.sun.com/jsp/jstl/core"%>
@@ -22,7 +24,11 @@
 </head>
 <body>
 
+<% Carrello carrello= (Carrello) session.getAttribute("carrello");
+    DecimalFormat df = new DecimalFormat("#.00");
+    df.setMaximumFractionDigits(2);
 
+%>
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-7">
@@ -96,11 +102,12 @@
                             <%
 
                             List<Indirizzo> listInd=u.getIndirizzoList();
+                            if(listInd!=null){
                             for(int i=0;i<listInd.size();i++){
                                 Indirizzo ind=listInd.get(i);
                             %>
                                 <option value="<%=ind.getId()%>"><%=ind.getFullIndirizzo()%></option>
-                        <%}%>
+                        <%}}%>
                     </select>
                     <div class="totals-item totals-item-total d-flex align-items-center justify-content-between mt-3 pt-3 border-top border-gainsboro">
                         <p class="text-uppercase"><strong>Aggiungi nuovo indirizzo</strong></p>
@@ -116,7 +123,7 @@
                     <p class="text-uppercase mb-0 py-3"><strong>Riepilogo </strong></p>
                 </div>
                 <div class="totals-item d-flex align-items-center justify-content-between mt-3">
-                    <p class="text-uppercase">Totale Parziale</p>
+                    <p class="text-uppercase">Totale Parziale&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     <p class="totals-value" id="cart-subtotal">€${carrello.prezzoTotCent}</p>
                 </div>
                 <div class="totals-item d-flex align-items-center justify-content-between">
@@ -125,7 +132,8 @@
                 </div>
                 <div class="totals-item totals-item-total d-flex align-items-center justify-content-between mt-3 pt-3 border-top border-gainsboro">
                     <p class="text-uppercase"><strong>Totale</strong></p>
-                    <p class="totals-value font-weight-bold cart-total">€${carrello.prezzoTotCent+7.90}</p>
+                    <p class="totals-value font-weight-bold cart-total">€<%=df.format(carrello.getPrezzoTotCent()+7.90)%></p>
+                    <p> </p>
                 </div>
             </c:if>
             <c:if test="${not empty carrello.prodotti}">

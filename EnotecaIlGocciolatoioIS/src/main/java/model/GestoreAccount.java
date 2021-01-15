@@ -27,7 +27,7 @@ public class GestoreAccount {
     public GestoreAccount() {
     }
 
-    public void gestioneRegistrazione(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void gestioneRegistrazione(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 
         String username=request.getParameter("username");
         String email=request.getParameter("email");
@@ -141,6 +141,8 @@ public class GestoreAccount {
 
 
         utenteDAO.doSave(u);
+        u.setData_nascita(new SimpleDateFormat("yyyy-MM-dd").parse(data_nascita));
+        u.setIndirizzoList(new ArrayList<Indirizzo>());
         request.getSession().setAttribute("utente", u);
 
         //Viene rindirizzata alla HomeServlet

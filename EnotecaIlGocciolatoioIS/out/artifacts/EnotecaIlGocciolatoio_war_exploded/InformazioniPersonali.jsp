@@ -1,6 +1,11 @@
 <%@ page import="bean.Utente" %>
 <%@ page import="java.util.List" %>
 <%@ page import="bean.Indirizzo" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c"
           uri="http://java.sun.com/jsp/jstl/core"%>
@@ -27,7 +32,12 @@
 <!--sezione spazio bianco prima delle info -->
 <div class="jumbotron jumbotron-fluid " style="background:transparent !important">
 </div>
+<% Date myDate= user.getData_nascita();
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    String strDate = dateFormat.format(myDate);
+    //LocalDateTime dateTime = LocalDateTime.parse(dateToParse, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
+%>
 <div class="container">
 
     <div class="title">Il mio Account</div>
@@ -46,7 +56,7 @@
                 <li><h5 class="info-items">Email: <%=user.getEmail() %></h5></li>
                 <li><h5 class="info-items ">Nome: <%=user.getNome()%></h5></li>
                 <li><h5 class="info-items ">Cognome: <%=user.getCognome()%></h5></li>
-                <li><h5 class="info-items ">Data di Nascita: <%=user.getData_nascita()%></h5></li>
+                <li><h5 class="info-items ">Data di Nascita: <%=strDate%></h5></li>
             </ul>
 
 

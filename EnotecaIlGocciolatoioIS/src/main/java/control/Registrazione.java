@@ -30,6 +30,10 @@ public class Registrazione extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        gestoreAccount.gestioneRegistrazione(request,response);
+        try {
+            gestoreAccount.gestioneRegistrazione(request,response);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
