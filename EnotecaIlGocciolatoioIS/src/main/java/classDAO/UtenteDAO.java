@@ -33,25 +33,6 @@ public class UtenteDAO {
         }
     }
 
-    public ArrayList<String> retriveUser() {
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps =
-                    con.prepareStatement("SELECT username FROM utente ");
-
-            ResultSet rs = ps.executeQuery();
-
-            ArrayList<String> list = new ArrayList<>();
-
-            while (rs.next()) {
-                String e = rs.getString(1);
-                list.add(e);
-            }
-            return list;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public Utente doRetrieveByUsernamePassword(String username, String password) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
@@ -132,7 +113,6 @@ public class UtenteDAO {
         }
     }
 
-
     public void doUpdate(Utente u) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
@@ -147,21 +127,6 @@ public class UtenteDAO {
 
 
 
-
-            ps.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void doUpdatePass(Utente u) {
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps =
-                    con.prepareStatement("UPDATE utente SET pass=? WHERE id=?");
-
-            ps.setString(1,u.getPass());
-            ps.setInt(2, u.getId());
 
             ps.executeUpdate();
 
@@ -205,7 +170,6 @@ public class UtenteDAO {
             throw new RuntimeException(e);
         }
     }
-
 
     public Utente deRetriveUsername(String username){
         try (Connection con = ConPool.getConnection()) {

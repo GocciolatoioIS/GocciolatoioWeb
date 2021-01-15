@@ -102,6 +102,7 @@ public class GestoreAccount {
         u.setNome(nome);
         u.setCognome(cognome);
         System.out.println(data_nascita);
+
         //Gestione data + controllo eta
         Date date = null;
         try {
@@ -112,6 +113,7 @@ public class GestoreAccount {
             u.setData_nascita(date);
         }
         System.out.println(date);
+
         //Controllo età maggiore per reg
         Calendar calendar=Calendar.getInstance();
         calendar.setTime(date);
