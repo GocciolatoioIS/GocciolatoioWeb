@@ -32,10 +32,11 @@
 
 <!-- partial:index.partial.html -->
 <h2> Accedi o Crea un Account </h2>
-<%   String error= (String) request.getAttribute("error");
+<%
+    String error= (String) request.getAttribute("error");
     if(error!=null){
 %>
-        <p style="color:red" align="center">*<%=error%> </p>
+        <p id="checkError" style="color:red" align="center" value="<%=error%>" > *<%=error%> </p>
 <%}%>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
@@ -44,21 +45,22 @@
             <input type="text" name="nome"placeholder="Nome" required/>
             <input type="text" name="cognome"placeholder="Cognome" required/>
             <input type="date" name="data" placeholder="Data di Nascita" required/>
-            <input type="text" name="username"placeholder="Name" required/>
+            <input type="text" name="username"placeholder="Name" />
             <input type="email" name="email"placeholder="Email" required/>
             <input type="password" name="pass" placeholder="Password" required/>
-            <button>Registrati </button>
+            <button id="BottoneRegistrati">Registrati </button>
         </form>
     </div>
     <div class="form-container sign-in-container">
-        <form action="login" method="POST" >
+        <form action="login" method="POST" onsubmit="validaFormLogin()">
             <h1>Accedi</h1>
 
-            <input type="text" name="username"placeholder="Username" required/>
-            <input type="password" name="pass" placeholder="Password" required />
+            <input type="text" id="username" name="username"placeholder="Username" />
+            <input type="password" id="password" name="pass" placeholder="Password"  />
+
             <br>
 
-            <button>Accedi</button>
+            <button id="BottoneAccedi">Accedi</button>
         </form>
     </div>
     <div class="overlay-container">
@@ -80,6 +82,7 @@
 <!-- js -->
 <script src="javascript/LoginRegistration.js"></script>
 <script src="javascript/FormValidation.js"></script>
+<script src="javascript/LoginValidation.js"></script>
 
 </body>
 </html>
