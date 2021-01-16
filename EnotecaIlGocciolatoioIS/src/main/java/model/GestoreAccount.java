@@ -36,19 +36,25 @@ public class GestoreAccount {
         String cognome=request.getParameter("cognome");
         String data_nascita= request.getParameter("data");
 
-        String regUsername =  "/^[0-9A-Za-z]+$/";
-        String regPassword =  "/^[A-Za-z]+$/";
-        Boolean validate=true;
+        String match =  "/^[0-9A-Za-z]+$/";
+        String regPassword =  "/^[A-Za-z0-9]+$/";
 
-        if(!request.getParameter("username").matches(regUsername)) {
-            System.out.println("nome dato corretto");
-        }else{ validate=false; }
-        if(!request.getParameter("pass").matches(regPassword)) {
-            System.out.println("password dato corretto");
-        }else {validate=false;}
+        Boolean validate=true;
+        String msg="";
+
+        if(!request.getParameter("nome").matches(match))
+            if(!nome.equals(""))
+                System.out.println("nome utente dato corretto");
+            else{
+                msg="nome non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+            }
+
 
         if(validate==true) {
-            System.out.println("tutti i campi sono giusti");
+            System.out.println("tutti i campi utente sono giusti");
         } else {
             RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
             HttpSession currentSession = request.getSession();
@@ -101,7 +107,7 @@ public class GestoreAccount {
         u.setRuolo("utente");
         u.setNome(nome);
         u.setCognome(cognome);
-        System.out.println(data_nascita);
+        //System.out.println(data_nascita);
 
         //Gestione data + controllo eta
         Date date = null;
@@ -112,7 +118,7 @@ public class GestoreAccount {
             e.printStackTrace();
             u.setData_nascita(date);
         }
-        System.out.println(date);
+        //System.out.println(date);
 
         //Controllo età maggiore per reg
         Calendar calendar=Calendar.getInstance();
@@ -131,7 +137,7 @@ public class GestoreAccount {
             age--;
         }
 
-        System.out.println("age"+date+":"+age);
+        //System.out.println("age"+date+":"+age);
 
         if(age<=17){
             RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
@@ -143,6 +149,9 @@ public class GestoreAccount {
 
 
         utenteDAO.doSave(u);
+
+        msg="utente inserito correttamente";
+        request.setAttribute("msg",msg);
         u.setData_nascita(new SimpleDateFormat("yyyy-MM-dd").parse(data_nascita));
         u.setIndirizzoList(new ArrayList<Indirizzo>());
         request.getSession().setAttribute("utente", u);
@@ -198,8 +207,11 @@ public class GestoreAccount {
                 request.getRequestDispatcher(address);*/
 
         request.setAttribute("var","Cancellazione eseguita con Successo :)");
-        response.sendRedirect(address);
+        //response.sendRedirect(address);
         //dispatcher.forward(request, response);
+
+        response.sendRedirect(address);
+
     }
 
     public void gestoreReindirizzamentoLoginOProfilo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

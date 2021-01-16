@@ -23,18 +23,21 @@ public class TestGestoreAccount extends Mockito{
 
     private MockHttpServletRequest request;
     private MockHttpServletResponse response;
+    private Utente utente;
 
     @Mock
-    private UtenteDAO utenteDAO;
+    private UtenteDAO utenteDAO=new UtenteDAO();
 
     @InjectMocks
     public final GestoreAccount gestoreAccount = new GestoreAccount();
+
 
 
     @BeforeEach
     void setUp() throws Exception {
         request = new MockHttpServletRequest();
         response = new MockHttpServletResponse();
+        utente = new Utente();
         MockitoAnnotations.initMocks(this);
     }
 
@@ -50,13 +53,25 @@ public class TestGestoreAccount extends Mockito{
         request.addParameter("data","1980-01-01");
 
         gestoreAccount.gestioneRegistrazione(request, response);
-        Utente u= (Utente) request.getSession().getAttribute("utente");
-        System.out.print(u.toString());
+        utente=(Utente) request.getSession().getAttribute("utente");
+        System.out.println(utente.toString());
+        String msg = (String) request.getAttribute("msg");
+
+
+        assertEquals("utente inserito correttamente",msg);
+        request.addParameter("id",String.valueOf(utente.getId()));
+
+        gestoreAccount.gestoreCancellaUtente(request,response);
 
     }
 
+
+
+
+
     @AfterEach
     void tearDown() throws Exception {
+
         request=null;
         response=null;
     }

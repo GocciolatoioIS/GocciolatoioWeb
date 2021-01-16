@@ -98,7 +98,7 @@ public class UtenteDAO {
             java.util.Date utilDate = user.getData_nascita();
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-            System.out.println("datautils"+ utilDate + ",datasql" +sqlDate);
+            //System.out.println("datautils"+ utilDate + ",datasql" +sqlDate);
             ps.setDate(7,sqlDate);
 
             if (ps.executeUpdate() != 1) {
@@ -140,6 +140,7 @@ public class UtenteDAO {
 
     public int deleteUser(int id) {
         try (Connection con = ConPool.getConnection()) {
+            System.out.println("sONOeNTRATO");
             PreparedStatement ps =
                     con.prepareStatement("DELETE FROM utente WHERE id=?");
             ps.setInt(1,id);
