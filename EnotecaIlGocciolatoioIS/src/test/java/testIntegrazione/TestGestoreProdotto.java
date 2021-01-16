@@ -38,7 +38,7 @@ public class TestGestoreProdotto extends Mockito{
     @InjectMocks
     private GestoreProdotto servlet;
 
-    private Prodotto prodotto = new Prodotto(56,"NomeBottiglia","Tipo","Descrizione",127,1,"immagine",2000,"regione",13,13,2,"Vino");
+    private Prodotto prodotto = new Prodotto(72,"NomeBottiglia","Tipo","Descrizione",127,1,"immagine",2000,"regione",13,13,2,"Vino");
 
     @BeforeEach
     void setUp() throws Exception {
@@ -66,7 +66,12 @@ public class TestGestoreProdotto extends Mockito{
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
-        System.out.println(result);
+
+        int id= Integer.parseInt(String.valueOf(request.getAttribute("testid")));
+        System.out.println(id);
+
+        request.addParameter("id", String.valueOf(id));
+        servlet.gestoreCancellaProdotto(request,response);
     }
 
     @Test
@@ -312,6 +317,7 @@ public class TestGestoreProdotto extends Mockito{
 
     @Test
     void TC_ModificaProdotto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
         request.addParameter("nome",prodotto.getNome());
         request.addParameter("tipo",prodotto.getTipo());
         request.addParameter("descrizione",prodotto.getDescrizione());
@@ -326,14 +332,256 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "Prodotto modificato con successo";
-        servlet.gestoreCancellaProdotto(request, response);
+        servlet.gestoreModificaProdotto(request, response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
     }
 
+    @Test
+    void TC_ModificaProdottoNomeNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome","");
+        request.addParameter("tipo",prodotto.getTipo());
+        request.addParameter("descrizione",prodotto.getDescrizione());
+        request.addParameter("prezzo", String.valueOf(prodotto.getPrezzo()));
+        request.addParameter("sconto", String.valueOf(prodotto.getSconto()));
+        request.addParameter("immagine",prodotto.getImmagine());
+        request.addParameter("anno", String.valueOf(prodotto.getAnno()));
+        request.addParameter("regione",prodotto.getRegione());
+        request.addParameter("gradazione", String.valueOf(prodotto.getGradazione()));
+        request.addParameter("formato", String.valueOf(prodotto.getFormato()));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria",prodotto.getNome_categoria());
+
+        String message = "nome non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModifcaProdottoTipoNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome",prodotto.getNome());
+        request.addParameter("tipo","");
+        request.addParameter("descrizione",prodotto.getDescrizione());
+        request.addParameter("prezzo", String.valueOf(prodotto.getPrezzo()));
+        request.addParameter("sconto", String.valueOf(prodotto.getSconto()));
+        request.addParameter("immagine",prodotto.getImmagine());
+        request.addParameter("anno", String.valueOf(prodotto.getAnno()));
+        request.addParameter("regione",prodotto.getRegione());
+        request.addParameter("gradazione", String.valueOf(prodotto.getGradazione()));
+        request.addParameter("formato", String.valueOf(prodotto.getFormato()));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria",prodotto.getNome_categoria());
+
+        String message = "tipo non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModificaProdottoDescrizioneNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome",prodotto.getNome());
+        request.addParameter("tipo",prodotto.getTipo());
+        request.addParameter("descrizione","");
+        request.addParameter("prezzo", String.valueOf(prodotto.getPrezzo()));
+        request.addParameter("sconto", String.valueOf(prodotto.getSconto()));
+        request.addParameter("immagine",prodotto.getImmagine());
+        request.addParameter("anno", String.valueOf(prodotto.getAnno()));
+        request.addParameter("regione",prodotto.getRegione());
+        request.addParameter("gradazione", String.valueOf(prodotto.getGradazione()));
+        request.addParameter("formato", String.valueOf(prodotto.getFormato()));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria",prodotto.getNome_categoria());
+
+        String message = "descrizione non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModificaProdottoPrezzoNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome",prodotto.getNome());
+        request.addParameter("tipo",prodotto.getTipo());
+        request.addParameter("descrizione",prodotto.getDescrizione());
+        request.addParameter("prezzo", String.valueOf("0"));
+        request.addParameter("sconto", String.valueOf(prodotto.getSconto()));
+        request.addParameter("immagine",prodotto.getImmagine());
+        request.addParameter("anno", String.valueOf(prodotto.getAnno()));
+        request.addParameter("regione",prodotto.getRegione());
+        request.addParameter("gradazione", String.valueOf(prodotto.getGradazione()));
+        request.addParameter("formato", String.valueOf(prodotto.getFormato()));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria",prodotto.getNome_categoria());
+
+        String message = "prezzo non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModificaProdottoScontoNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome",prodotto.getNome());
+        request.addParameter("tipo",prodotto.getTipo());
+        request.addParameter("descrizione",prodotto.getDescrizione());
+        request.addParameter("prezzo", String.valueOf(prodotto.getPrezzo()));
+        request.addParameter("sconto", "0");
+        request.addParameter("immagine",prodotto.getImmagine());
+        request.addParameter("anno", String.valueOf(prodotto.getAnno()));
+        request.addParameter("regione",prodotto.getRegione());
+        request.addParameter("gradazione", String.valueOf(prodotto.getGradazione()));
+        request.addParameter("formato", String.valueOf(prodotto.getFormato()));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria",prodotto.getNome_categoria());
+
+        String message = "sconto non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModificaProdottoImmagineNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome",prodotto.getNome());
+        request.addParameter("tipo",prodotto.getTipo());
+        request.addParameter("descrizione",prodotto.getDescrizione());
+        request.addParameter("prezzo", String.valueOf(prodotto.getPrezzo()));
+        request.addParameter("sconto", String.valueOf(prodotto.getSconto()));
+        request.addParameter("immagine","");
+        request.addParameter("anno", String.valueOf(prodotto.getAnno()));
+        request.addParameter("regione",prodotto.getRegione());
+        request.addParameter("gradazione", String.valueOf(prodotto.getGradazione()));
+        request.addParameter("formato", String.valueOf(prodotto.getFormato()));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria",prodotto.getNome_categoria());
+
+        String message = "immagine non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModificaProdottoAnnoNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome",prodotto.getNome());
+        request.addParameter("tipo",prodotto.getTipo());
+        request.addParameter("descrizione",prodotto.getDescrizione());
+        request.addParameter("prezzo", String.valueOf(prodotto.getPrezzo()));
+        request.addParameter("sconto", String.valueOf(prodotto.getSconto()));
+        request.addParameter("immagine",prodotto.getImmagine());
+        request.addParameter("anno", String.valueOf("0"));
+        request.addParameter("regione",prodotto.getRegione());
+        request.addParameter("gradazione", String.valueOf(prodotto.getGradazione()));
+        request.addParameter("formato", String.valueOf(prodotto.getFormato()));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria",prodotto.getNome_categoria());
+
+        String message = "anno non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModificaProdottoRegioneNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome",prodotto.getNome());
+        request.addParameter("tipo",prodotto.getTipo());
+        request.addParameter("descrizione",prodotto.getDescrizione());
+        request.addParameter("prezzo", String.valueOf(prodotto.getPrezzo()));
+        request.addParameter("sconto", String.valueOf(prodotto.getSconto()));
+        request.addParameter("immagine",prodotto.getImmagine());
+        request.addParameter("anno", String.valueOf(prodotto.getAnno()));
+        request.addParameter("regione","");
+        request.addParameter("gradazione", String.valueOf(prodotto.getGradazione()));
+        request.addParameter("formato", String.valueOf(prodotto.getFormato()));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria",prodotto.getNome_categoria());
+
+        String message = "regione non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModificaProdottoGradazioneNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome",prodotto.getNome());
+        request.addParameter("tipo",prodotto.getTipo());
+        request.addParameter("descrizione",prodotto.getDescrizione());
+        request.addParameter("prezzo", String.valueOf(prodotto.getPrezzo()));
+        request.addParameter("sconto", String.valueOf(prodotto.getSconto()));
+        request.addParameter("immagine",prodotto.getImmagine());
+        request.addParameter("anno", String.valueOf(prodotto.getAnno()));
+        request.addParameter("regione",prodotto.getRegione());
+        request.addParameter("gradazione", String.valueOf("0"));
+        request.addParameter("formato", String.valueOf(prodotto.getFormato()));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria",prodotto.getNome_categoria());
+
+        String message = "gradazione non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModificaProdottoFormatoNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome",prodotto.getNome());
+        request.addParameter("tipo",prodotto.getTipo());
+        request.addParameter("descrizione",prodotto.getDescrizione());
+        request.addParameter("prezzo", String.valueOf(prodotto.getPrezzo()));
+        request.addParameter("sconto", String.valueOf(prodotto.getSconto()));
+        request.addParameter("immagine",prodotto.getImmagine());
+        request.addParameter("anno", String.valueOf(prodotto.getAnno()));
+        request.addParameter("regione",prodotto.getRegione());
+        request.addParameter("gradazione", String.valueOf(prodotto.getGradazione()));
+        request.addParameter("formato", String.valueOf("0"));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria",prodotto.getNome_categoria());
+
+        String message = "formato non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModificaProdottoQuantitaNonCorretto() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+        request.addParameter("nome",prodotto.getNome());
+        request.addParameter("tipo",prodotto.getTipo());
+        request.addParameter("descrizione",prodotto.getDescrizione());
+        request.addParameter("prezzo", String.valueOf(prodotto.getPrezzo()));
+        request.addParameter("sconto", String.valueOf(prodotto.getSconto()));
+        request.addParameter("immagine",prodotto.getImmagine());
+        request.addParameter("anno", String.valueOf(prodotto.getAnno()));
+        request.addParameter("regione",prodotto.getRegione());
+        request.addParameter("gradazione", String.valueOf(prodotto.getGradazione()));
+        request.addParameter("formato", String.valueOf(prodotto.getFormato()));
+        request.addParameter("quantita_magazzino", String.valueOf(prodotto.getQuantita_magazzino()));
+        request.addParameter("nome_categoria","");
+
+        String message = "nome_categoria non corretto";
+        servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
 
     @AfterEach
     void tearDown() throws Exception {
+
         request=null;
         response=null;
     }
