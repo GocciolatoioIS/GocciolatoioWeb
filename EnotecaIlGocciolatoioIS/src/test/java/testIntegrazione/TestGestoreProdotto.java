@@ -19,6 +19,8 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class TestGestoreProdotto extends Mockito{
@@ -63,13 +65,12 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "Prodotto inserito con successo";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
 
         int id= Integer.parseInt(String.valueOf(request.getAttribute("testid")));
-        System.out.println(id);
-
         request.addParameter("id", String.valueOf(id));
         servlet.gestoreCancellaProdotto(request,response);
     }
@@ -90,6 +91,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "nome non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -111,6 +113,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "tipo non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -132,6 +135,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "descrizione non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -153,6 +157,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "prezzo non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -174,6 +179,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "sconto non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -195,6 +201,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "immagine non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -216,6 +223,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "anno non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -237,6 +245,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "regione non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -258,6 +267,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "gradazione non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -279,6 +289,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "formato non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -300,6 +311,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria","");
 
         String message = "nome_categoria non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreAddProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -310,6 +322,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("id", String.valueOf(prodotto.getId()));
 
         String message = "Prodotto eliminato con successo";
+        System.out.println("oracolo: "+message);
         servlet.gestoreCancellaProdotto(request, response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -332,6 +345,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "Prodotto modificato con successo";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request, response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -354,6 +368,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "nome non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -376,6 +391,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "tipo non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -398,6 +414,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "descrizione non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -420,6 +437,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "prezzo non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -442,6 +460,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "sconto non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -464,6 +483,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "immagine non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -486,6 +506,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "anno non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -508,6 +529,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "regione non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -530,6 +552,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "gradazione non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -552,6 +575,7 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria",prodotto.getNome_categoria());
 
         String message = "formato non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
@@ -574,7 +598,76 @@ public class TestGestoreProdotto extends Mockito{
         request.addParameter("nome_categoria","");
 
         String message = "nome_categoria non corretto";
+        System.out.println("oracolo: "+message);
         servlet.gestoreModificaProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_ModificaProdottoByAdmin() throws ServletException, IOException {
+        request.addParameter("id", String.valueOf(prodotto.getId()));
+
+        String message = "prodotto trovato";
+        System.out.println("oracolo: "+message);
+        servlet.gestoreModificaProdottoByAdmin(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_MostraProdotto1() throws ServletException, IOException {
+        request.addParameter("product", String.valueOf(prodotto.getId()));
+
+        String message = "prodotto trovato";
+        System.out.println("oracolo: "+message);
+        servlet.gestoreMostraProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_MostraProdotto2() throws ServletException, IOException {
+        String pnull=null;
+        request.addParameter("product",pnull);
+        request.addParameter("prodId", String.valueOf(prodotto.getId()));
+
+        String message = "prodotto trovato";
+        System.out.println("oracolo: "+message);
+        servlet.gestoreMostraProdotto(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_MostraTuttiProdotti() throws ServletException, IOException {
+        servlet.gestoreMostraTuttiProdotti(request,response);
+        String message = "lista trovata";
+        System.out.println("oracolo: "+message);
+
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_RicercaProdotto1() throws ServletException, IOException {
+        request.addParameter("stringP", prodotto.getNome());
+        servlet.gestoreRicercaProdotto(request,response);
+
+        String message = "lista non trovata";
+        System.out.println("oracolo: "+message);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_RicercaProdotto2() throws ServletException, IOException {
+
+        request.addParameter("stringP", "Brunello di Montalcino");
+        servlet.gestoreRicercaProdotto(request,response);
+
+        String message = "ricerca avvenuta con successo";
+        System.out.println("oracolo: "+message);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);
     }

@@ -210,6 +210,7 @@ public class GestoreProdotto {
         String category = request.getParameter("category");
         String address = null;
         String categoria=null;
+        String msg=null;
         if (category.equals("vini")) {
             categoria = "Vino";
             request.setAttribute("category", categoria);
@@ -239,9 +240,9 @@ public class GestoreProdotto {
             request.setAttribute("category", categoria);
         }
 
-
         List<Prodotto> prodotti = prodottoDAO.retriveCategory(categoria);
         request.setAttribute("prodotti", prodotti);
+
         address = "/Categoria.jsp"; //Dopodichè viene reindirizzata la pagina
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
@@ -441,6 +442,9 @@ public class GestoreProdotto {
         Prodotto p=udao.retriveOne(id);
         request.setAttribute("prodotto1",p);
         String address="/ModificaProdottoByAdmin.jsp";
+        String msg="prodotto trovato";
+        System.out.println("servlet: "+msg);
+        request.setAttribute("errorTest",msg);
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher(address);
         dispatcher.forward(request, response);
@@ -452,27 +456,32 @@ public class GestoreProdotto {
         //Prende il valore della stringa passata e co prendiamo l'id del nostro prodotto
         String product=request.getParameter("product");
         String address = null;
-
         ProdottoDAO proDAO = new ProdottoDAO();
+        String msg=null;
 
-        Prodotto p=proDAO.retriveOne(Integer.parseInt(product));
-        request.setAttribute("prodotto", p);
-
-        address = "/Prodotto.jsp";
-        RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-        dispatcher.forward(request, response);
-        response.sendRedirect(address);
         if(product==null) {
-
             String id=request.getParameter("prodId");
+            msg="prodotto trovato";
+            System.out.println("servlet: "+msg);
+            request.setAttribute("errorTest",msg);
             int prodId=Integer.parseInt(id);
-            p=proDAO.retriveOne(prodId);
+            Prodotto p=proDAO.retriveOne(prodId);
             request.setAttribute("prodotto", p);
             address = "/Prodotto.jsp";
-            dispatcher = request.getRequestDispatcher(address);
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
             dispatcher.forward(request, response);
-        }
+        } else{
+            Prodotto p=proDAO.retriveOne(Integer.parseInt(product));
+            request.setAttribute("prodotto", p);
 
+            address = "/Prodotto.jsp";
+            msg="prodotto trovato";
+            System.out.println("servlet: "+msg);
+            request.setAttribute("errorTest",msg);
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
+            response.sendRedirect(address);
+        }
     }
 
     public void gestoreMostraTuttiProdotti(HttpServletRequest request, HttpServletResponse response)
@@ -484,6 +493,9 @@ public class GestoreProdotto {
         List<Prodotto> prodotti = proDAO.retriveAll();
 
         request.setAttribute("prodotti", prodotti);
+        String msg="lista trovata";
+        System.out.println("servlet: "+msg);
+        request.setAttribute("errorTest",msg);
         address = "/ListaProdotti.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
         dispatcher.forward(request, response);
@@ -498,10 +510,24 @@ public class GestoreProdotto {
 
         List<Prodotto> prodotti = proDAO.retriveBySearch(s);
 
-        request.setAttribute("prodotti", prodotti);
-        address = "/RicercaProdotto.jsp";
-        RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-        dispatcher.forward(request, response);
+        if(prodotti.size()<1){
+            String msg="lista non trovata";
+            System.out.println("servlet: "+msg);
+            request.setAttribute("errorTest",msg);
+            request.setAttribute("prodotti", prodotti);
+            address = "/RicercaProdotto.jsp";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
+        } else {
+            String msg="ricerca avvenuta con successo";
+            System.out.println("servlet: "+msg);
+            request.setAttribute("errorTest",msg);
+            request.setAttribute("prodotti", prodotti);
+            address = "/RicercaProdotto.jsp";
+            RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
+        }
+
     }
 
 }

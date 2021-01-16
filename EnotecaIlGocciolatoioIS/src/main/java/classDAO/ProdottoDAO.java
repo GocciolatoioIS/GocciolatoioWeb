@@ -66,10 +66,10 @@ public class ProdottoDAO {
             String replaced="";
             for(int i=0;i<s.length();i++) {
                 char var=s.charAt(i);
-                System.out.println(var);
+                //System.out.println(var);
                 if(var==' ') {
                     replaced+="%";
-                    System.out.println("space");
+                    //System.out.println("space");
                 }else {
                     replaced+=var;
                 }
