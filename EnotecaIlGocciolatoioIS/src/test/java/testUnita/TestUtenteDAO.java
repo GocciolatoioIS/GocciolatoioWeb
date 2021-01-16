@@ -27,7 +27,7 @@ import java.util.List;
 
 //Test su UtenteDao
 
-public class TestUtente extends TestCase {
+public class TestUtenteDAO extends TestCase {
 
     private final UtenteDAO utenteDAO = new UtenteDAO();
     private Utente utenteNonEsistente;
@@ -44,24 +44,21 @@ public class TestUtente extends TestCase {
         utenteNonEsistente=new Utente(1,"nonEsisto@live.it","nonEsisto","nonEsisto","utente","Nome","Cognome",new Date("01/01/1980"),indirizzoListNon);
         utenteDAO.doSave(utenteNonEsistente);
 
+
         //Creazione Utente esistente
         List<Indirizzo> indirizzoListEssist=new ArrayList<>();
         Indirizzo indirizzoEsistente= new Indirizzo(2,"Napoli", 9000, "Via Grande", 01, "IT");
         indirizzoListEssist.add(indirizzoEsistente);
         utenteEsistente=new Utente(1,"esisto@live.it","esisto","esisto","utente","Mario","Rossi",new Date("01/01/1980"),indirizzoListEssist);
         utenteDAO.doSave(utenteEsistente);
+        utenteDAO.deleteUser(utenteNonEsistente.getId());
     }
-
-
-
-
 
 
     @Test
     public void testRetriveAll(){
 
-        List<Utente> ul=new ArrayList<>();
-        assertNotEquals(ul,utenteDAO.retriveAll());
+        assertNotNull(utenteDAO.retriveAll());
 
     }
 
@@ -72,12 +69,40 @@ public class TestUtente extends TestCase {
         assertNotNull( utenteDAO.doRetrieveByUsernameEmail(username,email));
     }
 
+
     @Test
-    public void testDoRetrieveByUsernamePassword(){
+    public void TestCreazioneCancellazioneUtente(){
 
+        List<Indirizzo> indirizzoListEssist2=new ArrayList<>();
+        Indirizzo indirizzoEsistente2= new Indirizzo(2,"Napoli", 9000, "Via Grande", 02, "IT");
+        indirizzoListEssist2.add(indirizzoEsistente2);
+        Utente utenteEsistente2=new Utente(1,"esisto2@live.it","esisto2","esisto2","utente2","Mario2","Rossi2",new Date("01/01/1980"),indirizzoListEssist2);
+        assertEquals(1,utenteDAO.doSave(utenteEsistente2));
+        assertEquals(1,utenteDAO.deleteUser(utenteEsistente2.getId()));
 
+    }
 
+    @Test
+    public void TestdoUpdate(){
 
+        utenteEsistente.setNome("nomeMod");
+        assertEquals(1,utenteDAO.doUpdate(utenteEsistente));
+
+    }
+
+    @Test
+    public void TestretriveById(){
+        assertNotNull(utenteDAO.retriveById(utenteEsistente.getId()));
+    }
+
+    @Test
+    public void TestdeRetriveUsername(){
+        assertNotNull(utenteDAO.deRetriveUsername(utenteEsistente.getUsername()));
+    }
+
+    @Test
+    public void TestdoRetrieveByEmail(){
+        assertNotNull(utenteDAO.doRetrieveByEmail(utenteEsistente.getEmail()));
     }
 
 

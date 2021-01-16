@@ -11,12 +11,14 @@ public class Ordine {
     private Indirizzo indirizzo;
     private Utente utente;
 
-    public Ordine(int id_ordine, int id_utente,int id_indirizzo) {
+    public Ordine(int id_ordine, int id_utente, int id_indirizzo, Date data_ordine, Indirizzo indirizzo, Utente utente) {
         this.id_ordine = id_ordine;
         this.id_utente = id_utente;
-        this.id_indirizzo=id_indirizzo;
+        this.id_indirizzo = id_indirizzo;
+        this.data_ordine = data_ordine;
+        this.indirizzo = indirizzo;
+        this.utente = utente;
     }
-
 
     public Ordine(){}
 

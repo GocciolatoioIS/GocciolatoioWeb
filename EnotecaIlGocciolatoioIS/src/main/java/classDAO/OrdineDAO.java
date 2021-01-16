@@ -9,31 +9,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class OrdineDAO {
-    public void doSave(Ordine o, int idIndirizzo) {
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO ordine (id_utente,data_ordine,id_indirizzo ) VALUES(?,?,?)",
-                    Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1,o.getId_utente());
-
-            //gestione data con conversione da util a sql di date formato "aaaa-MM-dd"
-            java.util.Date utilDate = o.getData_ordine();
-            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-
-            ps.setDate(2,sqlDate);
-            ps.setInt(3,idIndirizzo);
-
-            if (ps.executeUpdate() != 1) {
-                throw new RuntimeException("INSERT error.");
-            }
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
-            int id = rs.getInt(1);
-            o.setId_ordine(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public ArrayList<Ordine> retriveAll() {
         try (Connection con = ConPool.getConnection()) {
@@ -131,15 +106,16 @@ public class OrdineDAO {
         }
     }
 
-    public void deleteOrder(int id) {
+    public int deleteOrder(int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("DELETE FROM ordine WHERE id=?");
             ps.setInt(1,id);
-            ps.executeUpdate();
 
+            ps.executeUpdate();
+            return 1;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return 0;
         }
     }
 
@@ -164,6 +140,47 @@ public class OrdineDAO {
             return id;
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+
+    }
+
+    public int doSave(Ordine o, int idIndirizzo) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO ordine (id_utente,data_ordine,id_indirizzo ) VALUES(?,?,?)",
+                    Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,o.getId_utente());
+
+            //gestione data con conversione da util a sql di date formato "aaaa-MM-dd"
+            java.util.Date utilDate = o.getData_ordine();
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+            ps.setDate(2,sqlDate);
+            ps.setInt(3,idIndirizzo);
+
+            if (ps.executeUpdate() != 1) {
+                throw new RuntimeException("INSERT error.");
+            }
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            int id = rs.getInt(1);
+            o.setId_ordine(id);
+            return 1;
+        } catch (SQLException e) {
+            return 0;
+        }
+    }
+
+    public int removeAddressOrder(int id){
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps =
+                    con.prepareStatement("DELETE FROM indirizzo_ordine WHERE id=?");
+            ps.setInt(1,id);
+
+            ps.executeUpdate();
+            return 1;
+        } catch (SQLException e) {
+            return 0;
         }
 
     }

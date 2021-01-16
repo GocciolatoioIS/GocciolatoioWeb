@@ -40,7 +40,7 @@ public class ProductOrderedDao {
 		}
 	}
 
-	public void doSave(ProductOrdered p,int idOrdine) {
+	public int doSave(ProductOrdered p,int idOrdine) {
 		try (Connection con = ConPool.getConnection()) {
 			PreparedStatement ps = con.prepareStatement(
 					"INSERT INTO prodotto_ordinato (nome, tipo, descrizione, prezzo, sconto, immagine, anno, regione, gradazione, formato, nome_categoria, quantita,order_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -68,9 +68,21 @@ public class ProductOrderedDao {
 			p.setId(id);
 
 
-
+			return 1;
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			return 0;
+		}
+	}
+
+	public int deleteProductOrdered(int id) {
+		try (Connection con = ConPool.getConnection()) {
+			PreparedStatement ps =
+					con.prepareStatement("DELETE FROM prodotto_ordinato WHERE id=?");
+			ps.setInt(1,id);
+			ps.executeUpdate();
+			return 1;
+		} catch (SQLException e) {
+			return 0;
 		}
 	}
 

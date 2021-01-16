@@ -82,7 +82,7 @@ public class UtenteDAO {
         }
     }
 
-    public void doSave(Utente user) {
+    public int doSave(Utente user) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO utente (email, username, pass, ruolo, nome, cognome ,data_nascita) VALUES(?,?,?,?,?,?,?)",
@@ -108,12 +108,14 @@ public class UtenteDAO {
             rs.next();
             int id = rs.getInt(1);
             user.setId(id);
+            return 1;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return 0;
         }
     }
 
-    public void doUpdate(Utente u) {
+    public int doUpdate(Utente u) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("UPDATE utente SET username=?, email=?, nome=?, cognome=?,  ruolo=? WHERE id=?");
@@ -129,21 +131,23 @@ public class UtenteDAO {
 
 
             ps.executeUpdate();
-
+            return 1;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return 0;
         }
     }
 
-    public void deleteUser(int id) {
+    public int deleteUser(int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("DELETE FROM utente WHERE id=?");
             ps.setInt(1,id);
             ps.executeUpdate();
-
+            return 1;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return 0;
         }
     }
 

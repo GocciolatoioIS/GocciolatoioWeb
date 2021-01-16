@@ -21,6 +21,24 @@ public class ProductOrdered
 
 	public ProductOrdered() { }
 
+	public ProductOrdered(int id, String nome, String tipo,String descrizione,  double prezzo, double sconto, String immagine, String nome_categoria, int anno, String regione, int gradazione, int formato, int quantita, int id_ordine) {
+		this.id = id;
+		this.nome = nome;
+		this.descrizione = descrizione;
+		this.tipo = tipo;
+		this.prezzo = prezzo;
+		this.sconto = sconto;
+		this.immagine = immagine;
+		this.nome_categoria = nome_categoria;
+		this.anno = anno;
+		this.regione = regione;
+		this.gradazione = gradazione;
+		this.formato = formato;
+		this.quantita = quantita;
+		this.id_ordine = id_ordine;
+	}
+
+
 	public int getId() {
 		return id;
 	}
