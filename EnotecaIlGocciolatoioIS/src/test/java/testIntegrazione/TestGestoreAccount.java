@@ -29,7 +29,7 @@ public class TestGestoreAccount extends Mockito{
     private UtenteDAO utenteDAO=new UtenteDAO();
 
     @InjectMocks
-    public final GestoreAccount gestoreAccount = new GestoreAccount();
+    public GestoreAccount gestoreAccount;
 
 
 
@@ -53,13 +53,16 @@ public class TestGestoreAccount extends Mockito{
         request.addParameter("data","1980-01-01");
 
         gestoreAccount.gestioneRegistrazione(request, response);
-        utente=(Utente) request.getSession().getAttribute("utente");
+        //utente=(Utente) request.getSession().getAttribute("utente");
         System.out.println(utente.toString());
         String msg = (String) request.getAttribute("msg");
 
 
+        int id= Integer.parseInt(String.valueOf(request.getAttribute("testid")));
         assertEquals("utente inserito correttamente",msg);
-        request.addParameter("id",String.valueOf(utente.getId()));
+
+        System.out.println(id);
+        request.addParameter("id",String.valueOf(id));
 
         gestoreAccount.gestoreCancellaUtente(request,response);
 

@@ -149,6 +149,7 @@ public class GestoreAccount {
 
 
         utenteDAO.doSave(u);
+        request.setAttribute("testid",u.getId());
 
         msg="utente inserito correttamente";
         request.setAttribute("msg",msg);
@@ -158,8 +159,10 @@ public class GestoreAccount {
 
         //Viene rindirizzata alla HomeServlet
         address = "index.html";
-        response.sendRedirect(address);
-
+        //response.sendRedirect(address);
+        RequestDispatcher dispatcher =
+                request.getRequestDispatcher(address);
+        dispatcher.forward(request, response);
 
     }
 
