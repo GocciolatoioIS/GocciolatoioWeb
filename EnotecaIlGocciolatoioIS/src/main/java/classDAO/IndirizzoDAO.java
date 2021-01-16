@@ -34,7 +34,7 @@ public class IndirizzoDAO {
         }
     }
 
-    public void doSave(Indirizzo i,int iD){
+    public int doSave(Indirizzo i,int iD){
 
         try (Connection con = ConPool.getConnection())
         {
@@ -55,24 +55,25 @@ public class IndirizzoDAO {
             rs.next();
             int id = rs.getInt(1);
             i.setId(id);
+            return 1;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return 0;
         }
     }
 
-    public void deleteIndirizzo(int id) {
+    public int deleteIndirizzo(int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("DELETE FROM indirizzo WHERE id=?");
             ps.setInt(1,id);
             ps.executeUpdate();
-
+            return 1;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return 0;
         }
     }
 
-    public void doUpdate(Indirizzo i){
+    public int doUpdate(Indirizzo i){
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
                     con.prepareStatement("UPDATE indirizzo SET citta=?,cap=?,via=?,ncivico=?,nazione=?  WHERE id=?");
@@ -85,9 +86,10 @@ public class IndirizzoDAO {
             ps.setInt(6,i.getId());
 
             ps.executeUpdate();
+            return 1;
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return 0;
         }
 
 
@@ -118,7 +120,7 @@ public class IndirizzoDAO {
         }
     }
 
-    public void removeInd(int id){
+    public int removeInd(int id){
 
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps =
@@ -126,8 +128,9 @@ public class IndirizzoDAO {
             ps.setInt(1,id);
             ps.executeUpdate();
 
+            return 1;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            return 0;
         }
 
     }
