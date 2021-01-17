@@ -38,8 +38,6 @@ public class TestGestoreAccount extends Mockito{
     @InjectMocks
     public GestoreAccount gestoreAccount;
 
-
-
     @BeforeEach
     void setUp() throws Exception {
         request = new MockHttpServletRequest();
@@ -51,7 +49,6 @@ public class TestGestoreAccount extends Mockito{
     @Test
     //Viene testata la aggiungiutenteelarimuovi
     void TC_AggiungiUtente() throws ServletException, IOException, ParseException {
-
         //aggiungere ai request i parametri
         request.addParameter("nome","Mario");
         request.addParameter("cognome","Rossi");
@@ -64,7 +61,6 @@ public class TestGestoreAccount extends Mockito{
         //utente=(Utente) request.getSession().getAttribute("utente");
         System.out.println(utente.toString());
         String msg = (String) request.getAttribute("msg");
-
 
         int id= Integer.parseInt(String.valueOf(request.getAttribute("testid")));
         assertEquals("utente inserito correttamente",msg);
@@ -122,7 +118,6 @@ public class TestGestoreAccount extends Mockito{
 
     @Test
     void TC_AggiungiUtenteUsernameVuoto() throws ServletException, IOException, ParseException {
-
         //aggiungere ai request i parametri
         request.addParameter("nome","Mario");
         request.addParameter("cognome","Rossi");
@@ -365,8 +360,6 @@ public class TestGestoreAccount extends Mockito{
         int id= utenteEsistente.getId();
         request.addParameter("id",String.valueOf(id));
         gestoreAccount.gestoreCancellaUtente(request,response);
-
-
     }
 
     @Test

@@ -34,10 +34,8 @@ public class GestoreOrdine {
 
         String address="retriveorders";
 
-        request.setAttribute("var","Cancellazione eseguita con Successo :)");
+        request.setAttribute("var","Cancellazione eseguita con Successo");
         response.sendRedirect(address);
-
-
     }
 
     public void gestoreOrdini(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

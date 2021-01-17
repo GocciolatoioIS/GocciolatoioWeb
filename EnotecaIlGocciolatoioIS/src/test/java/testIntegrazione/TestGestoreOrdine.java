@@ -147,7 +147,8 @@ public class TestGestoreOrdine extends Mockito{
     @Test
     public void TC_eliminaOrdine() throws ServletException, IOException {
         Indirizzo ind=new Indirizzo();
-        Utente ut=new Utente(2, "dimy1996@live.it", "thedmg8", "","amministratore", "Giovanni", "Di Mauro", 1970-05-16 );
+        UtenteDAO uDao=new UtenteDAO();
+        Utente ut=uDao.retriveById(2);
         /*String sDate1="2020-01-01";
         Date date1=new SimpleDateFormat("yyyy-dd-MM").parse(sDate1);*/
         Date date=new Date(2020/01/01);
@@ -158,8 +159,8 @@ public class TestGestoreOrdine extends Mockito{
 
         gestoreOrdine.gestoreCancellaOrdine(request, response);
 
-        String exit = (String) request.getAttribute("errorTest");
-        String oracolo = "Cancellazione eseguita con Successo ";
+        String exit = (String) request.getAttribute("var");
+        String oracolo = "Cancellazione eseguita con Successo";
 
         assertEquals(oracolo, exit);
 

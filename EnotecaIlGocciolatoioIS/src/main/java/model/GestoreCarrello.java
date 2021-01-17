@@ -28,7 +28,6 @@ public class GestoreCarrello {
 
     public void gestoreAggiungiProdottoCarrello(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         //Retrive del carrello dalla sessione
         HttpSession session = request.getSession();
         Carrello carrello = (Carrello) session.getAttribute("carrello");
@@ -73,6 +72,9 @@ public class GestoreCarrello {
             }
         }
 
+        String msg="Prodotto aggiunto al carrello";
+        System.out.println("Servlet: "+msg);
+        request.setAttribute("errorTest",msg);
         session.setAttribute("carrello", carrello);
         String address = "Carrello.jsp";
         response.sendRedirect(address);

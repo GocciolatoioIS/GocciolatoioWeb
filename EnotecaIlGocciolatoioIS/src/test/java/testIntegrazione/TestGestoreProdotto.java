@@ -32,12 +32,6 @@ public class TestGestoreProdotto extends Mockito{
     private ProdottoDAO dao;
 
     @InjectMocks
-    private AggiungiProdotto servletAdd;
-
-    @InjectMocks
-    private CancellaProdottoByIDServlet servletRem;
-
-    @InjectMocks
     private GestoreProdotto servlet;
 
     private Prodotto prodotto = new Prodotto(72,"NomeBottiglia","Tipo","Descrizione",127,1,"immagine",2000,"regione",13,13,2,"Vino");
