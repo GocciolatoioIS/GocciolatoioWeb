@@ -19,9 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/*
- * Test per CategoriaDao
- */
 public class TestCategoriaDAO extends TestCase{
 
     private final CategoriaDAO categoriaDAO=new CategoriaDAO();
@@ -40,5 +37,4 @@ public class TestCategoriaDAO extends TestCase{
     public void tearDown(){
 
     }
-
 }

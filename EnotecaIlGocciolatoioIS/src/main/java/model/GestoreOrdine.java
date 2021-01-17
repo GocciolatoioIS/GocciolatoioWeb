@@ -36,11 +36,12 @@ public class GestoreOrdine {
 
         request.setAttribute("var","Cancellazione eseguita con Successo :)");
         response.sendRedirect(address);
+
+
     }
 
     public void gestoreOrdini(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrdineDAO orderDAO=new OrdineDAO();
-        UtenteDAO userDAO=new UtenteDAO();
 
         Utente user= (Utente) request.getSession().getAttribute("utente");
 
@@ -49,6 +50,7 @@ public class GestoreOrdine {
         request.setAttribute("lista", lista);
 
         String address = "/ListaOrdini.jsp";
+        request.setAttribute("errorTest", "TuttiGliOrdiniUtente");
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
         dispatcher.forward(request, response);
     }
@@ -65,22 +67,25 @@ public class GestoreOrdine {
         int idu=Integer.parseInt(idUserString);
 
         String idIndirizzo=request.getParameter("idIndirizzo");
-        System.out.println("indirizzo:"+idIndirizzo);
+       // System.out.println("indirizzo:"+idIndirizzo);
         int idI=Integer.parseInt(idIndirizzo);
 
         Utente u=userdao.retriveById(idu);
         request.setAttribute("user2",u);
 
         Indirizzo i= indirizzoDAO.retriveIndirizzoOrdineByID(idI);
-        System.out.println(i.toString());
+        //System.out.println(i.toString());
         request.setAttribute("indirizzo",i);
 
         List<ProductOrdered> lista=podao.retriveByOrderId(ido);
         request.setAttribute("lista", lista);
 
+        request.setAttribute("errorTest","dettaglioOrdineSuccesso");
+
         String address = "/DettagliOrdine.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
         dispatcher.forward(request, response);
+
     }
 
     public void gestoreRestituisciOrdini(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -91,12 +96,14 @@ public class GestoreOrdine {
         ArrayList<Ordine> lista=orderDAO.retriveAll();
 
         request.setAttribute("lista", lista);
-
+        System.out.println("ho preso tutti i dati");
         String address = "/ListaOrdiniAdmin.jsp";
+        request.setAttribute("errorTest", "OrdiniDITuttiIClienti");
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
         dispatcher.forward(request, response);
 
     }
+
 
     public void gestoreRestituisciOrdiniUtenti(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         OrdineDAO orderDAO=new OrdineDAO();
@@ -106,6 +113,7 @@ public class GestoreOrdine {
         request.setAttribute("lista", lista);
 
         String address = "/ListaOrdini.jsp";
+        request.setAttribute("errorTest", "TuttiGliOrdiniUtente");
         RequestDispatcher dispatcher = request.getRequestDispatcher(address);
         dispatcher.forward(request, response);
     }
