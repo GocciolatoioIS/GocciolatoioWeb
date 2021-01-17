@@ -34,11 +34,6 @@ public class TestGestoreOrdine extends Mockito{
         private MockHttpServletRequest request;
         private MockHttpServletResponse response;
 
-        @Mock
-        private OrdineDAO ordineDAO;
-        private UtenteDAO utenteDAO;
-        private IndirizzoDAO indirizzoDAO=new IndirizzoDAO();
-
         @InjectMocks
         public GestoreOrdine gestoreOrdine;
 
@@ -150,12 +145,13 @@ public class TestGestoreOrdine extends Mockito{
     }
 
     @Test
-    public void TC_eliminaOrdine() {
+    public void TC_eliminaOrdine() throws ServletException, IOException {
         Indirizzo ind=new Indirizzo();
-        Utente ut=new Utente();
-        String sDate1="2020-01-01";
-        Date date1=new SimpleDateFormat("yyyy-dd-mm").parse(sDate1);
-        Ordine or = new Ordine(1, 2, 6,"2020-01-01", "ind",ut );
+        Utente ut=new Utente(2, "dimy1996@live.it", "thedmg8", "","amministratore", "Giovanni", "Di Mauro", 1970-05-16 );
+        /*String sDate1="2020-01-01";
+        Date date1=new SimpleDateFormat("yyyy-dd-MM").parse(sDate1);*/
+        Date date=new Date(2020/01/01);
+        Ordine or = new Ordine(1, 2, 6,date, ind,ut );
         OrdineDAO oDAO = new OrdineDAO();
         oDAO.doSave(or, 6);
         request.addParameter("id", String.valueOf(1));
