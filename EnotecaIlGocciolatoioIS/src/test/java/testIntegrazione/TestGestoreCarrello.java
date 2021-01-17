@@ -60,6 +60,22 @@ public class TestGestoreCarrello extends Mockito {
         request.getSession().removeAttribute("carrello");
     }
 
+    @Test
+    void TC_AggiungiProdottoCarrello2() throws ServletException, IOException {
+        //Aggiunta prodotto al carrello singola quantità
+        request.getSession().setAttribute("carrello",carrello);
+        request.addParameter("addNum", String.valueOf(prodotto.getId()));
+
+        String message = "Quantita prodotto aggiunto al carrello";
+        System.out.println("oracolo: "+message);
+        servlet.gestoreAggiungiProdottoCarrello(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+
+        request.getSession().removeAttribute("carrello");
+    }
+
+
     @AfterEach
     void tearDown() throws Exception {
 

@@ -35,6 +35,7 @@ public class GestoreCarrello {
         Cookie cookie = new Cookie("key", "value");
         cookie.setMaxAge(60); //60 secondi
         response.addCookie(cookie);
+        String msg=null;
 
         if (carrello == null) {
             carrello = new Carrello();
@@ -46,6 +47,7 @@ public class GestoreCarrello {
         if (prodIdStr != null) {
             int prodId = Integer.parseInt(prodIdStr);
             String addNumStr = request.getParameter("addNum");//Per aggiungere un valore ad uno già esistente
+            msg="Prodotto aggiunto al carrello";
             if (addNumStr != null) {
                 int addNum = Integer.parseInt(addNumStr);
                 Carrello.ProdottoQuantita prodQuant = carrello.get(prodId);
@@ -72,7 +74,7 @@ public class GestoreCarrello {
             }
         }
 
-        String msg="Prodotto aggiunto al carrello";
+
         System.out.println("Servlet: "+msg);
         request.setAttribute("errorTest",msg);
         session.setAttribute("carrello", carrello);
