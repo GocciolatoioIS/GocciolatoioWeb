@@ -15,8 +15,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class GestoreCarrello {
 
@@ -47,8 +49,8 @@ public class GestoreCarrello {
         if (prodIdStr != null) {
             int prodId = Integer.parseInt(prodIdStr);
             String addNumStr = request.getParameter("addNum");//Per aggiungere un valore ad uno già esistente
-            msg="Prodotto aggiunto al carrello";
             if (addNumStr != null) {
+                msg="prodotto aggiunto al carrello";
                 int addNum = Integer.parseInt(addNumStr);
                 Carrello.ProdottoQuantita prodQuant = carrello.get(prodId);
                 if (prodQuant != null) {
@@ -58,6 +60,7 @@ public class GestoreCarrello {
                 }
             } else {
                 String setNumStr = request.getParameter("setNum");//Questo parametro setta la quantità
+                msg="prodotti aggiunti al carrello";
                 if (setNumStr != null) {
                     int setNum = Integer.parseInt(setNumStr);
                     if (setNum <= 0) {
@@ -73,7 +76,6 @@ public class GestoreCarrello {
                 }
             }
         }
-
 
         System.out.println("Servlet: "+msg);
         request.setAttribute("errorTest",msg);
@@ -93,6 +95,9 @@ public class GestoreCarrello {
         int prodId=Integer.parseInt(prodIdStr);
         carrello.remove(prodId);
 
+        String msg="prodotto rimosso dal carrello";
+        System.out.println("Servlet: "+msg);
+        request.setAttribute("errorTest",msg);
         session.setAttribute("carrello", carrello);
         String address = "Carrello.jsp";
         response.sendRedirect(address);
@@ -100,10 +105,13 @@ public class GestoreCarrello {
 
     public void gestoreAcquisto(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
-
         Utente user= (Utente) request.getSession().getAttribute("utente");
+        String msg;
         //Controllo per verificare se l'utente è loggato
         if (user == null ) {
+            msg="utente non loggato, ritorno alla pagina login";
+            System.out.println("Servlet: "+msg);
+            request.setAttribute("errorTest",msg);
             String p="Per effettuare un acquisto Registrati oppure effettua il Login:";
             System.out.println(p);
             request.setAttribute("error",p);
@@ -114,6 +122,9 @@ public class GestoreCarrello {
 
         //Controllo indirizzo
         if(request.getParameter("address").equals("")){
+            msg="l'utente non ha un indirizzo, ritorno alla pagina login";
+            System.out.println("Servlet: "+msg);
+            request.setAttribute("errorTest",msg);
             RequestDispatcher view = request.getRequestDispatcher("Carrello.jsp");/*dove inoltro il form*/
             HttpSession currentSession = request.getSession();
             request.setAttribute("error", "error");
@@ -123,7 +134,6 @@ public class GestoreCarrello {
 
         //Dao per l'indirizzo
         Indirizzo indirizzoSpedizione= indirizzoDAO.retriveByID(Integer.parseInt(request.getParameter("address")));
-
 
         //Creo l'ordine
         Carrello cart = (Carrello) request.getSession().getAttribute("carrello");
@@ -141,7 +151,7 @@ public class GestoreCarrello {
         int idIndirizzo=ordao.addAddressToOrder(indirizzoSpedizione);
 
         ordao.doSave(ord,idIndirizzo);//Salvo l'ordine nel DB
-        System.out.println("idOrdine x prodotti:"+ord.getId_ordine());
+        List<Integer> ids= new ArrayList<>();
         //Ora mi creo una istanza del prodotto ordinato
         for(Carrello.ProdottoQuantita p:lista){
             ProductOrdered pO=new ProductOrdered();
@@ -160,6 +170,7 @@ public class GestoreCarrello {
             pO.setNome_categoria(prodotto.getNome_categoria());
 
             podao.doSave(pO, ord.getId_ordine()); //Qui salvi il prodotto ordinato
+            ids.add(pO.getId());
 
             prodao.doUpdateQuantity(p.getProdotto().getId(),p.getQuantita()); //Aggiorni le quantità acquistate con le quantità nel magazzino
 
@@ -168,11 +179,14 @@ public class GestoreCarrello {
         //E reindirizzo una pagina statica
         request.getSession().removeAttribute("carrello");
         String address = "/Grazie.jsp";
+        msg="acquisto effettuato correttamente";
+        request.setAttribute("idOrd",String.valueOf(ord.getId_ordine()));
+        request.setAttribute("idAdd",String.valueOf(ord.getId_indirizzo()));
+        request.setAttribute("idProdotti",ids);
+        System.out.println("Servlet: "+msg);
+        request.setAttribute("errorTest",msg);
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher(address);
         dispatcher.forward(request, response);
     }
-
-
-
 }

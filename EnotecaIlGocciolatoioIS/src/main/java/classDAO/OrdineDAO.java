@@ -165,6 +165,7 @@ public class OrdineDAO {
             rs.next();
             int id = rs.getInt(1);
             o.setId_ordine(id);
+            o.setId_indirizzo(idIndirizzo);
             return 1;
         } catch (SQLException e) {
             return 0;

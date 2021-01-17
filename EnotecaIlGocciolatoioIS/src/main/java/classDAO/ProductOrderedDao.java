@@ -77,7 +77,7 @@ public class ProductOrderedDao {
 	public int deleteProductOrdered(int id) {
 		try (Connection con = ConPool.getConnection()) {
 			PreparedStatement ps =
-					con.prepareStatement("DELETE FROM prodotto_ordinato WHERE id=?");
+					con.prepareStatement("DELETE FROM prodotto_ordinato WHERE product_id=?");
 			ps.setInt(1,id);
 			ps.executeUpdate();
 			return 1;

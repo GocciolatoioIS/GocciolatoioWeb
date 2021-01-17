@@ -3,14 +3,18 @@ package testIntegrazione;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.time.format.DateTimeFormatter;
 
 import bean.*;
+import classDAO.ProductOrderedDao;
 import classDAO.UtenteDAO;
 import classDAO.IndirizzoDAO;
 import classDAO.OrdineDAO;
+import com.mysql.cj.x.protobuf.MysqlxExpr;
 import model.GestoreCarrello;
+import model.GestoreOrdine;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,6 +22,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.matchers.Or;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.TestPropertySource;
@@ -26,6 +31,7 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class TestGestoreCarrello extends Mockito {
     private MockHttpServletRequest request;
@@ -34,8 +40,10 @@ public class TestGestoreCarrello extends Mockito {
     @InjectMocks
     public GestoreCarrello servlet;
 
-    private Carrello carrello=new Carrello();
     private Prodotto prodotto = new Prodotto(72,"NomeBottiglia","Tipo","Descrizione",127,1,"immagine",2000,"regione",13,13,2,"Vino");
+    private Carrello carrello=new Carrello();
+    private Utente utente;
+    private Indirizzo indirizzo;
 
 
     @BeforeEach
@@ -48,10 +56,12 @@ public class TestGestoreCarrello extends Mockito {
     @Test
     void TC_AggiungiProdottoCarrello1() throws ServletException, IOException {
         //Aggiunta prodotto al carrello singola quantità
+        carrello.put(prodotto,1);
         request.getSession().setAttribute("carrello",carrello);
         request.addParameter("prodId", String.valueOf(prodotto.getId()));
+        request.addParameter("addNum", String.valueOf("1"));
 
-        String message = "Prodotto aggiunto al carrello";
+        String message = "prodotto aggiunto al carrello";
         System.out.println("oracolo: "+message);
         servlet.gestoreAggiungiProdottoCarrello(request,response);
         String result = (String) request.getAttribute("errorTest");
@@ -63,10 +73,12 @@ public class TestGestoreCarrello extends Mockito {
     @Test
     void TC_AggiungiProdottoCarrello2() throws ServletException, IOException {
         //Aggiunta prodotto al carrello singola quantità
+        carrello.put(prodotto,1);
         request.getSession().setAttribute("carrello",carrello);
-        request.addParameter("addNum", String.valueOf(prodotto.getId()));
+        request.addParameter("prodId", String.valueOf(prodotto.getId()));
+        request.addParameter("setNum", String.valueOf("1"));
 
-        String message = "Quantita prodotto aggiunto al carrello";
+        String message = "prodotti aggiunti al carrello";
         System.out.println("oracolo: "+message);
         servlet.gestoreAggiungiProdottoCarrello(request,response);
         String result = (String) request.getAttribute("errorTest");
@@ -74,6 +86,108 @@ public class TestGestoreCarrello extends Mockito {
 
         request.getSession().removeAttribute("carrello");
     }
+
+    @Test
+    void TC_RimuoviProdottoCarrello() throws ServletException, IOException {
+        //Aggiunta prodotto al carrello singola quantità
+        carrello.put(prodotto,1);
+        request.getSession().setAttribute("carrello",carrello);
+        request.addParameter("prodId", String.valueOf(prodotto.getId()));
+
+        String message = "prodotto rimosso dal carrello";
+        System.out.println("oracolo: "+message);
+        servlet.gestoreRimuoviProdottoCarrello(request,response);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+
+        request.getSession().removeAttribute("carrello");
+    }
+
+    @Test
+    void TC_GestoreAcquisto() throws ServletException, IOException {
+        //Acquisto corretto
+        UtenteDAO uDao=new UtenteDAO();
+        OrdineDAO oDao=new OrdineDAO();
+        ProductOrderedDao poDao=new ProductOrderedDao();
+        utente=uDao.retriveById(18);
+
+        IndirizzoDAO iDao=new IndirizzoDAO();
+        indirizzo=iDao.retriveByID(25);
+        //System.out.println(indirizzo.toString());
+
+        request.getSession().setAttribute("utente",utente);
+        request.addParameter("address", String.valueOf(indirizzo.getId()));
+
+        carrello.put(prodotto,1);
+        request.getSession().setAttribute("carrello",carrello);
+
+        String message = "acquisto effettuato correttamente";
+        System.out.println("oracolo: "+message);
+        servlet.gestoreAcquisto(request,response);
+
+        String idOrd= (String) request.getAttribute("idOrd");
+        String idAdd= (String) request.getAttribute("idAdd");
+        List<Integer> list= (List<Integer>) request.getAttribute("idProdotti");
+
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+
+        oDao.deleteOrder(Integer.parseInt(idOrd));
+        oDao.removeAddressOrder(Integer.parseInt(idAdd));
+        for(Integer i:list){
+            String in=String.valueOf(i);
+            poDao.deleteProductOrdered(Integer.parseInt(in));
+        }
+        request.getSession().removeAttribute("carrello");
+    }
+
+    @Test
+    void TC_GestoreAcquisto2() throws ServletException, IOException {
+        //Utente non Loggato
+        UtenteDAO uDao=new UtenteDAO();
+        OrdineDAO oDao=new OrdineDAO();
+        ProductOrderedDao poDao=new ProductOrderedDao();
+        utente=null;
+
+        IndirizzoDAO iDao=new IndirizzoDAO();
+        indirizzo=iDao.retriveByID(25);
+        //System.out.println(indirizzo.toString());
+
+        request.getSession().setAttribute("utente",utente);
+        request.addParameter("address", String.valueOf(indirizzo.getId()));
+
+        carrello.put(prodotto,1);
+        request.getSession().setAttribute("carrello",carrello);
+
+        String message = "utente non loggato, ritorno alla pagina login";
+        System.out.println("oracolo: "+message);
+        servlet.gestoreAcquisto(request,response);
+    }
+
+    @Test
+    void TC_GestoreAcquisto3() throws ServletException, IOException {
+        //Utente non ha un indirizzo
+        UtenteDAO uDao=new UtenteDAO();
+        OrdineDAO oDao=new OrdineDAO();
+        ProductOrderedDao poDao=new ProductOrderedDao();
+        utente=uDao.retriveById(18);
+
+        //System.out.println(indirizzo.toString());
+
+        request.getSession().setAttribute("utente",utente);
+        request.addParameter("address", "");
+
+        carrello.put(prodotto,1);
+        request.getSession().setAttribute("carrello",carrello);
+
+        String message = "l'utente non ha un indirizzo, ritorno alla pagina login";
+        System.out.println("oracolo: "+message);
+        servlet.gestoreAcquisto(request,response);
+    }
+
+
+
+
 
 
     @AfterEach
