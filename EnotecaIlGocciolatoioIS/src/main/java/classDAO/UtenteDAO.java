@@ -51,7 +51,6 @@ public class UtenteDAO {
                 u.setCognome(rs.getString(6));
                 u.setData_nascita(rs.getDate(7));
 
-                System.out.println(u.toString());
                 return u;
             }
             return null;

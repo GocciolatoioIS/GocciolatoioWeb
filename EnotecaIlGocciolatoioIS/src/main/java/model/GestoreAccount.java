@@ -36,13 +36,14 @@ public class GestoreAccount {
         String cognome=request.getParameter("cognome");
         String data_nascita= request.getParameter("data");
 
-        String match =  "/^[0-9A-Za-z]+$/";
-        String regPassword =  "/^[A-Za-z0-9]+$/";
+        String match =  "^[0-9A-Za-z]+$";
+        String matchData =  "^[0-9^-]+$";
+
 
         Boolean validate=true;
         String msg="";
 
-        if(!request.getParameter("nome").matches(match))
+        if(!request.getParameter("nome").matches(match)){
             if(!nome.equals(""))
                 System.out.println("nome utente dato corretto");
             else{
@@ -51,6 +52,62 @@ public class GestoreAccount {
                 request.setAttribute("errorTest",msg);
                 validate=false;
             }
+        }
+
+        if(!request.getParameter("cognome").matches(match)) {
+            if (!cognome.equals(""))
+                System.out.println("cognome utente dato corretto");
+            else {
+                msg = "cognome non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+            }
+        }
+
+
+            if (!pass.equals(""))
+                System.out.println("password utente dato corretto");
+            else {
+                msg = "password non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+            }
+
+
+        if(!request.getParameter("email").matches(match)) {
+            if (!email.equals(""))
+                System.out.println("email utente dato corretto");
+            else {
+                msg = "email non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+            }
+        }
+
+
+            if (!data_nascita.equals(""))
+                System.out.println("data nascita utente dato corretto");
+            else {
+                msg = "data nascita non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+            }
+
+
+        if(!request.getParameter("username").matches(matchData)) {
+            if (!username.equals(""))
+                System.out.println("Username utente dato corretto");
+            else {
+                msg = "username non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+            }
+        }
 
 
         if(validate==true) {
@@ -159,7 +216,6 @@ public class GestoreAccount {
 
         //Viene rindirizzata alla HomeServlet
         address = "index.html";
-        //response.sendRedirect(address);
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher(address);
         dispatcher.forward(request, response);
@@ -181,6 +237,65 @@ public class GestoreAccount {
         String nazione = request.getParameter("country");
         String id= request.getParameter("iDUtente");
 
+
+        Boolean validate=true;
+        String msg="";
+
+        if(!citta.equals(""))
+                System.out.println("Citta indirizzo dato corretto");
+        else{
+            msg="citta indirizzo non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+        }
+
+        if(!cap.equals(""))
+            System.out.println("Cap indirizzo dato corretto");
+        else{
+            msg="cap indirizzo non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+        }
+
+        if(!via.equals(""))
+            System.out.println("Via indirizzo dato corretto");
+        else{
+            msg="via indirizzo non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+        }
+
+        if(!ncivico.equals(""))
+            System.out.println("numero civico indirizzo dato corretto");
+        else{
+            msg="numero civico indirizzo non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+        }
+
+        if(!nazione.equals(""))
+            System.out.println("nazione indirizzo dato corretto");
+        else{
+            msg="nazione indirizzo non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+        }
+
+        if(validate==true) {
+            System.out.println("tutti i campi indirizzo sono giusti");
+        } else {
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+            view.forward(request,response);
+            return;
+        }
+
         Indirizzo newAddress= new Indirizzo();
         newAddress.setNazione(nazione);
         newAddress.setCitta(citta);
@@ -191,10 +306,13 @@ public class GestoreAccount {
 
         indirizzoDAO.doSave(newAddress,Integer.parseInt(id));
         user.setIndirizzoList(indirizzoDAO.retriveAllbyID(Integer.parseInt(id)));
-        request.getSession().setAttribute("utente", user);
 
+        request.getSession().setAttribute("utente", user);
+        request.getSession().setAttribute("errorTest","Indirizzo inserito");
+        request.getSession().setAttribute("idTest",newAddress.getId());
         response.sendRedirect("InformazioniPersonali.jsp");
         return;
+
     }
 
 
@@ -233,18 +351,21 @@ public class GestoreAccount {
 
             if(user!=null){
                 if(user.getRuolo().equals("utente")||user.getRuolo()==null){
+                    request.setAttribute("errorTest","utente area");
                     address="/InformazioniPersonali.jsp";
                     RequestDispatcher dispatcher =request.getRequestDispatcher(address);
                     dispatcher.forward(request, response);
                 }
                 else
                 if(user.getRuolo().equals("amministratore")){
+                    request.setAttribute("errorTest","admin area");
                     address="/ProfiloAmministratore.jsp";
                     RequestDispatcher dispatcher =request.getRequestDispatcher(address);
                     dispatcher.forward(request, response);
                 }
 
             } else {
+                request.setAttribute("errorTest","login area");
                 address = "/LoginRegistrazione.jsp";
                 RequestDispatcher dispatcher =
                         request.getRequestDispatcher(address);
@@ -271,10 +392,13 @@ public class GestoreAccount {
             //SE l'utente non viene trovato
             if (utente == null) {
                 String s = "nada";
+
                 request.setAttribute("error", "Utente non presente nel sistema. Ricontrolla i campi");
+                request.setAttribute("errorTest","utente non trovato");
+
                 address = "/LoginRegistrazione.jsp";
                 //response.sendRedirect(address);
-                System.out.println(s);
+                //System.out.println(s);
                 RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
                 HttpSession currentSession = request.getSession();
                 view.forward(request, response);
@@ -290,6 +414,8 @@ public class GestoreAccount {
             Cookie cookie = new Cookie("key", "value");
             cookie.setMaxAge(60);
             response.addCookie(cookie);
+
+            request.setAttribute("errorTest","utente  trovato");
 
             //Viene rindirizzata alla HomeServlet
             address = "index.html";
@@ -345,8 +471,65 @@ public class GestoreAccount {
             String nazione = request.getParameter("country");
             String id = request.getParameter("iDUtente");
             String idInd = request.getParameter("idInd");
+            String msg;
+            boolean validate = true;
 
-            System.out.println(idInd + "," + via + "," + citta + "," + id);
+            if (!citta.equals(""))
+                System.out.println("citta indirizzo corretto");
+            else {
+                msg = "citta non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+            }
+
+            if (!cap.equals(""))
+                System.out.println("cap indirizzo dato corretto");
+            else {
+                msg = "cap non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+            }
+
+            if (!via.equals(""))
+                System.out.println("via indirizzo dato corretto");
+            else {
+                msg = "via non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+            }
+
+            if (!ncivico.equals(""))
+                System.out.println("numero civico indirizzo dato corretto");
+            else {
+                msg = "numero civico non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+            }
+
+            if (!nazione.equals(""))
+                System.out.println("nazione indirizzo dato corretto");
+            else {
+                msg = "nazione non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+            }
+
+            if(validate==true) {
+                System.out.println("tutti i campi utente sono giusti");
+            } else {
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
+                return;
+            }
+
+            //System.out.println(idInd + "," + via + "," + citta + "," + id);
 
             Indirizzo newAddress = new Indirizzo();
             newAddress.setNazione(nazione);
@@ -359,7 +542,7 @@ public class GestoreAccount {
             indirizzoDAO.doUpdate(newAddress);
             user.setIndirizzoList(indirizzoDAO.retriveAllbyID(Integer.parseInt(id)));
             request.getSession().setAttribute("utente", user);
-
+            request.setAttribute("errorTest","indirizzo modificato");
             response.sendRedirect("InformazioniPersonali.jsp");
             return;
         }
@@ -375,6 +558,56 @@ public class GestoreAccount {
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String ruolo=request.getParameter("ruolo");
+
+        String msg;
+        Boolean validate=true;
+
+        if (!username.equals(""))
+            System.out.println("username dato corretto");
+        else {
+            msg = "username non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+        }
+
+        if (!email.equals(""))
+            System.out.println("email dato corretto");
+        else {
+            msg = "email non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+        }
+
+        if (!nome.equals(""))
+            System.out.println("nome dato corretto");
+        else {
+            msg = "nome non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+        }
+
+        if (!cognome.equals(""))
+            System.out.println("cognome dato corretto");
+        else {
+            msg = "cognome non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+        }
+
+
+        if(validate==true) {
+            System.out.println("tutti i campi utente sono giusti");
+        } else {
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+            view.forward(request,response);
+            return;
+        }
 
 
         Utente u=new Utente();
@@ -395,12 +628,14 @@ public class GestoreAccount {
 
 
         if(u.getRuolo().equals("utente")){
+            request.setAttribute("errorTest","modifica utente successo");
             String address = "/InformazioniPersonali.jsp";
             RequestDispatcher dispatcher =
                     request.getRequestDispatcher(address);
             dispatcher.forward(request, response);
         }
 
+        request.setAttribute("errorTest","modifica utente successo");
         String address = "/ProfiloAmministratore.jsp";
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher(address);
@@ -409,67 +644,107 @@ public class GestoreAccount {
 
     public void gestoreModificaUtenteByAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //Utente user= (Utente) request.getSession().getAttribute("utente");
+        String s= request.getParameter("id");
 
-        String id = (String) request.getParameter("id");
-        System.out.println((id));
+        int id = 0;
+
+        if(!s.equals(""))
+           id=Integer.parseInt(s);
 
         String username = request.getParameter("username");
         String email = request.getParameter("email");
-        String citta = request.getParameter("citta");
-        String cap = request.getParameter("cap");
-        String via = request.getParameter("via");
-        String ncivico = request.getParameter("ncivico");
+        String nome = request.getParameter("nome");
+        String cognome = request.getParameter("cognome");
         String ruolo=request.getParameter("ruolo");
 
-        String regUsername =  "/^[0-9A-Za-z]+$/";
-        String regString =  "/^[A-Za-z]+$/";
-        String regNum =  "/^[0-9]+$/";
-        String regPassword =  "/^[A-Za-z]+$/";
+        String msg;
         Boolean validate=true;
 
-        if(!request.getParameter("username").matches(regUsername)) {
+        if (!s.equals(""))
+            System.out.println("id dato corretto");
+        else {
+            msg = "id non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+        }
+
+        if (!username.equals(""))
+            System.out.println("username dato corretto");
+        else {
+            msg = "username non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+        }
+
+        if (!email.equals(""))
+            System.out.println("email dato corretto");
+        else {
+            msg = "email non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+        }
+
+        if (!nome.equals(""))
             System.out.println("nome dato corretto");
-        }else{ validate=false; }
-        if(!request.getParameter("citta").matches(regString)) {
-            System.out.println("nome dato corretto");
-        }else{ validate=false; }
-        if(!request.getParameter("cap").matches(regNum)) {
-            System.out.println("nome dato corretto");
-        }else{ validate=false; }
-        if(!request.getParameter("via").matches(regString)) {
-            System.out.println("nome dato corretto");
-        }else{ validate=false; }
-        if(!request.getParameter("ncivico").matches(regUsername)) {
-            System.out.println("nome dato corretto");
-        }else{ validate=false; }
+        else {
+            msg = "nome non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+        }
+
+        if (!cognome.equals(""))
+            System.out.println("cognome dato corretto");
+        else {
+            msg = "cognome non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+        }
+
+        if (!ruolo.equals(""))
+            System.out.println("ruolo dato corretto");
+        else {
+            msg = "ruolo non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+        }
 
 
         if(validate==true) {
-            System.out.println("tutti i campi sono giusti");
+            System.out.println("tutti i campi utente sono giusti");
         } else {
-            RequestDispatcher view = request.getRequestDispatcher("ModificaUtenteByAdmin.jsp");/*dove inoltro il form*/
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
             HttpSession currentSession = request.getSession();
-            currentSession.setAttribute("error", "error");
+            request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
             view.forward(request,response);
             return;
         }
 
 
-
         Utente u=new Utente();
-        UtenteDAO userDao=new UtenteDAO();
-
-        u.setId(Integer.parseInt(id));
+        u.setId(id);
         u.setEmail(email);
         u.setUsername(username);
+        u.setNome(nome);
+        u.setCognome(cognome);
         u.setRuolo(ruolo);
 
+        UtenteDAO userDao=new UtenteDAO();
         userDao.doUpdate(u);
 
-        String address = "ProfiloAmministratore.jsp";
+        ArrayList<Utente> list=userDao.retriveAll();
+        request.setAttribute("lista",list);
 
-        response.sendRedirect(address);
+        request.setAttribute("errorTest","modifica utente successo admin");
+        String address = "/ListaUtenti.jsp";
+        RequestDispatcher dispatcher =
+                request.getRequestDispatcher(address);
+        dispatcher.forward(request, response);
     }
 
     public void gestoreMostraUtenti(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -479,6 +754,7 @@ public class GestoreAccount {
         request.setAttribute("lista",lista);
 
         String address = "/ListaUtenti.jsp";
+        request.setAttribute("errorTest","tutti gli utenti presi");
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher(address);
         dispatcher.forward(request, response);
@@ -491,6 +767,8 @@ public class GestoreAccount {
         UtenteDAO udao=new UtenteDAO();
         Utente u=udao.retriveById(id);
         request.setAttribute("user1",u);
+
+        request.setAttribute("errorTest","utente trovato");
         String address="/ModificaUtenteByAdmin.jsp";
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher(address);
