@@ -1,6 +1,6 @@
 package control;
 
-import bean.Prodotto;
+import model.bean.Prodotto;
 import classDAO.ProdottoDAO;
 
 import javax.servlet.RequestDispatcher;

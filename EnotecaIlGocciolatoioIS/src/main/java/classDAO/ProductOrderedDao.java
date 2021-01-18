@@ -1,7 +1,7 @@
 package classDAO;
 
-import bean.ProductOrdered;
-import connectionPool.ConPool;
+import model.bean.ProductOrdered;
+import model.connectionPool.ConPool;
 
 import java.sql.*;
 import java.util.ArrayList;

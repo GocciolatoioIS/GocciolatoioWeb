@@ -1,23 +1,12 @@
 package testUnita;
 
-import bean.Indirizzo;
-import bean.Ordine;
-import bean.Utente;
 import classDAO.CategoriaDAO;
-import classDAO.IndirizzoDAO;
-import classDAO.OrdineDAO;
-import classDAO.UtenteDAO;
 import junit.framework.TestCase;
 
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class TestCategoriaDAO extends TestCase{
 

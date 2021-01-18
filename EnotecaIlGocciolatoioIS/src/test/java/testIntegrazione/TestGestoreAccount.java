@@ -2,11 +2,11 @@ package testIntegrazione;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import bean.Indirizzo;
-import bean.Utente;
+import model.bean.Indirizzo;
+import model.bean.Utente;
 import classDAO.IndirizzoDAO;
 import classDAO.UtenteDAO;
-import model.GestoreAccount;
+import model.service.GestoreAccount;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,8 +18,6 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;

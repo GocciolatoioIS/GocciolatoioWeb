@@ -1,9 +1,9 @@
 package classDAO;
 
-import bean.Indirizzo;
-import bean.Ordine;
-import bean.Utente;
-import connectionPool.ConPool;
+import model.bean.Indirizzo;
+import model.bean.Ordine;
+import model.bean.Utente;
+import model.connectionPool.ConPool;
 
 import java.sql.*;
 import java.util.ArrayList;

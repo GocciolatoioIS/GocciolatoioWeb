@@ -1,6 +1,6 @@
 package control;
 
-import bean.Categoria;
+import model.bean.Categoria;
 import classDAO.CategoriaDAO;
 
 import javax.servlet.ServletException;

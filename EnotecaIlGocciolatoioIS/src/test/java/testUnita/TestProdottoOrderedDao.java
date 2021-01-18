@@ -1,7 +1,5 @@
 package testUnita;
-import bean.Prodotto;
-import bean.ProductOrdered;
-import classDAO.ProdottoDAO;
+import model.bean.ProductOrdered;
 import classDAO.ProductOrderedDao;
 import junit.framework.TestCase;
 

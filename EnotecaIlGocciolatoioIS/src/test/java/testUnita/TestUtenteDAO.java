@@ -1,13 +1,10 @@
 package testUnita;
 
-import bean.Indirizzo;
-import bean.Utente;
+import model.bean.Indirizzo;
+import model.bean.Utente;
 import classDAO.UtenteDAO;
-import connectionPool.ConPool;
 import junit.framework.TestCase;
 
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,10 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertNotEquals;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

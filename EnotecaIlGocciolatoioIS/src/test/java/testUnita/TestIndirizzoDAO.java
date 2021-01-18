@@ -2,21 +2,11 @@ package testUnita;
 
 
 import classDAO.IndirizzoDAO;
-import bean.Indirizzo;
+import model.bean.Indirizzo;
 import junit.framework.TestCase;
-
-import org.junit.jupiter.api.*;
 
 import static org.junit.Assert.assertNotEquals;
 
-import bean.Indirizzo;
-import bean.Utente;
-import classDAO.UtenteDAO;
-import connectionPool.ConPool;
-import junit.framework.TestCase;
-
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,15 +14,6 @@ import org.junit.jupiter.api.Test;
 
 
 import static org.junit.Assert.assertNotEquals;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.lang.Exception;
 
 public class TestIndirizzoDAO extends TestCase {
 

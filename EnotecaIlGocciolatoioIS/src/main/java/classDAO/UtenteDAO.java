@@ -1,7 +1,7 @@
 package classDAO;
 
-import bean.Utente;
-import connectionPool.ConPool;
+import model.bean.Utente;
+import model.connectionPool.ConPool;
 
 import java.sql.*;
 import java.util.ArrayList;

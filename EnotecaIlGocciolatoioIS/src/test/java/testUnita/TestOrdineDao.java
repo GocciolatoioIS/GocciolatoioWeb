@@ -1,8 +1,8 @@
 package testUnita;
 
-import bean.Indirizzo;
-import bean.Ordine;
-import bean.Utente;
+import model.bean.Indirizzo;
+import model.bean.Ordine;
+import model.bean.Utente;
 import classDAO.IndirizzoDAO;
 import classDAO.OrdineDAO;
 import classDAO.UtenteDAO;
@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 /*

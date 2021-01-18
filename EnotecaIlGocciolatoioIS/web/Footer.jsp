@@ -57,7 +57,7 @@
                 <br>
                 <li><i class="fa fa-phone" aria-hidden="true"></i>331 338 6476</li>
                 <li><i class="fa fa-envelope" aria-hidden="true"></i>email@gmail.com</li>
-                <a href="Contatti.jsp"><li>Maggiori Dettagli</li></a>
+                <a href="Contattaci.jsp"><li>Maggiori Dettagli</li></a>
             </ul>
 
             <!-- Social -->

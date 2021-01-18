@@ -2,7 +2,7 @@ package testUnita;
 
 
 
-import bean.Prodotto;
+import model.bean.Prodotto;
 import classDAO.ProdottoDAO;
 import junit.framework.TestCase;
 

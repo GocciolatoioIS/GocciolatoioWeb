@@ -1,7 +1,7 @@
 package control;
 
 import com.google.gson.Gson;
-import bean.Prodotto;
+import model.bean.Prodotto;
 import classDAO.ProdottoDAO;
 
 import java.io.IOException;

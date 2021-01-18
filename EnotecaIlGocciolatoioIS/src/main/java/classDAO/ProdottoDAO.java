@@ -1,12 +1,11 @@
 package classDAO;
 
-import bean.Prodotto;
-import connectionPool.ConPool;
+import model.bean.Prodotto;
+import model.connectionPool.ConPool;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ProdottoDAO {
 

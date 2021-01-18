@@ -1,12 +1,9 @@
 package testIntegrazione;
 import static org.junit.jupiter.api.Assertions.*;
 
-import bean.Categoria;
-import bean.Prodotto;
+import model.bean.Prodotto;
 import classDAO.ProdottoDAO;
-import control.AggiungiProdotto;
-import control.CancellaProdottoByIDServlet;
-import model.GestoreProdotto;
+import model.service.GestoreProdotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,8 +16,6 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class TestGestoreProdotto extends Mockito{
