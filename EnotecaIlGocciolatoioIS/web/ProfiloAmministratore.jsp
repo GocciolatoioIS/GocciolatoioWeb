@@ -10,18 +10,18 @@
 <html>
 <head>
     <!--link bootstrap -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- link css -->
-    <link rel="stylesheet" href="../css/AreaAmministratore.css">
+    <link rel="stylesheet" href="css/AreaAmministratore.css">
     <!-- link icone -->
     <script src="https://kit.fontawesome.com/cf835fc8f8.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="../css/Link.css">
+    <link rel="stylesheet" href="css/Link.css">
 
 </head>
 <body>
 <!-- include l'header -->
-<%@ include file= "../HeaderLogo.jsp"%>
+<%@ include file= "HeaderLogo.jsp"%>
 
 <!--sezione spazio bianco prima delle info -->
 <div class="jumbotron jumbotron-fluid " style="background:transparent !important">
@@ -51,7 +51,7 @@
 
         <div class="col order-2">
 
-            <form method="get" action="../prodotto/AggiungiProdotto.jsp">
+            <form method="get" action="AggiungiProdotto.jsp">
                 <button><i class="fas fa-plus fa-lg"></i> Aggiungi Prodotto</button>
             </form>
 

@@ -1,4 +1,4 @@
-<%@ page import="bean.Utente" %>
+<%@ page import="model.bean.Utente" %>
 <%--
   Created by IntelliJ IDEA.
   User: vince

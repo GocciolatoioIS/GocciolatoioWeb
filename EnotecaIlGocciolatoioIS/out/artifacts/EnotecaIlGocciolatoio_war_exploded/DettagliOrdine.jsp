@@ -1,7 +1,7 @@
-<%@ page import="bean.ProductOrdered" %>
+<%@ page import="model.bean.ProductOrdered" %>
 <%@ page import="java.util.List" %>
-<%@ page import="bean.Utente" %>
-<%@ page import="bean.Indirizzo" %><%--
+<%@ page import="model.bean.Utente" %>
+<%@ page import="model.bean.Indirizzo" %><%--
   Created by IntelliJ IDEA.
   User: vince
   Date: 31/08/2020

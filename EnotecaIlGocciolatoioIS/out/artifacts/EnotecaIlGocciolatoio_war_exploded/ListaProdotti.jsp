@@ -1,4 +1,4 @@
-<%@ page import="bean.Prodotto" %>
+<%@ page import="model.bean.Prodotto" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: vince
@@ -72,6 +72,6 @@
     </div>
     <br><br><br>
 </div>
-<script src="javascript/DeleteUser.js"></script>
+<script src="javascript/account/DeleteUser.js"></script>
 </body>
 </html>

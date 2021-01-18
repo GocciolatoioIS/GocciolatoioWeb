@@ -14,14 +14,14 @@
     <title>Dettagli Ordine</title>
 
     <!-- link bootstrap css -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="../css/DettagliOrdine.css">
+    <link rel="stylesheet" href="css/DettagliOrdine.css">
 </head>
 <body>
 
 <!-- include l'header -->
-<%@ include file= "../HeaderLogo.jsp"%>
+<%@ include file= "HeaderLogo.jsp"%>
 
     <%
         List<ProductOrdered> lista= (List<ProductOrdered>) request.getAttribute("lista");

@@ -9,10 +9,10 @@
 <html>
 <head>
     <title>Grazie per aver Acquistato</title>
-    <link href="../css/HomePageStyle.css">
+    <link href="css/HomePageStyle.css">
 </head>
 <body>
-    <%@include file="../Header.jsp"%>
+    <%@include file="Header.jsp"%>
 
     <%
         for(int i=0;i<5;i++){
@@ -28,7 +28,7 @@
     <br>
     <%}%>
 
-    <%@include file="../Footer.jsp"%>
+    <%@include file="Footer.jsp"%>
 
 </body>
 </html>

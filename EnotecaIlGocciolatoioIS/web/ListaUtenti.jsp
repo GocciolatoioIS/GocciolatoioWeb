@@ -16,14 +16,14 @@
     <title>Lista Utenti</title>
 
     <!-- link bootstrap css -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="../css/Link.css">
+    <link rel="stylesheet" href="css/Link.css">
 
 </head>
 <body>
 <!-- include l'header -->
-<%@ include file= "../HeaderLogo.jsp"%>
+<%@ include file= "HeaderLogo.jsp"%>
 
 <%
     List<Utente> lista= (List<Utente>) request.getAttribute("lista");
@@ -76,8 +76,8 @@
 <!-- link jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- link bootstrap js -->
-<script src="../javascript/bootstrap.min.js"></script>
-<script src="../javascript/account/DeleteUser.js"></script>
+<script src="javascript/bootstrap.min.js"></script>
+<script src="javascript/account/DeleteUser.js"></script>
 
 </body>
 

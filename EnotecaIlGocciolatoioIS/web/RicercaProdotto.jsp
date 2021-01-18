@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.bean.Prodotto" %>
 <%@ page import="model.bean.Categoria" %>
@@ -16,33 +17,32 @@
 <html>
 <head>
     <!-- link bootstrap css -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <!-- link css -->
-    <link rel="stylesheet" href="../css/Categoria.css">
+    <link rel="stylesheet" href="css/Categoria.css">
 
     <!-- link icone -->
     <script src="https://kit.fontawesome.com/cf835fc8f8.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<%@ include file= "../Header.jsp"%>
+
 <!-- include l'header -->
+<%@ include file= "Header.jsp"%>
+
 <%
     List<Prodotto> prodotti= (List<Prodotto>) request.getAttribute("prodotti");
-    String cat= (String) request.getAttribute("category");
 %>
+
+<!--sezione spazio bianco prima della categoria -->
 
 <div class="container">
 
-    <div class="title" align="center"><%=cat%></div>
-
-
-
+    <div class="title" align="center">Ricerca:</div>
 
     <div class="row row-cols-4">
 
         <% for(Prodotto p:prodotti){ %>
-
         <div class="col">
 
             <div class="card" >
@@ -61,7 +61,8 @@
     <!--sezione spazio bianco prima della categoria -->
     <div class="jumbotron jumbotron-fluid " style="background:transparent !important">
     </div>
-    <%@ include file= "../Footer.jsp"%>
+
+    <%@ include file= "Footer.jsp"%>
 </div>
 
 </body>

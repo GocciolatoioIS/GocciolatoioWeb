@@ -1,7 +1,7 @@
-<%@ page import="bean.Prodotto" %>
+<%@ page import="model.bean.Prodotto" %>
 <%@ page import="java.util.List" %>
-<%@ page import="bean.Ordine" %>
-<%@ page import="bean.Utente" %><%--
+<%@ page import="model.bean.Ordine" %>
+<%@ page import="model.bean.Utente" %><%--
   Created by IntelliJ IDEA.
   User: dimy1
   Date: 07/01/2021
@@ -64,6 +64,6 @@
     <hr>
 <%}%>
 </div>
-<script src="javascript/DeleteUser.js"></script>
+<script src="javascript/account/DeleteUser.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="bean.Prodotto" %>
+<%@ page import="model.bean.Prodotto" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%--
   Created by IntelliJ IDEA.
@@ -111,7 +111,7 @@
 
             <!-- form quantità e bottone aggiungi al carrello -->
             <%if(p.getQuantita_magazzino()!=0){ %>
-            <form class="buy-form" method="get" action="carrello">
+            <form class="buy-form" method="get" action="../carrello">
 
                 <input type="hidden" name="prodId" value=<%=p.getId()%>>
                 <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
@@ -132,7 +132,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- link bootstrap js -->
 <script src="javascript/bootstrap.min.js"></script>
-<script src="javascript/QntButton.js"></script>
+<script src="javascript/carrello/QntButton.js"></script>
 
 </body>
 </html>

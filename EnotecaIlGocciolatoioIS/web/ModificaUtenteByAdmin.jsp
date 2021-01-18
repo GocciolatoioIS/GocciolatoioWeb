@@ -3,14 +3,14 @@
 <html>
 <head>
     <!-- link bootstrap css -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 <%
     Utente user= (Utente) request.getAttribute("user1");
 %>
 <!-- include l'header -->
-<%@ include file= "../HeaderLogo.jsp"%>
+<%@ include file= "HeaderLogo.jsp"%>
 
 <!--sezione spazio bianco prima delle info -->
 <div class="jumbotron jumbotron-fluid " style="background:transparent !important">
@@ -54,6 +54,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- >
 </html>link bootstrap js -->
-<script src="../javascript/bootstrap.min.js"></script>
-<script src="../javascript/account/FormValidationUserAdmin.js"></script>
+<script src="javascript/bootstrap.min.js"></script>
+<script src="javascript/account/FormValidationUserAdmin.js"></script>
 </body

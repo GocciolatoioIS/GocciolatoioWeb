@@ -45,7 +45,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="carrello/Carrello.jsp" ><i class="fas fa-shopping-cart  fa-lg"></i></a>
+                    <a class="nav-link" href="Carrello.jsp" ><i class="fas fa-shopping-cart  fa-lg"></i></a>
 
                 </li>
             </ul>

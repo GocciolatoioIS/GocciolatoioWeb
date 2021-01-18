@@ -1,4 +1,4 @@
-function FormValidation(){
+function AccountRegValidation(){
 
     var username = document.registration.username;
     var email = document.registration.email;

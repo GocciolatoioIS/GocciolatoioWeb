@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="bean.Ordine" %>
+<%@ page import="model.bean.Ordine" %>
 <%@ page import="java.util.List" %>
-<%@ page import="bean.Utente" %>
+<%@ page import="model.bean.Utente" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -81,6 +81,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- link bootstrap js -->
 <script src="javascript/bootstrap.min.js"></script>
-<script src="javascript/DeleteUser.js"></script>
+<script src="javascript/account/DeleteUser.js"></script>
 </body>
 </html>

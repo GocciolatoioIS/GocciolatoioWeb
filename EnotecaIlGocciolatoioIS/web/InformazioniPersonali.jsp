@@ -12,13 +12,13 @@
 <html>
 <head>
     <!--link bootstrap -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- link css -->
-    <link rel="stylesheet" href="../css/InformazioniPersonali.css">
+    <link rel="stylesheet" href="css/InformazioniPersonali.css">
     <!-- link icone -->
     <script src="https://kit.fontawesome.com/cf835fc8f8.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="../css/Link.css">
+    <link rel="stylesheet" href="css/Link.css">
 
     <title>Il mio Account</title>
 </head>
@@ -27,7 +27,7 @@
     Utente user= (Utente) request.getSession().getAttribute("utente");
 %>
 <!-- include l'header -->
-<%@ include file= "../HeaderLogo.jsp"%>
+<%@ include file= "HeaderLogo.jsp"%>
 
 <!--sezione spazio bianco prima delle info -->
 <div class="jumbotron jumbotron-fluid " style="background:transparent !important">
@@ -46,7 +46,7 @@
 
     <div class="row">
         <div class="col order-first">
-            <img class="fotoUtente" src="../img/astronaut.jpeg" alt="FotoUtente">
+            <img class="fotoUtente" src="img/astronaut.jpeg" alt="FotoUtente">
             <h3 class="NomeFoto"><%=user.getUsername() %></h3>
         </div>
 

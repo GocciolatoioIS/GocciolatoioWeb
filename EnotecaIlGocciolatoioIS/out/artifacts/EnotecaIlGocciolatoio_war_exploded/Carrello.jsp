@@ -1,9 +1,9 @@
-<%@ page import="bean.Prodotto" %>
+<%@ page import="model.bean.Prodotto" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="bean.Utente" %>
+<%@ page import="model.bean.Utente" %>
 <%@ page import="java.util.List" %>
-<%@ page import="bean.Indirizzo" %>
-<%@ page import="bean.Carrello" %>
+<%@ page import="model.bean.Indirizzo" %>
+<%@ page import="model.bean.Carrello" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c"
@@ -150,8 +150,8 @@
 </div><!-- container -->
 
 </body>
-<script src="javascript/Cart1.js"></script>
+<script src="javascript/carrello/Cart.js"></script>
 <%@ include file= "Footer.jsp"%>
-<script src="javascript/AggiornaQuantitaCarrello.js"></script>
+<script src="javascript/carrello/AggiornaQuantitaCarrello.js"></script>
 </body>
 </html>

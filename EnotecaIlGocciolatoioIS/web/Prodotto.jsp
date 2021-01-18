@@ -15,14 +15,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- link bootstrap css -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/ProdottoStyle.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/ProdottoStyle.css">
 
     <title>Prodotto</title>
 </head>
 <body>
 <!-- include l'header -->
-<%@ include file= "../HeaderLogo.jsp"%>
+<%@ include file= "HeaderLogo.jsp"%>
 <div class="jumbotron jumbotron-fluid " style="background:transparent !important"></div>
 <!--sezione spazio bianco prima della sezione prodotto -->
 <div class="jumbotron jumbotron-fluid " style="background:transparent !important"></div>
@@ -131,8 +131,8 @@
 <!-- link jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- link bootstrap js -->
-<script src="../javascript/bootstrap.min.js"></script>
-<script src="../javascript/carrello/QntButton.js"></script>
+<script src="javascript/bootstrap.min.js"></script>
+<script src="javascript/carrello/QntButton.js"></script>
 
 </body>
 </html>

@@ -1,37 +1,31 @@
 <%@ page import="model.bean.Utente" %>
+<%@ page import="model.bean.Indirizzo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <!-- link bootstrap css -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
 </head>
 <body>
 <!-- include l'header -->
-<%@ include file= "../HeaderLogo.jsp"%>
+<%@ include file= "HeaderLogo.jsp"%>
 
 <!--sezione spazio bianco prima delle info -->
 <div class="jumbotron jumbotron-fluid " style="background:transparent !important">
 </div>
-<div class="container">
-<div class="row" align="right">
-    <div class="col order-last">
-        <div align="right">
-            <form method="get" action="InformazioniPersonali.jsp">
-                <button class="btn btn-outline-Secondary align-self-xl-end"><i class="fas fa-plus fa-lg"></i><b>Torna all'Area Utente</b></button>
-            </form>
-        </div>
-    </div>
-</div>
-</div>
-<form action="add-address" method="get" onsubmit="return FormValidation();">
+
+<% Indirizzo oldIndirizzo=(Indirizzo) request.getAttribute("oldIndirizzo");%>
+
+<form action="mod-indirizzo" method="get" onsubmit="return FormValidation();">
+    <input id="idInd" type="hidden"   name="idInd" value="<%=oldIndirizzo.getId()%>">
+    <input id="idUtente" type="hidden" name="iDUtente" value="${utente.id}">
+    <input type="hidden" name="action" value="modInd">
     <div class="container">
 
-
-
         <div class="form-group">
-            <h1 align="center">Inserisci un Indirizzo</h1>
-            <label >AGGIUNGI LA NAZIONE</label>
+            <h1 align="center">MODIFICA INDIRIZZO</h1>
+            <label >MODIFICA LA NAZIONE</label>
             <!-- country select -->
             <div class="control-group">
                 <div class="controls">
@@ -280,20 +274,17 @@
                 </div>
             </div>
             <br>
-            <label for="CityInput">AGGIUNGI LA CITTA'</label>
-            <input id="citta" type="text" class="form-control" id="CityInput" placeholder=" Citta' " name="citta" required>
+            <label for="CityInput">MODIFICA LA CITTA'</label>
+            <input type="text" class="form-control" id="CityInput" placeholder=" Citta' " name="citta" required value="<%=oldIndirizzo.getCitta()%>">
 
-            <label for="AddressInput">AGGIUNGI LA VIA</label>
-            <input id="Via" type="text" class="form-control" id="AddressInput" placeholder=" Via " name="via" required>
+            <label for="AddressInput">MODIFICA LA VIA</label>
+            <input type="text" class="form-control" id="AddressInput" placeholder=" Via " name="via" required value="<%=oldIndirizzo.getVia()%>">
 
-            <label for="NCivicoInput">AGGIUNGI IL NUMERO CIVICO</label>
-            <input id="numero civico" type="number" class="form-control" id="NCivicoInput" placeholder=" Numero Civico " name="ncivico" required>
+            <label for="NCivicoInput">MODIFICA IL NUMERO CIVICO</label>
+            <input type="number" class="form-control" id="NCivicoInput" placeholder=" Numero Civico " name="ncivico" required value="<%=oldIndirizzo.getNumCivico()%>">
 
-            <label for="CapInput">AGGIUNGI IL CAP</label>
-            <input id="cap" type="text" class="form-control" id="CapInput" placeholder=" CAP' " name="cap" required>
-
-            <input type="hidden" name="iDUtente" value="${utente.id}">
-
+            <label for="CapInput">MODIFICA IL CAP</label>
+            <input type="text" class="form-control" id="CapInput" placeholder=" CAP' " name="cap" required value="<%=oldIndirizzo.getCap()%>">
 
         </div>
 
@@ -307,7 +298,7 @@
 <!-- link jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- link bootstrap js -->
-<script src="../javascript/bootstrap.min.js"></script>
-<script src="../javascript/account/FormValidationAddress.js"></script>
+<script src="javascript/bootstrap.min.js"></script>
+<script src="javascript/account/FormValidationAddress.js"></script>
 </body>
 </html>

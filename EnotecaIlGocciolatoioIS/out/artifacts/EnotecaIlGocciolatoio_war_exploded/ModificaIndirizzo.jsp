@@ -1,5 +1,5 @@
-<%@ page import="bean.Utente" %>
-<%@ page import="bean.Indirizzo" %>
+<%@ page import="model.bean.Utente" %>
+<%@ page import="model.bean.Indirizzo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -299,6 +299,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- link bootstrap js -->
 <script src="javascript/bootstrap.min.js"></script>
-<script src="javascript/FormValidationAddress.js"></script>
+<script src="javascript/account/FormValidationAddress.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-<%@ page import="bean.Categoria" %>
-<%@ page import="bean.Prodotto" %>
+<%@ page import="model.bean.Categoria" %>
+<%@ page import="model.bean.Prodotto" %>
 <%@ page import="java.util.List" %>
 <%--
   Created by IntelliJ IDEA.

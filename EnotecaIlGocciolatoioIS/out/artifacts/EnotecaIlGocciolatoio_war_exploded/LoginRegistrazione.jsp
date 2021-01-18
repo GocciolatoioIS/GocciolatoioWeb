@@ -40,7 +40,7 @@
 <%}%>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form name="registration" action="register" method="Post" onsubmit="FormValidation()">
+        <form name="registration" action="register" method="Post" onsubmit="AccountRegValidation()">
             <h1>Registrati</h1>
             <input type="text" id="nome" name="nome"placeholder="Nome" required/>
             <input type="text" id="cognome" name="cognome"placeholder="Cognome" required/>
@@ -80,9 +80,9 @@
 </div>
 
 <!-- js -->
-<script src="javascript/LoginRegistration.js"></script>
-<script src="javascript/FormValidation.js"></script>
-<script src="javascript/LoginValidation.js"></script>
+<script src="javascript/account/LoginRegistration.js"></script>
+<script src="javascript/account/AccountRegValidation.js"></script>
+<script src="javascript/account/LoginValidation.js"></script>
 
 </body>
 </html>

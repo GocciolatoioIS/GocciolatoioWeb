@@ -1,4 +1,4 @@
-<%@ page import="bean.Utente" %>
+<%@ page import="model.bean.Utente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -55,5 +55,5 @@
 <!-- >
 </html>link bootstrap js -->
 <script src="javascript/bootstrap.min.js"></script>
-<script src="javascript/FormValidationUserAdmin.js"></script>
+<script src="javascript/account/FormValidationUserAdmin.js"></script>
 </body

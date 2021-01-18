@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c"
           uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="../Header.jsp">
+<jsp:include page="Header.jsp">
     <jsp:param name="pageTitle" value="Carrello"/>
 </jsp:include>
 
@@ -17,9 +17,9 @@
     <title>Carrello </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="../css/CarrelloStyle1.css">
+    <link rel="stylesheet" href="css/CarrelloStyle1.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -111,7 +111,7 @@
                     </select>
                     <div class="totals-item totals-item-total d-flex align-items-center justify-content-between mt-3 pt-3 border-top border-gainsboro">
                         <p class="text-uppercase"><strong>Aggiungi nuovo indirizzo</strong></p>
-                        <p><button><i class="fa fa-plus" aria-hidden="true"></i><a class="linkA" href="../account/AggiungiIndirizzo.jsp">Inserisci Indirizzo</a> </button></p>
+                        <p><button><i class="fa fa-plus" aria-hidden="true"></i><a class="linkA" href="AggiungiIndirizzo.jsp">Inserisci Indirizzo</a> </button></p>
                     </div>
                 </div>
                 <%}%>
@@ -150,8 +150,8 @@
 </div><!-- container -->
 
 </body>
-<script src="../javascript/carrello/Cart.js"></script>
-<%@ include file= "../Footer.jsp"%>
-<script src="../javascript/carrello/AggiornaQuantitaCarrello.js"></script>
+<script src="javascript/carrello/Cart.js"></script>
+<%@ include file= "Footer.jsp"%>
+<script src="javascript/carrello/AggiornaQuantitaCarrello.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="bean.Utente" %>
+<%@ page import="model.bean.Utente" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.util.ArrayList" %>
@@ -77,7 +77,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- link bootstrap js -->
 <script src="javascript/bootstrap.min.js"></script>
-<script src="javascript/DeleteUser.js"></script>
+<script src="javascript/account/DeleteUser.js"></script>
 
 </body>
 

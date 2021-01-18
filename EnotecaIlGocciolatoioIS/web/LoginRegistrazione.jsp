@@ -16,15 +16,15 @@
     <title>Enoteca il Gocciolatoio</title>
 
     <!-- Link css -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/LoginRegistration.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/LoginRegistration.css">
 
 </head>
 
 <body onload="document.registration.username.focus();">
 
 <!-- include l'header -->
-<%@ include file= "../HeaderLogo.jsp"%>
+<%@ include file= "HeaderLogo.jsp"%>
 
 <!--sezione spazio bianco prima del form -->
 <div class="jumbotron jumbotron-fluid " style="background:transparent !important">
@@ -80,9 +80,9 @@
 </div>
 
 <!-- js -->
-<script src="../javascript/account/LoginRegistration.js"></script>
-<script src="../javascript/account/AccountRegValidation.js"></script>
-<script src="../javascript/account/LoginValidation.js"></script>
+<script src="javascript/account/LoginRegistration.js"></script>
+<script src="javascript/account/AccountRegValidation.js"></script>
+<script src="javascript/account/LoginValidation.js"></script>
 
 </body>
 </html>

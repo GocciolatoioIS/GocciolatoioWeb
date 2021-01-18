@@ -14,13 +14,13 @@
     <title>Lista Ordini</title>
 
     <!-- link bootstrap css -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="../css/Link.css">
+    <link rel="stylesheet" href="css/Link.css">
 </head>
 <body>
 <!-- include l'header -->
-<%@ include file= "../HeaderLogo.jsp"%>
+<%@ include file= "HeaderLogo.jsp"%>
 
 <%
     Utente user= (Utente) request.getSession().getAttribute("utente");
@@ -36,7 +36,7 @@
     <div class="row" align="right">
         <div class="col order-last">
             <div align="right">
-                <form method="get" action="../account/ProfiloAmministratore.jsp">
+                <form method="get" action="ProfiloAmministratore.jsp">
                     <button class="btn btn-outline-Secondary align-self-xl-end"><i class="fas fa-plus fa-lg"></i><b>Torna all'Area Amministratore</b></button>
                 </form>
             </div>
@@ -64,6 +64,6 @@
     <hr>
 <%}%>
 </div>
-<script src="../javascript/account/DeleteUser.js"></script>
+<script src="javascript/account/DeleteUser.js"></script>
 </body>
 </html>

@@ -144,7 +144,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- link bootstrap js -->
 <script src="javascript/bootstrap.min.js"></script>
-<script src="javascript/FormValidationProductAdmin.js"></script>
+<script src="javascript/prodotto/FormValidationProductAdmin.js"></script>
 </body>
 
 

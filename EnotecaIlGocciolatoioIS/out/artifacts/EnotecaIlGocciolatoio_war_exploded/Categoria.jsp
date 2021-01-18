@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
-<%@ page import="bean.Prodotto" %>
-<%@ page import="bean.Categoria" %>
+<%@ page import="model.bean.Prodotto" %>
+<%@ page import="model.bean.Categoria" %>
 <%@ page import="java.util.ArrayList" %>
 
 <%--
@@ -50,7 +50,7 @@
                 <div class="card-body">
                     <h6 class="card-title"><%=p.getNome()%></h6>
                     <p><%=p.getPrezzo()%></p>
-                    <a href="carrello?prodId=<%=p.getId()%>&addNum=1" class="buttonAcquista" onclick="myFunction()">Acquista</a>
+                    <a href="../carrello?prodId=<%=p.getId()%>&addNum=1" class="buttonAcquista" onclick="myFunction()">Acquista</a>
                 </div>
             </div>
         </div>
