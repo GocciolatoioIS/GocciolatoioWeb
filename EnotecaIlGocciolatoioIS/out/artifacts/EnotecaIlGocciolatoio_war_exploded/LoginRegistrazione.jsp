@@ -46,7 +46,7 @@
 <%}%>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form name="registration" action="register" method="Post" onsubmit="AccountRegValidation()">
+        <form name="registration" action="register" method="post" onsubmit="AccountRegValidation()">
             <h1>Registrati</h1>
             <input type="text" id="nome" name="nome"placeholder="Nome" required/>
             <input type="text" id="cognome" name="cognome"placeholder="Cognome" required/>

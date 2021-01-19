@@ -33,8 +33,8 @@
 
         <div class="collapse navbar-collapse" id="collapseExample">
 
-            <form class="form-inline my-2 my-lg-0 " action="search-product">
-                <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Cosa stai cercando?" aria-label="Search" id="navBarSearchForm" name="stringP" onkeyup="ricerca(this.value)">
+            <form class="form-inline my-2 my-lg-0 " action="search-product" onkeyup=" ricerca(this.value)">
+                <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Cosa stai cercando?" aria-label="Search" id="navBarSearchForm" name="stringP" >
                 <button class="btn btn-light btn-sm my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
 

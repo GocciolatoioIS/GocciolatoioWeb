@@ -37,6 +37,10 @@
     <div class="title" align="center"><%=cat%></div>
 
 
+<% if(prodotti!=null) {  %>
+
+
+
 
 
     <div class="row row-cols-4">
@@ -50,13 +54,21 @@
                 <div class="card-body">
                     <h6 class="card-title"><%=p.getNome()%></h6>
                     <p><%=p.getPrezzo()%></p>
-                    <a href="../carrello?prodId=<%=p.getId()%>&addNum=1" class="buttonAcquista" onclick="myFunction()">Acquista</a>
+                    <a href="carrello?prodId=<%=p.getId()%>&addNum=1" class="buttonAcquista" onclick="myFunction()">Acquista</a>
                 </div>
             </div>
         </div>
 
         <% } %>
     </div>
+    <%}%>
+    <%if(prodotti.isEmpty()){ %>
+
+    <p  style=" font-size: 15px "align="center"> prodotti per <%=cat%> non presenti nel sistema. </p>
+    <p style=" font-size: 15px " align="center">ci scusiamo per il disagio.</p>
+
+    <% }%>
+
 
     <!--sezione spazio bianco prima della categoria -->
     <div class="jumbotron jumbotron-fluid " style="background:transparent !important">

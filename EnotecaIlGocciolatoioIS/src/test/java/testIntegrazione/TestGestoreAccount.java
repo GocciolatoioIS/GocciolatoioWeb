@@ -647,6 +647,23 @@ public class TestGestoreAccount extends Mockito{
     }
 
     @Test
+    public void TC_GestioneLoginUtenteNonTrovato() throws ServletException, IOException {
+
+        UtenteDAO uDao=new UtenteDAO();
+
+        request.addParameter("username","franco");
+        request.addParameter("pass","password");
+        gestoreAccount.gestoreLogin(request,response);
+        String exit= (String) request.getAttribute("errorTest");
+        String oracolo="utente non trovato";
+        System.out.println("oracolo: "+oracolo);
+        assertEquals(oracolo,exit);
+        System.out.println("servlet: "+exit);
+
+
+    }
+
+    @Test
     public void TC_GestioneLoginUtenteUsernameVuoto() throws  ServletException,IOException{
 
         UtenteDAO uDao=new UtenteDAO();

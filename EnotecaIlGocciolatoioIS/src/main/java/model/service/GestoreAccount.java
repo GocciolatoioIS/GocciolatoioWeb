@@ -303,7 +303,7 @@ public class GestoreAccount {
         request.getSession().setAttribute("utente", u);
 
         //Viene rindirizzata alla HomeServlet
-        address = "index.html";
+        address = "/InformazioniPersonali.jsp";
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher(address);
         dispatcher.forward(request, response);

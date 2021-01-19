@@ -108,7 +108,6 @@ public class TestGestoreProdotto extends Mockito{
         assertEquals(message, result);
     }
 
-
     @Test
     void TC_AggiuntaProdottoTipoVuoto() throws ServletException, IOException {
         request.addParameter("nome",prodotto.getNome());
@@ -1129,6 +1128,18 @@ public class TestGestoreProdotto extends Mockito{
         servlet.gestoreRicercaProdotto(request,response);
 
         String message = "ricerca avvenuta con successo";
+        System.out.println("oracolo: "+message);
+        String result = (String) request.getAttribute("errorTest");
+        assertEquals(message, result);
+    }
+
+    @Test
+    void TC_RicercaProdottoVuoto() throws ServletException, IOException {
+
+        request.addParameter("stringP", "");
+        servlet.gestoreRicercaProdotto(request,response);
+
+        String message = "ricerca prodotto vuoto";
         System.out.println("oracolo: "+message);
         String result = (String) request.getAttribute("errorTest");
         assertEquals(message, result);

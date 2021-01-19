@@ -938,6 +938,16 @@ public class GestoreProdotto {
             throws ServletException, IOException {
 
         String s = request.getParameter("stringP");
+        System.out.println(s);
+        s=s+"";
+
+        request.setAttribute("ricerca",s);
+        if(s.equals("")){
+            request.setAttribute("errorTest","ricerca prodotto vuoto");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.html");
+            dispatcher.forward(request, response);
+            return;
+        }
         ProdottoDAO proDAO = new ProdottoDAO();
         String address = null;
 
