@@ -23,14 +23,36 @@
 <!-- include l'header -->
 <%@ include file= "HeaderLogo.jsp"%>
 
-<!--sezione spazio bianco prima delle info -->
 <div class="jumbotron jumbotron-fluid " style="background:transparent !important">
+
+
+<!--sezione spazio bianco prima delle info -->
+
 </div>
+
+
 
 <div class="container">
 
-    <div class="title">Area Amministratore</div>
 
+
+    <div class="title">Area Amministratore</div>
+    <%
+
+        String error= (String) request.getSession().getAttribute("error");
+        String errorTest=(String) request.getAttribute("errorTest");
+        if(error!=null){
+    %>
+    <br>
+    <p id="checkError" style="color:red" align="center" value="<%=error%>" > *<%=error%>
+            <%if(errorTest!=null){%>
+            <%=errorTest%>
+            <%request.getSession().removeAttribute("error");
+            }%>
+
+        </p>
+    <br>
+    <%}%>
     <%
         Utente u= (Utente) session.getAttribute("utente");
     %>

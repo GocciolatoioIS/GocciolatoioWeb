@@ -57,7 +57,10 @@ public class GestoreProdotto {
                 msg="nome non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(nome);
@@ -66,7 +69,10 @@ public class GestoreProdotto {
                 msg="nome formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -79,7 +85,10 @@ public class GestoreProdotto {
                 msg = "tipo non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(tipo);
@@ -88,7 +97,10 @@ public class GestoreProdotto {
                 msg="tipo formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -99,7 +111,10 @@ public class GestoreProdotto {
                 msg="descrizione non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
             return;}
 
         if(!request.getParameter("prezzo").matches(regString)) {
@@ -109,7 +124,10 @@ public class GestoreProdotto {
                 msg = "prezzo non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(prezzo);
@@ -117,7 +135,10 @@ public class GestoreProdotto {
                 msg = "prezzo formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
 
@@ -130,7 +151,10 @@ public class GestoreProdotto {
                 msg = "sconto non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(sconto);
@@ -138,7 +162,10 @@ public class GestoreProdotto {
                 msg = "sconto formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -149,7 +176,10 @@ public class GestoreProdotto {
                 msg="immagine non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+            view.forward(request,response);
             return;
             }
         mi = pi.matcher(immagine);
@@ -157,7 +187,10 @@ public class GestoreProdotto {
             msg = "immagine formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest", msg);
-            validate = false;
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+            view.forward(request,response);
             return;
         }
 
@@ -168,7 +201,10 @@ public class GestoreProdotto {
                 msg = "anno non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(annata);
@@ -176,7 +212,10 @@ public class GestoreProdotto {
                 msg = "anno formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -188,7 +227,10 @@ public class GestoreProdotto {
                 msg = "regione non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(regione);
@@ -196,7 +238,10 @@ public class GestoreProdotto {
                 msg = "regione formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -208,7 +253,10 @@ public class GestoreProdotto {
                 msg = "gradazione non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(gradazione);
@@ -216,7 +264,10 @@ public class GestoreProdotto {
                 msg = "gradazione formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -228,7 +279,10 @@ public class GestoreProdotto {
                 msg = "formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(formato);
@@ -236,7 +290,10 @@ public class GestoreProdotto {
                 msg = "formato formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -248,7 +305,10 @@ public class GestoreProdotto {
                 msg = "quantita_magazzino non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(quantita_magazino);
@@ -256,7 +316,10 @@ public class GestoreProdotto {
                 msg = "quantita_magazzino formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -268,7 +331,10 @@ public class GestoreProdotto {
                 msg = "nome_categoria non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(nome_categoria);
@@ -276,7 +342,10 @@ public class GestoreProdotto {
                 msg = "nome_categoria formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -284,9 +353,9 @@ public class GestoreProdotto {
         if(validate==true) {
             System.out.println("tutti i campi sono giusti");
         } else {
-            RequestDispatcher view = request.getRequestDispatcher("AggiungiProdotto.jsp");/*dove inoltro il form*/
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
             HttpSession currentSession = request.getSession();
-            currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto");
+            currentSession.setAttribute("error", "Errore nell'aggiunta del prodotto:");
             view.forward(request,response);
             return;
         }
@@ -433,7 +502,10 @@ public class GestoreProdotto {
                 msg="nome non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
             mi = pi.matcher(nome);
@@ -442,7 +514,10 @@ public class GestoreProdotto {
                 msg="nome formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
         }
@@ -455,7 +530,10 @@ public class GestoreProdotto {
                 msg = "tipo non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
             mi = pi.matcher(tipo);
@@ -464,7 +542,10 @@ public class GestoreProdotto {
                 msg="tipo formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
         }
@@ -475,7 +556,10 @@ public class GestoreProdotto {
                 msg="descrizione non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
             return;}
 
         if(!request.getParameter("prezzo").matches(regString)) {
@@ -485,7 +569,10 @@ public class GestoreProdotto {
                 msg = "prezzo non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
             mi = pi.matcher(prezzo);
@@ -493,7 +580,10 @@ public class GestoreProdotto {
                 msg = "prezzo formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
 
@@ -506,7 +596,10 @@ public class GestoreProdotto {
                 msg = "sconto non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
             mi = pi.matcher(sconto);
@@ -514,7 +607,10 @@ public class GestoreProdotto {
                 msg = "sconto formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
         }
@@ -525,15 +621,20 @@ public class GestoreProdotto {
             msg="immagine non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+            view.forward(request, response);
         return;
         }
         mi = pi.matcher(immagine);
         if (mi.matches()) {
             msg = "immagine formato non corretto";
             System.out.println(msg);
-            request.setAttribute("errorTest", msg);
-            validate = false;
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+            view.forward(request, response);
             return;
         }
 
@@ -544,7 +645,10 @@ public class GestoreProdotto {
                 msg = "anno non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
             mi = pi.matcher(annata);
@@ -552,7 +656,10 @@ public class GestoreProdotto {
                 msg = "anno formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
         }
@@ -564,7 +671,10 @@ public class GestoreProdotto {
                 msg = "regione non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
             mi = pi.matcher(regione);
@@ -572,7 +682,10 @@ public class GestoreProdotto {
                 msg = "regione formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
         }
@@ -584,7 +697,10 @@ public class GestoreProdotto {
                 msg = "gradazione non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
             mi = pi.matcher(gradazione);
@@ -592,7 +708,10 @@ public class GestoreProdotto {
                 msg = "gradazione formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
         }
@@ -604,7 +723,10 @@ public class GestoreProdotto {
                 msg = "formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
             mi = pi.matcher(formato);
@@ -612,7 +734,10 @@ public class GestoreProdotto {
                 msg = "formato formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
         }
@@ -624,7 +749,10 @@ public class GestoreProdotto {
                 msg = "quantita_magazzino non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
             mi = pi.matcher(quantita_magazino);
@@ -632,7 +760,10 @@ public class GestoreProdotto {
                 msg = "quantita_magazzino formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
         }
@@ -644,7 +775,10 @@ public class GestoreProdotto {
                 msg = "nome_categoria non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
             mi = pi.matcher(nome_categoria);
@@ -652,16 +786,19 @@ public class GestoreProdotto {
                 msg = "nome_categoria formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
+                view.forward(request, response);
                 return;
             }
         }
         if (validate == true) {
             System.out.println("tutti i campi sono giusti");
         } else {
-            RequestDispatcher view = request.getRequestDispatcher("ModificaProdottoByAdmin.jsp");/*dove inoltro il form*/
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
             HttpSession currentSession = request.getSession();
-            currentSession.setAttribute("error", "error");
+            currentSession.setAttribute("error", "Errore durante la modifica del prodotto:");
             view.forward(request, response);
             return;
         }
@@ -714,6 +851,10 @@ public class GestoreProdotto {
             msg="id non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
+            String address="/ModificaProdottoByAdmin.jsp";
+            RequestDispatcher dispatcher =
+                    request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
             return;
         }
 
@@ -722,6 +863,10 @@ public class GestoreProdotto {
             msg="id formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
+            String address="/ModificaProdottoByAdmin.jsp";
+            RequestDispatcher dispatcher =
+                    request.getRequestDispatcher(address);
+            dispatcher.forward(request, response);
             return;
         }
         int id=Integer.parseInt(param);

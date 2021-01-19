@@ -55,7 +55,10 @@ public class GestoreAccount {
                 msg="nome non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -63,7 +66,10 @@ public class GestoreAccount {
                 msg="nome formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -76,7 +82,10 @@ public class GestoreAccount {
                 msg = "cognome non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -84,7 +93,10 @@ public class GestoreAccount {
                 msg="cognome formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -97,7 +109,10 @@ public class GestoreAccount {
                 msg = "password non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+                view.forward(request,response);
                 return;
             }
 
@@ -110,7 +125,10 @@ public class GestoreAccount {
                 msg = "email non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -118,7 +136,10 @@ public class GestoreAccount {
                 msg="email formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -130,7 +151,10 @@ public class GestoreAccount {
                 msg = "data nascita non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                validate = false;RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+                view.forward(request,response);
                 return;
             }
         if (mi.matches())
@@ -138,7 +162,10 @@ public class GestoreAccount {
             msg="data nascita formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+            view.forward(request,response);
             return;
         }
 
@@ -151,7 +178,10 @@ public class GestoreAccount {
                 msg = "username non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -159,7 +189,10 @@ public class GestoreAccount {
                 msg="username formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("LoginRegistrazione.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -306,7 +339,10 @@ public class GestoreAccount {
             msg="citta indirizzo non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
+            view.forward(request,response);
             return;
         }
 
@@ -316,7 +352,10 @@ public class GestoreAccount {
             msg="citta indirizzo formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
+            view.forward(request,response);
             return;
         }
 
@@ -326,7 +365,10 @@ public class GestoreAccount {
             msg="cap indirizzo non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
+            view.forward(request,response);
             return;
         }
         mi = pi.matcher(cap);
@@ -335,7 +377,10 @@ public class GestoreAccount {
             msg="cap indirizzo formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
+            view.forward(request,response);
             return;
         }
 
@@ -345,6 +390,10 @@ public class GestoreAccount {
             msg="via indirizzo non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
+            view.forward(request,response);
             return;
         }
 
@@ -354,7 +403,10 @@ public class GestoreAccount {
             msg="via indirizzo formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
+            view.forward(request,response);
             return;
         }
 
@@ -364,6 +416,10 @@ public class GestoreAccount {
             msg="numero civico indirizzo non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
+            view.forward(request,response);
             return;
         }
 
@@ -373,7 +429,10 @@ public class GestoreAccount {
             msg="numero civico indirizzo formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
+            view.forward(request,response);
             return;
         }
 
@@ -383,6 +442,10 @@ public class GestoreAccount {
             msg="nazione indirizzo non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
+            view.forward(request,response);
             return;
         }
 
@@ -392,7 +455,10 @@ public class GestoreAccount {
             msg="nazione indirizzo formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-
+            RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
+            view.forward(request,response);
             return;
         }
 
@@ -401,7 +467,7 @@ public class GestoreAccount {
         } else {
             RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
             HttpSession currentSession = request.getSession();
-            request.setAttribute("error", "Errore durante la compilazione dei campi di Registrazione:");
+            request.setAttribute("error", "Errore durante la compilazione dei campi indirizzo:");
             view.forward(request,response);
             return;
         }
@@ -615,6 +681,10 @@ public class GestoreAccount {
                 msg="citta indirizzo non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
                 return;
             }
 
@@ -624,7 +694,10 @@ public class GestoreAccount {
                 msg="citta indirizzo formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
                 return;
             }
 
@@ -634,7 +707,10 @@ public class GestoreAccount {
                 msg="cap indirizzo non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
                 return;
             }
             mi = pi.matcher(cap);
@@ -643,7 +719,10 @@ public class GestoreAccount {
                 msg="cap indirizzo formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
                 return;
             }
 
@@ -653,6 +732,10 @@ public class GestoreAccount {
                 msg="via indirizzo non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
                 return;
             }
 
@@ -662,6 +745,10 @@ public class GestoreAccount {
                 msg="via indirizzo formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
                 return;
             }
 
@@ -671,6 +758,10 @@ public class GestoreAccount {
                 msg="numero civico indirizzo non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
                 return;
             }
 
@@ -680,6 +771,10 @@ public class GestoreAccount {
                 msg="numero civico indirizzo formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
                 return;
             }
 
@@ -689,6 +784,10 @@ public class GestoreAccount {
                 msg="nazione indirizzo non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
                 return;
             }
 
@@ -698,6 +797,10 @@ public class GestoreAccount {
                 msg="nazione indirizzo formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica indirizzo:");
+                view.forward(request,response);
                 return;
             }
 
@@ -731,6 +834,8 @@ public class GestoreAccount {
         }
     }
 
+
+
     public void gestoreModificaUtente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Utente user= (Utente) request.getSession().getAttribute("utente");
@@ -758,7 +863,10 @@ public class GestoreAccount {
                 msg="nome non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -766,7 +874,10 @@ public class GestoreAccount {
                 msg="nome formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -779,7 +890,10 @@ public class GestoreAccount {
                 msg = "cognome non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -787,7 +901,10 @@ public class GestoreAccount {
                 msg="cognome formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -801,7 +918,10 @@ public class GestoreAccount {
                 msg = "email non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -809,7 +929,10 @@ public class GestoreAccount {
                 msg="email formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -822,7 +945,10 @@ public class GestoreAccount {
                 msg = "username non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -830,7 +956,10 @@ public class GestoreAccount {
                 msg="username formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("InformazioniPersonali.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                request.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -895,6 +1024,10 @@ public class GestoreAccount {
             msg="id non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+            view.forward(request,response);
             return;
         }
 
@@ -903,6 +1036,10 @@ public class GestoreAccount {
             msg="id formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+            view.forward(request,response);
             return;
         }
 
@@ -913,7 +1050,10 @@ public class GestoreAccount {
             msg="id non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+            view.forward(request,response);
             return;
         }
 
@@ -922,7 +1062,10 @@ public class GestoreAccount {
             msg="id formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+            view.forward(request,response);
             return;
         }
 
@@ -946,7 +1089,10 @@ public class GestoreAccount {
                 msg="nome non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -954,7 +1100,10 @@ public class GestoreAccount {
                 msg="nome formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -967,7 +1116,10 @@ public class GestoreAccount {
                 msg = "cognome non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -975,7 +1127,10 @@ public class GestoreAccount {
                 msg="cognome formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -989,7 +1144,10 @@ public class GestoreAccount {
                 msg = "email non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -997,7 +1155,10 @@ public class GestoreAccount {
                 msg="email formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -1010,7 +1171,10 @@ public class GestoreAccount {
                 msg = "username non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
-                validate = false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
             if (mi.matches())
@@ -1018,7 +1182,10 @@ public class GestoreAccount {
                 msg="username formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false;
+                RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+                HttpSession currentSession = request.getSession();
+                currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+                view.forward(request,response);
                 return;
             }
         }
@@ -1030,7 +1197,10 @@ public class GestoreAccount {
             msg = "ruolo non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest", msg);
-            validate = false;
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+            view.forward(request,response);
             return;
         }
         if (mi.matches())
@@ -1038,7 +1208,10 @@ public class GestoreAccount {
             msg="ruolo formato non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            RequestDispatcher view = request.getRequestDispatcher("ProfiloAmministratore.jsp");/*dove inoltro il form*/
+            HttpSession currentSession = request.getSession();
+            currentSession.setAttribute("error", "Errore durante la compilazione dei campi modifica utente:");
+            view.forward(request,response);
             return;
         }
 

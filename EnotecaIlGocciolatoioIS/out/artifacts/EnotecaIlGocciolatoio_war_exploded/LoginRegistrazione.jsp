@@ -34,9 +34,15 @@
 <h2> Accedi o Crea un Account </h2>
 <%
     String error= (String) request.getAttribute("error");
+    String errorTest=(String) request.getAttribute("errorTest");
     if(error!=null){
 %>
-        <span id="checkError" style="color:red" align="center" value="<%=error%>" > *<%=error%> </span>
+        <span id="checkError" style="color:red" align="center" value="<%=error%>" > *<%=error%>
+            <%if(errorTest!=null){%>
+            <%=errorTest%>
+            <%}%>
+
+        </span>
 <%}%>
 <div class="container" id="container">
     <div class="form-container sign-up-container">

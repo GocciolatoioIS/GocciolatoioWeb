@@ -74,6 +74,22 @@
     <br>
     <br>
 </div>
+
+<%
+    String error= (String) request.getAttribute("error");
+    String errorTest=(String) request.getAttribute("errorTest");
+    if(error!=null){
+%>
+<br>
+<p id="checkError" style="color:red" align="center" value="<%=error%>" > *<%=error%>
+            <%if(errorTest!=null){%>
+            <%=errorTest%>
+            <%}%>
+
+        </p>
+<br>
+<%}%>
+
 <div class="container">
     <div class="title">I miei indirizzi:</div>
 
