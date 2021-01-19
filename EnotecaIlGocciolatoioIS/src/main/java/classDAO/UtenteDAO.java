@@ -157,8 +157,9 @@ public class UtenteDAO {
                     con.prepareStatement("SELECT id, username, pass, email, nome, cognome , data_nascita, ruolo FROM utente WHERE id=?");
             ps.setInt(1,n);
             ResultSet rs = ps.executeQuery();
-            Utente u = new Utente();
+            Utente u = null;
             if (rs.next()) {
+                u=new Utente();
                 u.setId(rs.getInt(1));
                 u.setEmail(rs.getString(4));
                 u.setUsername(rs.getString(2));

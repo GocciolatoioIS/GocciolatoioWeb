@@ -48,7 +48,6 @@ public class TestUtenteDAO extends TestCase {
         utenteDAO.deleteUser(utenteNonEsistente.getId());
     }
 
-
     @Test
     public void testRetriveAll(){
 
@@ -62,7 +61,6 @@ public class TestUtenteDAO extends TestCase {
         String email=utenteEsistente.getEmail();
         assertNotNull( utenteDAO.doRetrieveByUsernameEmail(username,email));
     }
-
 
     @Test
     public void TestCreazioneCancellazioneUtente(){
@@ -98,7 +96,6 @@ public class TestUtenteDAO extends TestCase {
     public void TestdoRetrieveByEmail(){
         assertNotNull(utenteDAO.doRetrieveByEmail(utenteEsistente.getEmail()));
     }
-
 
 
     @AfterEach

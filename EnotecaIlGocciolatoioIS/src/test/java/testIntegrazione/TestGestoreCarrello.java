@@ -92,7 +92,7 @@ public class TestGestoreCarrello extends Mockito {
     }
 
     @Test
-    void TC_GestoreAcquisto() throws ServletException, IOException {
+    void TC_GestoreAcquistoUtenteLoggato() throws ServletException, IOException {
         //Acquisto corretto
         UtenteDAO uDao=new UtenteDAO();
         OrdineDAO oDao=new OrdineDAO();
@@ -130,7 +130,7 @@ public class TestGestoreCarrello extends Mockito {
     }
 
     @Test
-    void TC_GestoreAcquisto2() throws ServletException, IOException {
+    void TC_GestoreAcquistoUtenteNonLoggato() throws ServletException, IOException {
         //Utente non Loggato
         UtenteDAO uDao=new UtenteDAO();
         OrdineDAO oDao=new OrdineDAO();
@@ -153,7 +153,7 @@ public class TestGestoreCarrello extends Mockito {
     }
 
     @Test
-    void TC_GestoreAcquisto3() throws ServletException, IOException {
+    void TC_GestoreAcquistoUtentePrivoIndirizzo() throws ServletException, IOException {
         //Utente non ha un indirizzo
         UtenteDAO uDao=new UtenteDAO();
         OrdineDAO oDao=new OrdineDAO();
@@ -172,10 +172,6 @@ public class TestGestoreCarrello extends Mockito {
         System.out.println("oracolo: "+message);
         servlet.gestoreAcquisto(request,response);
     }
-
-
-
-
 
 
     @AfterEach

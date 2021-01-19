@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GestoreProdotto {
 
@@ -24,45 +26,72 @@ public class GestoreProdotto {
         String descrizione = request.getParameter("descrizione");
         String tipo = request.getParameter("tipo");
         String prezzo = request.getParameter("prezzo");
-        Double pre=Double.parseDouble(prezzo);
         String sconto = request.getParameter("sconto");
-        Double sc=Double.parseDouble(sconto);
         String immagine = request.getParameter("immagine");
         String annata = request.getParameter("anno");
-        int anno=Integer.parseInt(annata);
         String regione = request.getParameter("regione");
         String gradazione=request.getParameter("gradazione");
-        int grad=Integer.parseInt(gradazione);
         String formato=request.getParameter("formato");
-        int forma=Integer.parseInt(formato);
         String quantita_magazino=request.getParameter("quantita_magazzino");
-        int qnt=Integer.parseInt(quantita_magazino);
         String nome_categoria = request.getParameter("nome_categoria");
 
-        String regString =  "/^[A-Za-z]+$/";
+
+
+
+        String regString =  "/^[0-9A-Za-z]+$/";
         String regNum =  "/^[0-9]+$/";
         Boolean validate=true;
 
-        //!request.getParameter("nome").equals("")||
+        String matchData =  "^[0-9^-]+$";
+
         String msg="";
-        if(!request.getParameter("nome").matches(regString))
+        Pattern pi2 = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Pattern pi = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Matcher mi = null;
+
+        if(!request.getParameter("nome").matches(regString)){
+
             if(!nome.equals(""))
-                System.out.println("nome dato corretto");
+                System.out.println("nome utente dato corretto");
             else{
                 msg="nome non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false; }
-
-        if(!request.getParameter("tipo").matches(regString))
-            if(!tipo.equals(""))
-                System.out.println("tipo dato corretto");
-            else{
-                msg="tipo non corretto";
+                validate=false;
+                return;
+            }
+            mi = pi.matcher(nome);
+            if (mi.matches())
+            {
+                msg="nome formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false; }
+                validate=false;
+                return;
+            }
+        }
 
+
+        if(!request.getParameter("tipo").matches(regString)) {
+            if (!tipo.equals(""))
+                System.out.println("tipo dato corretto");
+            else {
+                msg = "tipo non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(tipo);
+            if (mi.matches())
+            {
+                msg="tipo formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
+        }
         if(!request.getParameter("descrizione").matches(regString))
             if(!descrizione.equals(""))
                 System.out.println("descrizione dato corretto");
@@ -70,25 +99,49 @@ public class GestoreProdotto {
                 msg="descrizione non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false; }
+                validate=false;
+            return;}
 
-        if(!request.getParameter("prezzo").matches(regString))
-            if(!(pre==0))
+        if(!request.getParameter("prezzo").matches(regString)) {
+            if (!prezzo.equals(""))
                 System.out.println("prezzo dato corretto");
-            else{
-                msg="prezzo non corretto";
+            else {
+                msg = "prezzo non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(prezzo);
+            if (mi.matches()) {
+                msg = "prezzo formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
 
-        if(!request.getParameter("sconto").matches(regString))
-            if(!(sc==0))
+        }
+
+        if(!request.getParameter("sconto").matches(regString)) {
+            if (!(sconto.equals("")))
                 System.out.println("sconto dato corretto");
-            else{
-                msg="sconto non corretto";
+            else {
+                msg = "sconto non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(sconto);
+            if (mi.matches()) {
+                msg = "sconto formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
         if((!immagine.equals("")))
                 System.out.println("immagine dato corretto");
@@ -96,61 +149,137 @@ public class GestoreProdotto {
                 msg="immagine non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false; }
+                validate=false;
+            return;
+            }
+        mi = pi.matcher(immagine);
+        if (mi.matches()) {
+            msg = "immagine formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+            return;
+        }
 
-        if(!request.getParameter("anno").matches(regNum))
-            if(!(anno ==0))
+        if(!request.getParameter("anno").matches(regNum)) {
+            if (!(annata.equals("")))
                 System.out.println("anno dato corretto");
-            else{
-                msg="anno non corretto";
+            else {
+                msg = "anno non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(annata);
+            if (mi.matches()) {
+                msg = "anno formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
-        if(!request.getParameter("regione").matches(regString))
-            if(!regione.equals(""))
+        if(!request.getParameter("regione").matches(regString)) {
+            if (!regione.equals(""))
                 System.out.println("regione dato corretto");
-            else{
-                msg="regione non corretto";
+            else {
+                msg = "regione non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(regione);
+            if (mi.matches()) {
+                msg = "regione formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
-        if(!request.getParameter("gradazione").matches(regString))
-            if(!(grad==0))
+        if(!request.getParameter("gradazione").matches(regString)) {
+            if (!(gradazione.equals("")))
                 System.out.println("gradazione dato corretto");
-            else{
-                msg="gradazione non corretto";
+            else {
+                msg = "gradazione non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(gradazione);
+            if (mi.matches()) {
+                msg = "gradazione formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
-        if(!request.getParameter("formato").matches(regString))
-            if(!(forma ==0))
+        if(!request.getParameter("formato").matches(regString)) {
+            if (!(formato.equals("")))
                 System.out.println("formato dato corretto");
-            else{
-                msg="formato non corretto";
+            else {
+                msg = "formato non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(formato);
+            if (mi.matches()) {
+                msg = "formato formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
-        if(!request.getParameter("quantita_magazzino").matches(regString))
-            if(!(qnt==0))
+        if(!request.getParameter("quantita_magazzino").matches(regString)) {
+            if (!(quantita_magazino.equals("")))
                 System.out.println("quantita dato corretto");
-            else{
-                msg="quantita_magazzino non corretto";
+            else {
+                msg = "quantita_magazzino non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(quantita_magazino);
+            if (mi.matches()) {
+                msg = "quantita_magazzino formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
-        if(!request.getParameter("nome_categoria").matches(regString))
-            if(!nome_categoria.equals(""))
+        if(!request.getParameter("nome_categoria").matches(regString)) {
+            if (!nome_categoria.equals(""))
                 System.out.println("nome_categoria dato corretto");
-            else{
-                msg="nome_categoria non corretto";
+            else {
+                msg = "nome_categoria non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(nome_categoria);
+            if (mi.matches()) {
+                msg = "nome_categoria formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
         if(validate==true) {
             System.out.println("tutti i campi sono giusti");
@@ -161,6 +290,13 @@ public class GestoreProdotto {
             view.forward(request,response);
             return;
         }
+
+        Double pre=Double.parseDouble(prezzo);
+        Double sc=Double.parseDouble(sconto);
+        int anno=Integer.parseInt(annata);
+        int grad=Integer.parseInt(gradazione);
+        int forma=Integer.parseInt(formato);
+        int qnt=Integer.parseInt(quantita_magazino);
 
 
         Prodotto p=new Prodotto();
@@ -268,44 +404,70 @@ public class GestoreProdotto {
         String descrizione = request.getParameter("descrizione");
         String tipo = request.getParameter("tipo");
         String prezzo = request.getParameter("prezzo");
-        Double pre=Double.parseDouble(prezzo);
         String sconto = request.getParameter("sconto");
-        Double sc=Double.parseDouble(sconto);
         String immagine = request.getParameter("immagine");
         String annata = request.getParameter("anno");
-        int anno=Integer.parseInt(annata);
         String regione = request.getParameter("regione");
         String gradazione=request.getParameter("gradazione");
-        int grad=Integer.parseInt(gradazione);
         String formato=request.getParameter("formato");
-        int forma=Integer.parseInt(formato);
         String quantita_magazino=request.getParameter("quantita_magazzino");
-        int qnt=Integer.parseInt(quantita_magazino);
         String nome_categoria = request.getParameter("nome_categoria");
-        String regString = "/^[A-Za-z]+$/";
-        String regNum = "/^[0-9]+$/";
 
-        Boolean validate = true;
+
+        String regString =  "/^[0-9A-Za-z]+$/";
+        String regNum =  "/^[0-9]+$/";
+        Boolean validate=true;
+
+        String matchData =  "^[0-9^-]+$";
 
         String msg="";
-        if(!request.getParameter("nome").matches(regString))
+        Pattern pi2 = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Pattern pi = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Matcher mi = null;
+
+        if(!request.getParameter("nome").matches(regString)){
+
             if(!nome.equals(""))
-                System.out.println("nome dato corretto");
+                System.out.println("nome utente dato corretto");
             else{
                 msg="nome non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false; }
-
-        if(!request.getParameter("tipo").matches(regString))
-            if(!tipo.equals(""))
-                System.out.println("tipo dato corretto");
-            else{
-                msg="tipo non corretto";
+                validate=false;
+                return;
+            }
+            mi = pi.matcher(nome);
+            if (mi.matches())
+            {
+                msg="nome formato non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false; }
+                validate=false;
+                return;
+            }
+        }
 
+
+        if(!request.getParameter("tipo").matches(regString)) {
+            if (!tipo.equals(""))
+                System.out.println("tipo dato corretto");
+            else {
+                msg = "tipo non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(tipo);
+            if (mi.matches())
+            {
+                msg="tipo formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
+        }
         if(!request.getParameter("descrizione").matches(regString))
             if(!descrizione.equals(""))
                 System.out.println("descrizione dato corretto");
@@ -313,25 +475,49 @@ public class GestoreProdotto {
                 msg="descrizione non corretto";
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
-                validate=false; }
+                validate=false;
+            return;}
 
-        if(!request.getParameter("prezzo").matches(regString))
-            if(!(pre==0))
+        if(!request.getParameter("prezzo").matches(regString)) {
+            if (!(prezzo.equals("")))
                 System.out.println("prezzo dato corretto");
-            else{
-                msg="prezzo non corretto";
+            else {
+                msg = "prezzo non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(prezzo);
+            if (mi.matches()) {
+                msg = "prezzo formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
 
-        if(!request.getParameter("sconto").matches(regString))
-            if(!(sc==0))
+        }
+
+        if(!request.getParameter("sconto").matches(regString)) {
+            if (!(sconto.equals("")))
                 System.out.println("sconto dato corretto");
-            else{
-                msg="sconto non corretto";
+            else {
+                msg = "sconto non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(sconto);
+            if (mi.matches()) {
+                msg = "sconto formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
         if((!immagine.equals("")))
             System.out.println("immagine dato corretto");
@@ -339,62 +525,137 @@ public class GestoreProdotto {
             msg="immagine non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false; }
+            validate=false;
+        return;
+        }
+        mi = pi.matcher(immagine);
+        if (mi.matches()) {
+            msg = "immagine formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest", msg);
+            validate = false;
+            return;
+        }
 
-        if(!request.getParameter("anno").matches(regNum))
-            if(!(anno ==0))
+        if(!request.getParameter("anno").matches(regNum)) {
+            if (!(annata.equals("")))
                 System.out.println("anno dato corretto");
-            else{
-                msg="anno non corretto";
+            else {
+                msg = "anno non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(annata);
+            if (mi.matches()) {
+                msg = "anno formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
-        if(!request.getParameter("regione").matches(regString))
-            if(!regione.equals(""))
+        if(!request.getParameter("regione").matches(regString)) {
+            if (!regione.equals(""))
                 System.out.println("regione dato corretto");
-            else{
-                msg="regione non corretto";
+            else {
+                msg = "regione non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(regione);
+            if (mi.matches()) {
+                msg = "regione formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
-        if(!request.getParameter("gradazione").matches(regString))
-            if(!(grad==0))
+        if(!request.getParameter("gradazione").matches(regString)) {
+            if (!(gradazione.equals("")))
                 System.out.println("gradazione dato corretto");
-            else{
-                msg="gradazione non corretto";
+            else {
+                msg = "gradazione non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(gradazione);
+            if (mi.matches()) {
+                msg = "gradazione formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
-        if(!request.getParameter("formato").matches(regString))
-            if(!(forma ==0))
+        if(!request.getParameter("formato").matches(regString)) {
+            if (!(formato.equals("")))
                 System.out.println("formato dato corretto");
-            else{
-                msg="formato non corretto";
+            else {
+                msg = "formato non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(formato);
+            if (mi.matches()) {
+                msg = "formato formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
-        if(!request.getParameter("quantita_magazzino").matches(regString))
-            if(!(qnt==0))
+        if(!request.getParameter("quantita_magazzino").matches(regString)) {
+            if (!(quantita_magazino.equals("")))
                 System.out.println("quantita dato corretto");
-            else{
-                msg="quantita_magazzino non corretto";
+            else {
+                msg = "quantita_magazzino non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(quantita_magazino);
+            if (mi.matches()) {
+                msg = "quantita_magazzino formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
 
-        if(!request.getParameter("nome_categoria").matches(regString))
-            if(!nome_categoria.equals(""))
+        if(!request.getParameter("nome_categoria").matches(regString)) {
+            if (!nome_categoria.equals(""))
                 System.out.println("nome_categoria dato corretto");
-            else{
-                msg="nome_categoria non corretto";
+            else {
+                msg = "nome_categoria non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest",msg);
-                validate=false; }
-
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            mi = pi.matcher(nome_categoria);
+            if (mi.matches()) {
+                msg = "nome_categoria formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+        }
         if (validate == true) {
             System.out.println("tutti i campi sono giusti");
         } else {
@@ -404,6 +665,13 @@ public class GestoreProdotto {
             view.forward(request, response);
             return;
         }
+        int qnt=
+                Integer.parseInt(quantita_magazino);
+        int forma=Integer.parseInt(formato);
+        int grad=Integer.parseInt(gradazione);
+        int anno=Integer.parseInt(annata);
+        Double sc=Double.parseDouble(sconto);
+        Double pre=Double.parseDouble(prezzo);
 
         String id = (String) request.getParameter("id");
 
@@ -436,13 +704,33 @@ public class GestoreProdotto {
     public void gestoreModificaProdottoByAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String param=request.getParameter("id");
+        Pattern pi2 = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Pattern pi = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Matcher mi = null;
+        String match =  "^[0-9A-Za-z]+$";
+        String msg;
+        mi = pi.matcher(param);
+        if(param.equals("")){
+            msg="id non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            return;
+        }
+
+        if (mi.matches())
+        {
+            msg="id formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            return;
+        }
         int id=Integer.parseInt(param);
 
         ProdottoDAO udao=new ProdottoDAO();
         Prodotto p=udao.retriveOne(id);
         request.setAttribute("prodotto1",p);
         String address="/ModificaProdottoByAdmin.jsp";
-        String msg="prodotto trovato";
+        msg="prodotto trovato";
         System.out.println("servlet: "+msg);
         request.setAttribute("errorTest",msg);
         RequestDispatcher dispatcher =

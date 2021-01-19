@@ -39,9 +39,9 @@ public class TestProdottoOrderedDao extends  TestCase{
         assertEquals(list,productOrderedDao.retriveByOrderId(productOrderedNonEsistente.getId_ordine()));
     }
 
-
     @AfterEach
     public void tearDown(){
+
         productOrderedDao.deleteProductOrdered(productOrderedEsistente.getId());
     }
 }

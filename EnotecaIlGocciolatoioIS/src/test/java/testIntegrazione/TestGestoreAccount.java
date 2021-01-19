@@ -203,6 +203,116 @@ public class TestGestoreAccount extends Mockito{
     }
 
     @Test
+    void TC_AggiungiUtenteNomeErrato() throws ServletException, IOException, ParseException {
+
+        //aggiungere ai request i parametri
+        request.addParameter("nome","@@@");
+        request.addParameter("cognome","Rossi");
+        request.addParameter("username","MarRossi");
+        request.addParameter("email","marRoss@gmail.it");
+        request.addParameter("pass","marioR10");
+        request.addParameter("data","1980-01-01");
+
+        gestoreAccount.gestioneRegistrazione(request, response);
+        //utente=(Utente) request.getSession().getAttribute("utente");
+        String exit= (String) request.getAttribute("errorTest");
+        String oracolo="nome formato non corretto";
+
+        System.out.println("oracolo: "+oracolo);
+        assertEquals(oracolo,exit);
+        System.out.println("servelt: "+exit);
+
+    }
+
+    @Test
+    void TC_AggiungiUtenteCognomeErrato() throws ServletException, IOException, ParseException {
+
+        //aggiungere ai request i parametri
+        request.addParameter("nome","Mario");
+        request.addParameter("cognome","@@@");
+        request.addParameter("username","MarRossi");
+        request.addParameter("email","marRoss@gmail.it");
+        request.addParameter("pass","marioR10");
+        request.addParameter("data","1980-01-01");
+
+        gestoreAccount.gestioneRegistrazione(request, response);
+        //utente=(Utente) request.getSession().getAttribute("utente");
+        String exit= (String) request.getAttribute("errorTest");
+        String oracolo= "cognome formato non corretto";
+
+        System.out.println("oracolo: "+oracolo);
+        assertEquals(oracolo,exit);
+        System.out.println("servelt: "+exit);
+
+    }
+
+    @Test
+    void TC_AggiungiUtenteUsernameErrato() throws ServletException, IOException, ParseException {
+        //aggiungere ai request i parametri
+        request.addParameter("nome","Mario");
+        request.addParameter("cognome","Rossi");
+        request.addParameter("username","@@@");
+        request.addParameter("email","marRoss@gmail.it");
+        request.addParameter("pass","marioR10");
+        request.addParameter("data","1980-01-01");
+
+        gestoreAccount.gestioneRegistrazione(request, response);
+        //utente=(Utente) request.getSession().getAttribute("utente");
+        String exit= (String) request.getAttribute("errorTest");
+
+        String oracolo="username formato non corretto";
+        System.out.println("oracolo: "+oracolo);
+        assertEquals(oracolo,exit);
+
+        System.out.println("servelt: "+exit);
+
+    }
+
+    @Test
+    void TC_AggiungiUtenteEmailErrato() throws ServletException, IOException, ParseException {
+
+        //aggiungere ai request i parametri
+        request.addParameter("nome","Mario");
+        request.addParameter("cognome","Rossi");
+        request.addParameter("username","MarRoss");
+        request.addParameter("email","@@@");
+        request.addParameter("pass","marioR10");
+        request.addParameter("data","1980-01-01");
+
+        gestoreAccount.gestioneRegistrazione(request, response);
+        //utente=(Utente) request.getSession().getAttribute("utente");
+        String exit= (String) request.getAttribute("errorTest");
+
+        String oracolo= "email formato non corretto";
+        System.out.println("oracolo: "+oracolo);
+        assertEquals("email formato non corretto",exit);
+        System.out.println("servelt: "+exit);
+
+    }
+
+    @Test
+    void TC_AggiungiUtenteDateErrato() throws ServletException, IOException, ParseException {
+
+        //aggiungere ai request i parametri
+        request.addParameter("nome","Mario");
+        request.addParameter("cognome","Rossi");
+        request.addParameter("username","MarRoss");
+        request.addParameter("email","marRoss@gmail.it");
+        request.addParameter("pass","marioR10");
+        request.addParameter("data","@@@");
+
+        gestoreAccount.gestioneRegistrazione(request, response);
+        //utente=(Utente) request.getSession().getAttribute("utente");
+        String exit= (String) request.getAttribute("errorTest");
+
+        String oracolo= "data nascita non corretto";
+        System.out.println("oracolo: "+oracolo);
+        assertEquals("data nascita formato non corretto",exit);
+        System.out.println("servelt: "+exit);
+
+    }
+
+    @Test
     public void TC_gestioneAddIndirizzo() throws ServletException, IOException {
 
         //Settaggio di parametri
@@ -250,7 +360,6 @@ public class TestGestoreAccount extends Mockito{
         assertEquals(oracolo,exit);
         System.out.println("servlet: "+exit);
 
-
     }
 
     @Test
@@ -297,6 +406,7 @@ public class TestGestoreAccount extends Mockito{
         assertEquals(oracolo,exit);
         System.out.println("servlet: "+exit);
 
+
     }
 
     @Test
@@ -342,6 +452,124 @@ public class TestGestoreAccount extends Mockito{
         System.out.println("oracolo: "+oracolo);
         assertEquals(oracolo,exit);
         System.out.println("servlet: "+exit);
+
+
+    }
+
+    @Test
+    public void TC_gestioneAddIndirizzoCittaErrato() throws ServletException, IOException {
+
+        //Settaggio di parametri
+        UtenteDAO uDao=new UtenteDAO();
+        Utente u=uDao.retriveById(2);
+        request.getSession().setAttribute("utente",u);
+        request.addParameter("citta","@@@");
+        request.addParameter("cap","9000");
+        request.addParameter("via","Via Grande");
+        request.addParameter("ncivico","01");
+        request.addParameter("country","IT");
+        request.addParameter("iDUtente","2");
+
+        gestoreAccount.gestioneAddIndirizzo(request,response);
+        String exit= (String) request.getAttribute("errorTest");
+        String oracolo="citta indirizzo formato non corretto";
+        System.out.println("oracolo: "+oracolo);
+        assertEquals(oracolo,exit);
+        System.out.println("servlet: "+exit);
+
+    }
+
+    @Test
+    public void TC_GestioneAddIndirizzoCapErrato() throws ServletException, IOException {
+
+        //Settaggio di parametri
+        UtenteDAO uDao=new UtenteDAO();
+        Utente u=uDao.retriveById(2);
+        request.getSession().setAttribute("utente",u);
+        request.addParameter("citta","Napoli");
+        request.addParameter("cap","@@@");
+        request.addParameter("via","Via Grande");
+        request.addParameter("ncivico","01");
+        request.addParameter("country","IT");
+        request.addParameter("iDUtente","2");
+
+        gestoreAccount.gestioneAddIndirizzo(request,response);
+        String exit= (String) request.getAttribute("errorTest");
+        String oracolo="cap indirizzo formato non corretto";
+        System.out.println("oracolo: "+oracolo);
+        assertEquals(oracolo,exit);
+        System.out.println("servlet: "+exit);
+
+    }
+
+    @Test
+    public void TC_GestioneAddIndirizzoViaErrato() throws ServletException, IOException {
+
+        //Settaggio di parametri
+        UtenteDAO uDao=new UtenteDAO();
+        Utente u=uDao.retriveById(2);
+        request.getSession().setAttribute("utente",u);
+        request.addParameter("citta","Napoli");
+        request.addParameter("cap","9000");
+        request.addParameter("via","@@@");
+        request.addParameter("ncivico","01");
+        request.addParameter("country","IT");
+        request.addParameter("iDUtente","2");
+
+        gestoreAccount.gestioneAddIndirizzo(request,response);
+        String exit= (String) request.getAttribute("errorTest");
+        String oracolo="via indirizzo formato non corretto";
+        System.out.println("oracolo: "+oracolo);
+        assertEquals(oracolo,exit);
+        System.out.println("servlet: "+exit);
+
+
+    }
+
+    @Test
+    public void TC_GestioneAddIndirizzoNcivicoErrato() throws ServletException, IOException {
+
+        //Settaggio di parametri
+        UtenteDAO uDao=new UtenteDAO();
+        Utente u=uDao.retriveById(2);
+        request.getSession().setAttribute("utente",u);
+        request.addParameter("citta","Napoli");
+        request.addParameter("cap","9000");
+        request.addParameter("via","Via Grande");
+        request.addParameter("ncivico","@@@");
+        request.addParameter("country","IT");
+        request.addParameter("iDUtente","2");
+
+        gestoreAccount.gestioneAddIndirizzo(request,response);
+        String exit= (String) request.getAttribute("errorTest");
+        String oracolo="numero civico indirizzo formato non corretto";
+        System.out.println("oracolo: "+oracolo);
+        assertEquals(oracolo,exit);
+        System.out.println("servlet: "+exit);
+
+    }
+
+    @Test
+    public void TC_GestioneAddIndirizzoNazioneErato() throws ServletException, IOException {
+
+        //Settaggio di parametri
+        UtenteDAO uDao=new UtenteDAO();
+        Utente u=uDao.retriveById(2);
+        request.getSession().setAttribute("utente",u);
+        request.addParameter("citta","Napoli");
+        request.addParameter("cap","9000");
+        request.addParameter("via","Via Grande");
+        request.addParameter("ncivico","01");
+        request.addParameter("country","@@@");
+        request.addParameter("iDUtente","2");
+
+        gestoreAccount.gestioneAddIndirizzo(request,response);
+        String exit= (String) request.getAttribute("errorTest");
+        String oracolo="nazione indirizzo formato non corretto";
+        System.out.println("oracolo: "+oracolo);
+        assertEquals(oracolo,exit);
+        System.out.println("servlet: "+exit);
+
 
     }
 
@@ -419,16 +647,32 @@ public class TestGestoreAccount extends Mockito{
     }
 
     @Test
-    public void TC_GestioneLoginUtenteNonTrovato() throws  ServletException,IOException{
+    public void TC_GestioneLoginUtenteUsernameVuoto() throws  ServletException,IOException{
+
+        UtenteDAO uDao=new UtenteDAO();
+        Utente utenteEsistente=uDao.retriveById(2);
+
+        request.addParameter("username","");
+        request.addParameter("pass","passwordddd");
+        gestoreAccount.gestoreLogin(request,response);
+        String exit= (String) request.getAttribute("errorTest");
+        String oracolo="username login non corretto";
+        System.out.println("oracolo: "+oracolo);
+        assertEquals(oracolo,exit);
+        System.out.println("servlet: "+exit);
+    }
+
+    @Test
+    public void TC_GestioneLoginUtentePasswordVuoto() throws  ServletException,IOException{
 
         UtenteDAO uDao=new UtenteDAO();
         Utente utenteEsistente=uDao.retriveById(2);
 
         request.addParameter("username",utenteEsistente.getUsername());
-        request.addParameter("pass","passwordddd");
+        request.addParameter("pass","");
         gestoreAccount.gestoreLogin(request,response);
         String exit= (String) request.getAttribute("errorTest");
-        String oracolo="utente non trovato";
+        String oracolo="password login non corretto";
         System.out.println("oracolo: "+oracolo);
         assertEquals(oracolo,exit);
         System.out.println("servlet: "+exit);
@@ -481,7 +725,7 @@ public class TestGestoreAccount extends Mockito{
 
         gestoreAccount.gestoreModificaIndirizzo(request,response);
 
-        String oracolo="citta non corretto";
+        String oracolo="citta indirizzo non corretto";
         String exit=(String) request.getAttribute("errorTest");
         assertEquals(oracolo,exit);
         System.out.println("oracolo: "+oracolo);
@@ -510,7 +754,7 @@ public class TestGestoreAccount extends Mockito{
 
         gestoreAccount.gestoreModificaIndirizzo(request,response);
 
-        String oracolo="cap non corretto";
+        String oracolo="cap indirizzo non corretto";
         String exit=(String) request.getAttribute("errorTest");
         assertEquals(oracolo,exit);
         System.out.println("oracolo: "+oracolo);
@@ -539,7 +783,7 @@ public class TestGestoreAccount extends Mockito{
 
         gestoreAccount.gestoreModificaIndirizzo(request,response);
 
-        String oracolo="via non corretto";
+        String oracolo="via indirizzo non corretto";
         String exit=(String) request.getAttribute("errorTest");
         assertEquals(oracolo,exit);
         System.out.println("oracolo: "+oracolo);
@@ -568,7 +812,7 @@ public class TestGestoreAccount extends Mockito{
 
         gestoreAccount.gestoreModificaIndirizzo(request,response);
 
-        String oracolo="numero civico non corretto";
+        String oracolo="numero civico indirizzo non corretto";
         String exit=(String) request.getAttribute("errorTest");
         assertEquals(oracolo,exit);
         System.out.println("oracolo: "+oracolo);
@@ -597,7 +841,151 @@ public class TestGestoreAccount extends Mockito{
 
         gestoreAccount.gestoreModificaIndirizzo(request,response);
 
-        String oracolo="nazione non corretto";
+        String oracolo="nazione indirizzo non corretto";
+        String exit=(String) request.getAttribute("errorTest");
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+
+        iDAO.deleteIndirizzo(ind.getId());
+    }
+
+    @Test
+    public void TC_GestioneModificaIndirizzoCittaErrato() throws ServletException, IOException {
+        IndirizzoDAO iDAO=new IndirizzoDAO();
+        UtenteDAO uDao= new UtenteDAO();
+        request.getSession().setAttribute("utente", uDao.retriveById(2));
+        Indirizzo ind=new Indirizzo(-1,"Napoli",9000,"Via Grande",01,"IT");
+        iDAO.doSave(ind,2);
+        request.addParameter("action","modInd");
+        request.addParameter("citta","@@@");
+        request.addParameter("cap","9000");
+        request.addParameter("via","Via Grande");
+        request.addParameter("ncivico","01");
+        request.addParameter("country","IT");
+        request.addParameter("iDUtente","2");
+
+        request.addParameter("idInd", String.valueOf(ind.getId()));
+
+        gestoreAccount.gestoreModificaIndirizzo(request,response);
+
+        String oracolo="citta indirizzo formato non corretto";
+        String exit=(String) request.getAttribute("errorTest");
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+
+        iDAO.deleteIndirizzo(ind.getId());
+
+    }
+
+    @Test
+    public void TC_GestioneModificaIndirizzoCapErrato() throws ServletException, IOException {
+        IndirizzoDAO iDAO=new IndirizzoDAO();
+        UtenteDAO uDao= new UtenteDAO();
+        request.getSession().setAttribute("utente", uDao.retriveById(2));
+        Indirizzo ind=new Indirizzo(-1,"Napoli",9000,"Via Grande",01,"IT");
+        iDAO.doSave(ind,2);
+        request.addParameter("action","modInd");
+        request.addParameter("citta","Napoli");
+        request.addParameter("cap","@@@");
+        request.addParameter("via","Via Grande");
+        request.addParameter("ncivico","01");
+        request.addParameter("country","IT");
+        request.addParameter("iDUtente","2");
+
+        request.addParameter("idInd", String.valueOf(ind.getId()));
+
+        gestoreAccount.gestoreModificaIndirizzo(request,response);
+
+        String oracolo="cap indirizzo formato non corretto";
+        String exit=(String) request.getAttribute("errorTest");
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+
+        iDAO.deleteIndirizzo(ind.getId());
+
+    }
+
+    @Test
+    public void TC_GestioneModificaIndirizzoViaErrato() throws ServletException, IOException {
+        IndirizzoDAO iDAO=new IndirizzoDAO();
+        UtenteDAO uDao= new UtenteDAO();
+        request.getSession().setAttribute("utente", uDao.retriveById(2));
+        Indirizzo ind=new Indirizzo(-1,"Napoli",9000,"Via Grande",01,"IT");
+        iDAO.doSave(ind,2);
+        request.addParameter("action","modInd");
+        request.addParameter("citta","Napoli");
+        request.addParameter("cap","9000");
+        request.addParameter("via","@@@");
+        request.addParameter("ncivico","01");
+        request.addParameter("country","IT");
+        request.addParameter("iDUtente","2");
+
+        request.addParameter("idInd", String.valueOf(ind.getId()));
+
+        gestoreAccount.gestoreModificaIndirizzo(request,response);
+
+        String oracolo="via indirizzo formato non corretto";
+        String exit=(String) request.getAttribute("errorTest");
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+
+        iDAO.deleteIndirizzo(ind.getId());
+
+    }
+
+    @Test
+    public void TC_GestioneModificaIndirizzoNumeroCivicoErrato() throws ServletException, IOException {
+        IndirizzoDAO iDAO=new IndirizzoDAO();
+        UtenteDAO uDao= new UtenteDAO();
+        request.getSession().setAttribute("utente", uDao.retriveById(2));
+        Indirizzo ind=new Indirizzo(-1,"Napoli",9000,"Via Grande",01,"IT");
+        iDAO.doSave(ind,2);
+        request.addParameter("action","modInd");
+        request.addParameter("citta","Napoli");
+        request.addParameter("cap","9000");
+        request.addParameter("via","Via Grande");
+        request.addParameter("ncivico","@@@");
+        request.addParameter("country","IT");
+        request.addParameter("iDUtente","2");
+
+        request.addParameter("idInd", String.valueOf(ind.getId()));
+
+        gestoreAccount.gestoreModificaIndirizzo(request,response);
+
+        String oracolo="numero civico indirizzo formato non corretto";
+        String exit=(String) request.getAttribute("errorTest");
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+
+        iDAO.deleteIndirizzo(ind.getId());
+
+    }
+
+    @Test
+    public void TC_GestioneModificaIndirizzoNazioneErrato() throws ServletException, IOException {
+        IndirizzoDAO iDAO=new IndirizzoDAO();
+        UtenteDAO uDao= new UtenteDAO();
+        request.getSession().setAttribute("utente", uDao.retriveById(2));
+        Indirizzo ind=new Indirizzo(-1,"Napoli",9000,"Via Grande",01,"IT");
+        iDAO.doSave(ind,2);
+        request.addParameter("action","modInd");
+        request.addParameter("citta","Napoli");
+        request.addParameter("cap","9000");
+        request.addParameter("via","Via Grande");
+        request.addParameter("ncivico","01");
+        request.addParameter("country","@@@");
+        request.addParameter("iDUtente","2");
+
+        request.addParameter("idInd", String.valueOf(ind.getId()));
+
+        gestoreAccount.gestoreModificaIndirizzo(request,response);
+
+        String oracolo="nazione indirizzo formato non corretto";
         String exit=(String) request.getAttribute("errorTest");
         assertEquals(oracolo,exit);
         System.out.println("oracolo: "+oracolo);
@@ -715,6 +1103,95 @@ public class TestGestoreAccount extends Mockito{
         System.out.println("servlet: "+exit);
 
     }
+
+    @Test
+    public void TC_GestioneModificaUtenteUsernameErrato() throws ServletException, IOException {
+
+        UtenteDAO uDAO= new UtenteDAO();
+        Utente u=uDAO.retriveById(2);
+        request.getSession().setAttribute("utente",u);
+
+        request.addParameter("username","@@@");
+        request.addParameter("email",u.getEmail());
+        request.addParameter("nome",u.getNome());
+        request.addParameter("cognome",u.getCognome());
+        request.addParameter("ruolo",u.getRuolo());
+
+        gestoreAccount.gestoreModificaUtente(request,response);
+        String exit = (String)request.getAttribute("errorTest");
+        String oracolo="username formato non corretto";
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+
+    }
+
+    @Test
+    public void TC_GestioneModificaUtenteEmailErrato() throws ServletException, IOException {
+
+        UtenteDAO uDAO= new UtenteDAO();
+        Utente u=uDAO.retriveById(2);
+        request.getSession().setAttribute("utente",u);
+
+        request.addParameter("username",u.getUsername());
+        request.addParameter("email","@@@");
+        request.addParameter("nome",u.getNome());
+        request.addParameter("cognome",u.getCognome());
+        request.addParameter("ruolo",u.getRuolo());
+
+        gestoreAccount.gestoreModificaUtente(request,response);
+        String exit = (String)request.getAttribute("errorTest");
+        String oracolo="email formato non corretto";
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+
+    }
+
+    @Test
+    public void TC_GestioneModificaUtenteNomeErrato() throws ServletException, IOException {
+
+        UtenteDAO uDAO= new UtenteDAO();
+        Utente u=uDAO.retriveById(2);
+        request.getSession().setAttribute("utente",u);
+
+        request.addParameter("username",u.getUsername());
+        request.addParameter("email",u.getEmail());
+        request.addParameter("nome","@@@");
+        request.addParameter("cognome",u.getCognome());
+        request.addParameter("ruolo",u.getRuolo());
+
+        gestoreAccount.gestoreModificaUtente(request,response);
+        String exit = (String)request.getAttribute("errorTest");
+        String oracolo="nome formato non corretto";
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+
+    }
+
+    @Test
+    public void TC_GestioneModificaUtenteCognomeErrato() throws ServletException, IOException {
+
+        UtenteDAO uDAO= new UtenteDAO();
+        Utente u=uDAO.retriveById(2);
+        request.getSession().setAttribute("utente",u);
+
+        request.addParameter("username",u.getUsername());
+        request.addParameter("email",u.getEmail());
+        request.addParameter("nome",u.getNome());
+        request.addParameter("cognome","@@@");
+        request.addParameter("ruolo",u.getRuolo());
+
+        gestoreAccount.gestoreModificaUtente(request,response);
+        String exit = (String)request.getAttribute("errorTest");
+        String oracolo="cognome formato non corretto";
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+
+    }
+
 
     @Test
     public void TC_GestioneModificaUtenteByAdmin() throws ServletException, IOException {
@@ -855,6 +1332,121 @@ public class TestGestoreAccount extends Mockito{
     }
 
     @Test
+    public void TC_GestioneModificaUtenteByAdminUsernameErrato() throws ServletException, IOException {
+
+        UtenteDAO uDAO= new UtenteDAO();
+        Utente u=uDAO.retriveById(3);
+
+        request.getSession().setAttribute("utente",u);
+
+        request.addParameter("id",String.valueOf(u.getId()));
+        request.addParameter("username","@@@");
+        request.addParameter("email",u.getEmail());
+        request.addParameter("nome",u.getNome());
+        request.addParameter("cognome",u.getCognome());
+        request.addParameter("ruolo",u.getRuolo());
+
+        gestoreAccount.gestoreModificaUtenteByAdmin(request,response);
+        String exit = (String)request.getAttribute("errorTest");
+        String oracolo="username formato non corretto";
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+    }
+
+    @Test
+    public void TC_GestioneModificaUtenteByAdminEmailErrato() throws ServletException, IOException {
+
+        UtenteDAO uDAO= new UtenteDAO();
+        Utente u=uDAO.retriveById(3);
+
+        request.getSession().setAttribute("utente",u);
+
+        request.addParameter("id",String.valueOf(u.getId()));
+        request.addParameter("username",u.getUsername());
+        request.addParameter("email","@@@");
+        request.addParameter("nome",u.getNome());
+        request.addParameter("cognome",u.getCognome());
+        request.addParameter("ruolo",u.getRuolo());
+
+        gestoreAccount.gestoreModificaUtenteByAdmin(request,response);
+        String exit = (String)request.getAttribute("errorTest");
+        String oracolo="email formato non corretto";
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+    }
+
+    @Test
+    public void TC_GestioneModificaUtenteByAdminNomeErrato() throws ServletException, IOException {
+
+        UtenteDAO uDAO= new UtenteDAO();
+        Utente u=uDAO.retriveById(3);
+
+        request.getSession().setAttribute("utente",u);
+
+        request.addParameter("id",String.valueOf(u.getId()));
+        request.addParameter("username",u.getUsername());
+        request.addParameter("email",u.getEmail());
+        request.addParameter("nome","@@@");
+        request.addParameter("cognome",u.getCognome());
+        request.addParameter("ruolo",u.getRuolo());
+
+        gestoreAccount.gestoreModificaUtenteByAdmin(request,response);
+        String exit = (String)request.getAttribute("errorTest");
+        String oracolo="nome formato non corretto";
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+    }
+
+    @Test
+    public void TC_GestioneModificaUtenteByAdminCognomeErrato() throws ServletException, IOException {
+
+        UtenteDAO uDAO= new UtenteDAO();
+        Utente u=uDAO.retriveById(3);
+
+        request.getSession().setAttribute("utente",u);
+
+        request.addParameter("id",String.valueOf(u.getId()));
+        request.addParameter("username",u.getUsername());
+        request.addParameter("email",u.getEmail());
+        request.addParameter("nome",u.getCognome());
+        request.addParameter("cognome","@@@");
+        request.addParameter("ruolo",u.getRuolo());
+
+        gestoreAccount.gestoreModificaUtenteByAdmin(request,response);
+        String exit = (String)request.getAttribute("errorTest");
+        String oracolo="cognome formato non corretto";
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+    }
+
+    @Test
+    public void TC_GestioneModificaUtenteByAdminRuoloErrato() throws ServletException, IOException {
+
+        UtenteDAO uDAO= new UtenteDAO();
+        Utente u=uDAO.retriveById(3);
+
+        request.getSession().setAttribute("utente",u);
+
+        request.addParameter("id",String.valueOf(u.getId()));
+        request.addParameter("username",u.getUsername());
+        request.addParameter("email",u.getEmail());
+        request.addParameter("nome",u.getCognome());
+        request.addParameter("cognome",u.getCognome());
+        request.addParameter("ruolo","@@@");
+
+        gestoreAccount.gestoreModificaUtenteByAdmin(request,response);
+        String exit = (String)request.getAttribute("errorTest");
+        String oracolo="ruolo formato non corretto";
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+    }
+
+    @Test
     public void TC_GestioneModificaUtenteByAdminIdVuoto() throws ServletException, IOException {
 
         UtenteDAO uDAO= new UtenteDAO();
@@ -877,6 +1469,29 @@ public class TestGestoreAccount extends Mockito{
         System.out.println("servlet: "+exit);
     }
 
+    @Test
+    public void TC_GestioneModificaUtenteByAdminIdErrato() throws ServletException, IOException {
+
+        UtenteDAO uDAO= new UtenteDAO();
+        Utente u=uDAO.retriveById(3);
+
+        request.getSession().setAttribute("utente",u);
+
+        request.addParameter("id","@@@");
+        request.addParameter("username",u.getUsername());
+        request.addParameter("email",u.getEmail());
+        request.addParameter("nome",u.getCognome());
+        request.addParameter("cognome",u.getCognome());
+        request.addParameter("ruolo",u.getRuolo());
+
+        gestoreAccount.gestoreModificaUtenteByAdmin(request,response);
+        String exit = (String)request.getAttribute("errorTest");
+        String oracolo="id formato non corretto";
+        assertEquals(oracolo,exit);
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+    }
+
 
     @Test
     public void TC_GestoreMostraUtenti() throws ServletException, IOException {
@@ -891,7 +1506,7 @@ public class TestGestoreAccount extends Mockito{
     }
 
     @Test
-    public void TC_GestoreTrovaUtenteByID() throws ServletException, IOException {
+    public void TC_GestoreTrovaUtenteByIDTrovato() throws ServletException, IOException {
 
         request.addParameter("id", String.valueOf(2));
         gestoreAccount.gestoreTrovaUtenteByID(request,response);
@@ -903,6 +1518,50 @@ public class TestGestoreAccount extends Mockito{
         System.out.println("oracolo: "+oracolo);
         System.out.println("servlet: "+exit);
     }
+
+    @Test
+    public void TC_GestoreTrovaUtenteByIDVuoto() throws ServletException, IOException {
+
+        request.addParameter("id", "");
+        gestoreAccount.gestoreTrovaUtenteByID(request,response);
+
+        String oracolo="id non corretto";
+        String exit= (String) request.getAttribute("errorTest");
+        assertEquals(oracolo,exit);
+
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+    }
+
+    @Test
+    public void TC_GestoreTrovaUtenteByIDNonTrovato() throws ServletException, IOException {
+
+        request.addParameter("id", "-1");
+        gestoreAccount.gestoreTrovaUtenteByID(request,response);
+
+        String oracolo="utente non trovato";
+        String exit= (String) request.getAttribute("errorTest");
+        assertEquals(oracolo,exit);
+
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+    }
+
+
+    @Test
+    public void TC_GestoreTrovaUtenteByIDErrato() throws ServletException, IOException {
+
+        request.addParameter("id", "@@@");
+        gestoreAccount.gestoreTrovaUtenteByID(request,response);
+
+        String oracolo="id formato non corretto";
+        String exit= (String) request.getAttribute("errorTest");
+        assertEquals(oracolo,exit);
+
+        System.out.println("oracolo: "+oracolo);
+        System.out.println("servlet: "+exit);
+    }
+
 
     @AfterEach
     void tearDown() throws Exception {

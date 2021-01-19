@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GestoreAccount {
 
@@ -39,11 +41,14 @@ public class GestoreAccount {
         String match =  "^[0-9A-Za-z]+$";
         String matchData =  "^[0-9^-]+$";
 
-
         Boolean validate=true;
         String msg="";
+        Pattern pi2 = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Pattern pi = Pattern.compile("[~@#\\^\\$&\\*\\(\\)-_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Matcher mi = null;
 
         if(!request.getParameter("nome").matches(match)){
+            mi = pi.matcher(nome);
             if(!nome.equals(""))
                 System.out.println("nome utente dato corretto");
             else{
@@ -51,10 +56,20 @@ public class GestoreAccount {
                 System.out.println(msg);
                 request.setAttribute("errorTest",msg);
                 validate=false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="nome formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
             }
         }
 
         if(!request.getParameter("cognome").matches(match)) {
+            mi = pi.matcher(cognome);
             if (!cognome.equals(""))
                 System.out.println("cognome utente dato corretto");
             else {
@@ -62,8 +77,18 @@ public class GestoreAccount {
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
                 validate = false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="cognome formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
             }
         }
+
 
 
             if (!pass.equals(""))
@@ -73,10 +98,12 @@ public class GestoreAccount {
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
                 validate = false;
+                return;
             }
 
 
         if(!request.getParameter("email").matches(match)) {
+            mi = pi.matcher(email);
             if (!email.equals(""))
                 System.out.println("email utente dato corretto");
             else {
@@ -84,10 +111,19 @@ public class GestoreAccount {
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
                 validate = false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="email formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
             }
         }
 
-
+        mi = pi2.matcher(data_nascita);
             if (!data_nascita.equals(""))
                 System.out.println("data nascita utente dato corretto");
             else {
@@ -95,10 +131,20 @@ public class GestoreAccount {
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
                 validate = false;
+                return;
             }
+        if (mi.matches())
+        {
+            msg="data nascita formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+            return;
+        }
 
 
         if(!request.getParameter("username").matches(matchData)) {
+            mi = pi.matcher(username);
             if (!username.equals(""))
                 System.out.println("Username utente dato corretto");
             else {
@@ -106,6 +152,15 @@ public class GestoreAccount {
                 System.out.println(msg);
                 request.setAttribute("errorTest", msg);
                 validate = false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="username formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
             }
         }
 
@@ -240,6 +295,10 @@ public class GestoreAccount {
 
         Boolean validate=true;
         String msg="";
+        Pattern pi = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Matcher mi = null;
+
+
 
         if(!citta.equals(""))
                 System.out.println("Citta indirizzo dato corretto");
@@ -248,6 +307,17 @@ public class GestoreAccount {
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
             validate=false;
+            return;
+        }
+
+        mi = pi.matcher(citta);
+        if (mi.matches())
+        {
+            msg="citta indirizzo formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+            return;
         }
 
         if(!cap.equals(""))
@@ -257,6 +327,16 @@ public class GestoreAccount {
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
             validate=false;
+            return;
+        }
+        mi = pi.matcher(cap);
+        if (mi.matches())
+        {
+            msg="cap indirizzo formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+            return;
         }
 
         if(!via.equals(""))
@@ -265,7 +345,17 @@ public class GestoreAccount {
             msg="via indirizzo non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
+            return;
+        }
+
+        mi = pi.matcher(via);
+        if (mi.matches())
+        {
+            msg="via indirizzo formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
             validate=false;
+            return;
         }
 
         if(!ncivico.equals(""))
@@ -274,7 +364,17 @@ public class GestoreAccount {
             msg="numero civico indirizzo non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
+            return;
+        }
+
+        mi = pi.matcher(ncivico);
+        if (mi.matches())
+        {
+            msg="numero civico indirizzo formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
             validate=false;
+            return;
         }
 
         if(!nazione.equals(""))
@@ -283,7 +383,17 @@ public class GestoreAccount {
             msg="nazione indirizzo non corretto";
             System.out.println(msg);
             request.setAttribute("errorTest",msg);
-            validate=false;
+            return;
+        }
+
+        mi = pi.matcher(nazione);
+        if (mi.matches())
+        {
+            msg="nazione indirizzo formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+
+            return;
         }
 
         if(validate==true) {
@@ -383,6 +493,27 @@ public class GestoreAccount {
             String password = request.getParameter("pass");
             String address;
             Utente utente = null;
+            String msg;
+            if(!username.equals(""))
+                System.out.println("username login dato corretto");
+            else{
+                msg="username login non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                return;
+            }
+
+            if(!password.equals(""))
+                System.out.println("password login dato corretto");
+            else{
+                msg="password login non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                return;
+            }
+
+
+
             if (username != null && password != null) {
                 //Cerchiamo nel db un utente con quelle credenziali
                 utente = utenteDAO.doRetrieveByUsernamePassword(username, password);
@@ -474,50 +605,102 @@ public class GestoreAccount {
             String msg;
             boolean validate = true;
 
-            if (!citta.equals(""))
-                System.out.println("citta indirizzo corretto");
-            else {
-                msg = "citta non corretto";
+            Pattern pi = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+            Matcher mi = null;
+
+
+            if(!citta.equals(""))
+                System.out.println("Citta indirizzo dato corretto");
+            else{
+                msg="citta indirizzo non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest", msg);
-                validate = false;
+                request.setAttribute("errorTest",msg);
+                return;
             }
 
-            if (!cap.equals(""))
-                System.out.println("cap indirizzo dato corretto");
-            else {
-                msg = "cap non corretto";
+            mi = pi.matcher(citta);
+            if (mi.matches())
+            {
+                msg="citta indirizzo formato non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest", msg);
-                validate = false;
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
             }
 
-            if (!via.equals(""))
-                System.out.println("via indirizzo dato corretto");
-            else {
-                msg = "via non corretto";
+            if(!cap.equals(""))
+                System.out.println("Cap indirizzo dato corretto");
+            else{
+                msg="cap indirizzo non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest", msg);
-                validate = false;
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
+            mi = pi.matcher(cap);
+            if (mi.matches())
+            {
+                msg="cap indirizzo formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
             }
 
-            if (!ncivico.equals(""))
+            if(!via.equals(""))
+                System.out.println("Via indirizzo dato corretto");
+            else{
+                msg="via indirizzo non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                return;
+            }
+
+            mi = pi.matcher(via);
+            if (mi.matches())
+            {
+                msg="via indirizzo formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                return;
+            }
+
+            if(!ncivico.equals(""))
                 System.out.println("numero civico indirizzo dato corretto");
-            else {
-                msg = "numero civico non corretto";
+            else{
+                msg="numero civico indirizzo non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest", msg);
-                validate = false;
+                request.setAttribute("errorTest",msg);
+                return;
             }
 
-            if (!nazione.equals(""))
-                System.out.println("nazione indirizzo dato corretto");
-            else {
-                msg = "nazione non corretto";
+            mi = pi.matcher(ncivico);
+            if (mi.matches())
+            {
+                msg="numero civico indirizzo formato non corretto";
                 System.out.println(msg);
-                request.setAttribute("errorTest", msg);
-                validate = false;
+                request.setAttribute("errorTest",msg);
+                return;
             }
+
+            if(!nazione.equals(""))
+                System.out.println("nazione indirizzo dato corretto");
+            else{
+                msg="nazione indirizzo non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                return;
+            }
+
+            mi = pi.matcher(nazione);
+            if (mi.matches())
+            {
+                msg="nazione indirizzo formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                return;
+            }
+
 
             if(validate==true) {
                 System.out.println("tutti i campi utente sono giusti");
@@ -561,43 +744,96 @@ public class GestoreAccount {
 
         String msg;
         Boolean validate=true;
+        Pattern pi2 = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Pattern pi = Pattern.compile("[~@#\\^\\$&\\*\\(\\)-_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Matcher mi = null;
+        String match =  "^[0-9A-Za-z]+$";
 
-        if (!username.equals(""))
-            System.out.println("username dato corretto");
-        else {
-            msg = "username non corretto";
-            System.out.println(msg);
-            request.setAttribute("errorTest", msg);
-            validate = false;
+        String matchData =  "^[0-9^-]+$";
+        if(!request.getParameter("nome").matches(match)){
+            mi = pi.matcher(nome);
+            if(!nome.equals(""))
+                System.out.println("nome utente dato corretto");
+            else{
+                msg="nome non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="nome formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
         }
 
-        if (!email.equals(""))
-            System.out.println("email dato corretto");
-        else {
-            msg = "email non corretto";
-            System.out.println(msg);
-            request.setAttribute("errorTest", msg);
-            validate = false;
+        if(!request.getParameter("cognome").matches(match)) {
+            mi = pi.matcher(cognome);
+            if (!cognome.equals(""))
+                System.out.println("cognome utente dato corretto");
+            else {
+                msg = "cognome non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="cognome formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
         }
 
-        if (!nome.equals(""))
-            System.out.println("nome dato corretto");
-        else {
-            msg = "nome non corretto";
-            System.out.println(msg);
-            request.setAttribute("errorTest", msg);
-            validate = false;
+
+        if(!request.getParameter("email").matches(match)) {
+            mi = pi.matcher(email);
+            if (!email.equals(""))
+                System.out.println("email utente dato corretto");
+            else {
+                msg = "email non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="email formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
         }
 
-        if (!cognome.equals(""))
-            System.out.println("cognome dato corretto");
-        else {
-            msg = "cognome non corretto";
-            System.out.println(msg);
-            request.setAttribute("errorTest", msg);
-            validate = false;
+        if(!request.getParameter("username").matches(matchData)) {
+            mi = pi.matcher(username);
+            if (!username.equals(""))
+                System.out.println("Username utente dato corretto");
+            else {
+                msg = "username non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="username formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
         }
-
 
         if(validate==true) {
             System.out.println("tutti i campi utente sono giusti");
@@ -645,11 +881,53 @@ public class GestoreAccount {
     public void gestoreModificaUtenteByAdmin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String s= request.getParameter("id");
-
+        String msg;
+        Boolean validate=true;
+        Pattern pi2 = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Pattern pi = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Matcher mi = null;
+        String match =  "^[0-9A-Za-z]+$";
+        mi = pi.matcher(s);
         int id = 0;
+        mi = pi.matcher(s);
 
-        if(!s.equals(""))
-           id=Integer.parseInt(s);
+        if(s.equals("")){
+            msg="id non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            return;
+        }
+
+        if (mi.matches())
+        {
+            msg="id formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            return;
+        }
+
+
+        if(!s.equals("")) {
+            id = Integer.parseInt(s);
+        }else{
+            msg="id non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+            return;
+        }
+
+        if (mi.matches())
+        {
+            msg="id formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+            return;
+        }
+
+
+
 
         String username = request.getParameter("username");
         String email = request.getParameter("email");
@@ -657,54 +935,95 @@ public class GestoreAccount {
         String cognome = request.getParameter("cognome");
         String ruolo=request.getParameter("ruolo");
 
-        String msg;
-        Boolean validate=true;
 
-        if (!s.equals(""))
-            System.out.println("id dato corretto");
-        else {
-            msg = "id non corretto";
-            System.out.println(msg);
-            request.setAttribute("errorTest", msg);
-            validate = false;
+
+        String matchData =  "^[0-9^-]+$";
+        if(!request.getParameter("nome").matches(match)){
+            mi = pi.matcher(nome);
+            if(!nome.equals(""))
+                System.out.println("nome utente dato corretto");
+            else{
+                msg="nome non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="nome formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
         }
 
-        if (!username.equals(""))
-            System.out.println("username dato corretto");
-        else {
-            msg = "username non corretto";
-            System.out.println(msg);
-            request.setAttribute("errorTest", msg);
-            validate = false;
+        if(!request.getParameter("cognome").matches(match)) {
+            mi = pi.matcher(cognome);
+            if (!cognome.equals(""))
+                System.out.println("cognome utente dato corretto");
+            else {
+                msg = "cognome non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="cognome formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
         }
 
-        if (!email.equals(""))
-            System.out.println("email dato corretto");
-        else {
-            msg = "email non corretto";
-            System.out.println(msg);
-            request.setAttribute("errorTest", msg);
-            validate = false;
+
+        if(!request.getParameter("email").matches(match)) {
+            mi = pi.matcher(email);
+            if (!email.equals(""))
+                System.out.println("email utente dato corretto");
+            else {
+                msg = "email non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="email formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
         }
 
-        if (!nome.equals(""))
-            System.out.println("nome dato corretto");
-        else {
-            msg = "nome non corretto";
-            System.out.println(msg);
-            request.setAttribute("errorTest", msg);
-            validate = false;
+        if(!request.getParameter("username").matches(matchData)) {
+            mi = pi.matcher(username);
+            if (!username.equals(""))
+                System.out.println("Username utente dato corretto");
+            else {
+                msg = "username non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest", msg);
+                validate = false;
+                return;
+            }
+            if (mi.matches())
+            {
+                msg="username formato non corretto";
+                System.out.println(msg);
+                request.setAttribute("errorTest",msg);
+                validate=false;
+                return;
+            }
         }
 
-        if (!cognome.equals(""))
-            System.out.println("cognome dato corretto");
-        else {
-            msg = "cognome non corretto";
-            System.out.println(msg);
-            request.setAttribute("errorTest", msg);
-            validate = false;
-        }
-
+        mi = pi.matcher(ruolo);
         if (!ruolo.equals(""))
             System.out.println("ruolo dato corretto");
         else {
@@ -712,7 +1031,17 @@ public class GestoreAccount {
             System.out.println(msg);
             request.setAttribute("errorTest", msg);
             validate = false;
+            return;
         }
+        if (mi.matches())
+        {
+            msg="ruolo formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+            return;
+        }
+
 
 
         if(validate==true) {
@@ -762,10 +1091,36 @@ public class GestoreAccount {
 
     public void gestoreTrovaUtenteByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String param=request.getParameter("id");
+        if(param.equals("")){
+
+            System.out.println("id non corretto");
+            request.setAttribute("errorTest","id non corretto");
+            return;
+        }
+        String msg;
+        Boolean validate=true;
+        Pattern pi2 = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Pattern pi = Pattern.compile("[~@#\\^\\$&\\*\\(\\)_\\+=\\[\\]\\{\\}\\|\\\\,\\.\\?]*+$");
+        Matcher mi = null;
+        String match =  "^[0-9A-Za-z]+$";
+        mi = pi.matcher(param);
+        if (mi.matches())
+        {
+            msg="id formato non corretto";
+            System.out.println(msg);
+            request.setAttribute("errorTest",msg);
+            validate=false;
+            return;
+        }
         int id=Integer.parseInt(param);
 
         UtenteDAO udao=new UtenteDAO();
         Utente u=udao.retriveById(id);
+        if(u==null){
+            System.out.println("utente non trovato");
+            request.setAttribute("errorTest","utente non trovato");
+            return;
+        }
         request.setAttribute("user1",u);
 
         request.setAttribute("errorTest","utente trovato");
