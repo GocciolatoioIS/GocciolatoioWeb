@@ -29,13 +29,12 @@ public class HomeServlet extends HttpServlet {
 
         Prodotto p1,p2,p3,p4,p5,p6,p7,p8;
         ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i=1; i<=10; i++) {
+        for (int i=1; i<=8; i++) {
             list.add(new Integer(i));
         }
 
         Collections.shuffle(list);
-        for (int i=0; i<8; i++) {
-            System.out.println(list.get(i));
+        int i=0;
             p1 = proDAO.retriveOne((list.get(i)));//Chiama la retrive one prende un prodotto dal db tramite id
             getServletContext().setAttribute("p1" , p1);
             i++;
@@ -66,7 +65,7 @@ public class HomeServlet extends HttpServlet {
 
             p8 = proDAO.retriveOne((list.get(i)));
             getServletContext().setAttribute("p8" , p8);
-        }
+
 
         //Creiamo 8 prodotti e li inviamo alla home.jsp
         String address;
