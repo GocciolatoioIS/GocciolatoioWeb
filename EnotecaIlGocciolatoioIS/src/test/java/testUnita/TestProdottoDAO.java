@@ -104,7 +104,6 @@ public class TestProdottoDAO extends TestCase {
     public void tearDown(){
 
         prodottoDAO.deleteProduct(prodottoEsistente.getId());
-        prodottoDAO.deleteProduct(prodottoNonEsistente.getId());
     }
 
 }
